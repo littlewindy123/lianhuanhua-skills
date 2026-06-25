@@ -44,7 +44,8 @@ Require:
 Optional:
 
 - Desired mood and visual style.
-- Doubao speaker ID.
+- Desired voice in ordinary language, such as “温柔成熟女声” or “沉稳男声”.
+- Advanced override: a Doubao speaker ID.
 - Existing SRT or timeline JSON.
 - Background music.
 - Output dimensions; default to 1080x1920, 30 fps.
@@ -104,17 +105,28 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" init --workspace <workspace>
 1. Read `references/doubao-tts-2.0.md`.
 2. Normalize punctuation and line breaks without changing the story's meaning.
 3. Create `work/narration_plan.json` from the bundled template.
-4. Prefer one continuous TTS request for naturalness unless the story requires major voice-direction changes.
-5. Use `seed-tts-2.0-expressive` when voice instructions are required and the selected voice supports it.
-6. Put the primary voice direction in `additions.context_texts`; only its first item is relied upon.
-7. Generate audio and subtitle events:
+4. Select the voice automatically from the story, mood, audience, and requested style. Do not ask ordinary users for a speaker ID.
+5. Write the selected built-in profile to `project.tts.voice_profile`:
+   - `gentle-reflective-female`: reflective, intimate, restrained, emotional narration.
+   - `warm-caring-female`: warm, comforting, friendly narration.
+6. If the user explicitly supplies a speaker ID, write it to `project.tts.speaker`; it overrides the built-in profile.
+7. If the user asks where to find or create a voice, explain:
+   - preset voices: audition and copy the ID from the Doubao Speech console's voice library,
+   - custom voices: create an authorized voice through Voice Replication, then copy its speaker ID,
+   - official voice list: `https://www.volcengine.com/docs/6561/1257544`,
+   - console: `https://console.volcengine.com/speech/app`.
+8. Require only `DOUBAO_API_KEY` for a built-in profile. Treat `DOUBAO_SPEAKER` as an advanced optional override.
+9. Prefer one continuous TTS request for naturalness unless the story requires major voice-direction changes.
+10. Use `seed-tts-2.0-expressive` when voice instructions are required and the selected voice supports it.
+11. Put the primary voice direction in `additions.context_texts`; only its first item is relied upon.
+12. Generate audio and subtitle events:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" tts --workspace <workspace>
 ```
 
-8. Verify that `work/audio/narration.*`, `work/timeline.json`, and `work/subtitles.srt` exist.
-9. If the API returns audio but no subtitles, keep the audio and raw event log, then use the media transcription fallback only after explaining the fallback in the project log.
+13. Verify that `work/audio/narration.*`, `work/timeline.json`, and `work/subtitles.srt` exist.
+14. If the API returns audio but no subtitles, keep the audio and raw event log, then use the media transcription fallback only after explaining the fallback in the project log.
 
 ## Phase 1B: Existing audio/video mode
 

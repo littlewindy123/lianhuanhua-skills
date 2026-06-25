@@ -26,7 +26,8 @@ def doctor_report() -> dict[str, Any]:
         },
         "environment": {
             "DOUBAO_API_KEY": bool(os.getenv("DOUBAO_API_KEY")),
-            "DOUBAO_SPEAKER": bool(os.getenv("DOUBAO_SPEAKER")),
+            "DOUBAO_SPEAKER_optional_override": bool(os.getenv("DOUBAO_SPEAKER")),
+            "built_in_voice_profiles": True,
         },
     }
 

@@ -69,17 +69,35 @@ pip install -r plugins\lianhuanhua\skills\lianhuanhua\scripts\requirements.txt
 
 ### 2. 配置豆包语音
 
+普通用户不需要先寻找音色 ID。Skill 会根据文案自动选择内置音色：
+
+- 情感内省、克制叙事：温柔白月光 2.0
+- 温暖安慰、亲切叙事：贴心妹妹 2.0
+
+只需配置 API Key：
+
 ```bash
 export DOUBAO_API_KEY="your-api-key"
-export DOUBAO_SPEAKER="your-speaker-id"
 ```
 
 Windows PowerShell：
 
 ```powershell
 $env:DOUBAO_API_KEY="your-api-key"
+```
+
+如果想换成其他预设音色，可前往：
+
+- [豆包语音官方音色列表](https://www.volcengine.com/docs/6561/1257544)
+- [豆包语音控制台](https://console.volcengine.com/speech/app)：试听音色并复制音色 ID
+
+如果想使用自己的声音，可在控制台进入“声音复刻”，上传已获授权的声音样本，训练完成后复制音色 ID。随后把 ID 写入 `project.json` 的 `tts.speaker`，或设置：
+
+```powershell
 $env:DOUBAO_SPEAKER="your-speaker-id"
 ```
+
+`DOUBAO_SPEAKER` 是高级覆盖项，不是普通用户的必填配置。
 
 ### 3. 在 Codex 中调用
 

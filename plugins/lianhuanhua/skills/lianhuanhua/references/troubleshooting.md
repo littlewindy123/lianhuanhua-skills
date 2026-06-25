@@ -2,7 +2,8 @@
 
 ## Doubao connection fails
 
-- Confirm API key and speaker ID.
+- Confirm the API key. A speaker ID is optional when `project.tts.voice_profile` uses a built-in profile.
+- For a different preset or custom voice, copy the speaker ID from `https://console.volcengine.com/speech/app`.
 - Confirm `X-Api-Resource-Id` is `seed-tts-2.0`.
 - Generate a fresh connection and session ID.
 - Preserve `X-Tt-Logid` when available.

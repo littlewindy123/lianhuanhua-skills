@@ -94,6 +94,12 @@
         "speaker": {
           "type": "string"
         },
+        "voice_profile": {
+          "enum": [
+            "gentle-reflective-female",
+            "warm-caring-female"
+          ]
+        },
         "model": {
           "enum": [
             "seed-tts-2.0-standard",

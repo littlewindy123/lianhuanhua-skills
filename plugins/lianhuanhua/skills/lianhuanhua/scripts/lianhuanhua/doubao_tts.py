@@ -57,6 +57,36 @@ class DoubaoError(RuntimeError):
     pass
 
 
+BUILTIN_VOICE_PROFILES = {
+    "gentle-reflective-female": {
+        "speaker": "ICL_uranus_zh_female_wenroubaiyueguang_tob",
+        "display_name": "温柔白月光 2.0",
+    },
+    "warm-caring-female": {
+        "speaker": "ICL_uranus_zh_female_tiexinmeimei_tob",
+        "display_name": "贴心妹妹 2.0",
+    },
+}
+DEFAULT_VOICE_PROFILE = "warm-caring-female"
+
+
+def resolve_speaker(tts: dict[str, Any]) -> tuple[str, str]:
+    explicit = str(tts.get("speaker") or os.getenv("DOUBAO_SPEAKER", "")).strip()
+    if explicit:
+        return explicit, "explicit"
+
+    profile = str(tts.get("voice_profile") or DEFAULT_VOICE_PROFILE).strip()
+    resolved = BUILTIN_VOICE_PROFILES.get(profile)
+    if resolved is None:
+        available = ", ".join(sorted(BUILTIN_VOICE_PROFILES))
+        raise DoubaoError(
+            f"Unknown voice profile {profile!r}. Available built-in profiles: {available}. "
+            "Alternatively set project.tts.speaker or DOUBAO_SPEAKER to an ID copied from "
+            "https://console.volcengine.com/speech/app"
+        )
+    return str(resolved["speaker"]), profile
+
+
 async def _connect(headers: dict[str, str]):
     # websockets renamed extra_headers to additional_headers in newer versions.
     try:
@@ -350,11 +380,13 @@ def synthesize_plan(
 def config_from_project(project: dict[str, Any]) -> DoubaoConfig:
     tts = project.get("tts", {})
     api_key = os.getenv("DOUBAO_API_KEY", "").strip()
-    speaker = str(tts.get("speaker") or os.getenv("DOUBAO_SPEAKER", "")).strip()
     if not api_key:
-        raise DoubaoError("DOUBAO_API_KEY is not set")
-    if not speaker:
-        raise DoubaoError("No Doubao speaker configured. Set project.tts.speaker or DOUBAO_SPEAKER")
+        raise DoubaoError(
+            "DOUBAO_API_KEY is not set. Create or open a Doubao Speech application at "
+            "https://console.volcengine.com/speech/app and copy its API key. "
+            "A speaker ID is not required when project.tts.voice_profile uses a built-in profile."
+        )
+    speaker, _source = resolve_speaker(tts)
     return DoubaoConfig(
         api_key=api_key,
         speaker=speaker,

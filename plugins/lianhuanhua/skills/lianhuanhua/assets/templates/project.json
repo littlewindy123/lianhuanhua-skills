@@ -19,6 +19,7 @@
   },
   "tts": {
     "speaker": "",
+    "voice_profile": "gentle-reflective-female",
     "model": "seed-tts-2.0-expressive",
     "format": "mp3",
     "sample_rate": 24000,

@@ -9,6 +9,34 @@
 - Audio formats: use MP3 for final narration or PCM while debugging streaming audio.
 - Set MP3 bit rate explicitly; the service documentation warns that an unsuitable default can cause quality loss.
 
+## Voice selection
+
+Do not require an ordinary user to know a speaker ID. Select a natural-language voice profile from the content first.
+
+Built-in profiles:
+
+| Profile | Official voice | Speaker ID | Use |
+|---|---|---|---|
+| `gentle-reflective-female` | 温柔白月光 2.0 | `ICL_uranus_zh_female_wenroubaiyueguang_tob` | Reflective, intimate, restrained emotional narration |
+| `warm-caring-female` | 贴心妹妹 2.0 | `ICL_uranus_zh_female_tiexinmeimei_tob` | Warm, comforting, friendly narration |
+
+Resolution priority:
+
+1. `project.tts.speaker`
+2. `DOUBAO_SPEAKER`
+3. `project.tts.voice_profile`
+4. built-in default `warm-caring-female`
+
+The user only needs `DOUBAO_API_KEY` when a built-in profile is used.
+
+Where users can get a different voice:
+
+- Preset voices: open the [official voice list](https://www.volcengine.com/docs/6561/1257544), then audition and copy the ID from the [Doubao Speech console](https://console.volcengine.com/speech/app).
+- Custom voice: create an authorized voice in the console's Voice Replication section, wait for training to complete, then copy its speaker ID.
+- Voice design: use the official [Voice Design API](https://www.volcengine.com/docs/6561/2277844) when a generated custom timbre is preferred.
+
+Never encourage cloning a real person's voice without authorization.
+
 ## Timing
 
 For TTS 2.0 use:

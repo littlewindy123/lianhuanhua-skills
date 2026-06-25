@@ -3,6 +3,8 @@ from __future__ import annotations
 import json
 import struct
 
+import pytest
+
 from lianhuanhua.doubao_protocol import (
     MESSAGE_AUDIO_ONLY_RESPONSE,
     MESSAGE_FULL_SERVER_RESPONSE,
@@ -10,6 +12,7 @@ from lianhuanhua.doubao_protocol import (
     decode_frame,
     encode_json_event,
 )
+from lianhuanhua.doubao_tts import DoubaoError, resolve_speaker
 
 
 def test_encode_start_connection() -> None:
@@ -55,3 +58,23 @@ def test_decode_subtitle_like_json_response() -> None:
     assert frame.message_type == MESSAGE_FULL_SERVER_RESPONSE
     assert frame.serialization == SERIALIZATION_JSON
     assert frame.json_payload["text"] == "你好"
+
+
+def test_resolve_speaker_from_builtin_profile(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("DOUBAO_SPEAKER", raising=False)
+    speaker, source = resolve_speaker({"voice_profile": "gentle-reflective-female"})
+    assert speaker == "ICL_uranus_zh_female_wenroubaiyueguang_tob"
+    assert source == "gentle-reflective-female"
+
+
+def test_explicit_speaker_overrides_profile(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.setenv("DOUBAO_SPEAKER", "S_custom_voice")
+    speaker, source = resolve_speaker({"voice_profile": "gentle-reflective-female"})
+    assert speaker == "S_custom_voice"
+    assert source == "explicit"
+
+
+def test_unknown_voice_profile_has_actionable_error(monkeypatch: pytest.MonkeyPatch) -> None:
+    monkeypatch.delenv("DOUBAO_SPEAKER", raising=False)
+    with pytest.raises(DoubaoError, match="console.volcengine.com/speech/app"):
+        resolve_speaker({"voice_profile": "unknown"})
