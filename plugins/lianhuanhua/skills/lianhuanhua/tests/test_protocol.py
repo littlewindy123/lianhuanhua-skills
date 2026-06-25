@@ -107,3 +107,19 @@ def test_handshake_401_explains_api_key_source() -> None:
     assert "test-log-id" in message
     assert "API Key Management" in message
     assert "APP ID" in message
+
+
+def test_handshake_403_explains_resource_grant() -> None:
+    response = SimpleNamespace(
+        status_code=403,
+        body=bytearray(
+            b'{"error":"[resource_id=volc.seedtts.default] requested resource not granted"}'
+        ),
+        headers=Headers({"X-Tt-Logid": "test-resource-log-id"}),
+    )
+    error = SimpleNamespace(response=response)
+    message = _handshake_error_message(error)
+    assert "resource not granted" in message
+    assert "seed-tts-2.0" in message
+    assert "console.volcengine.com/speech/app" in message
+    assert "resource pack" in message

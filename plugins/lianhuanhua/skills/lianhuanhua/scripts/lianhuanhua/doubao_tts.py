@@ -83,6 +83,13 @@ def _handshake_error_message(exc: Exception) -> str:
             ". The value must come from Doubao Speech Console > API Key Management; "
             "do not use an APP ID, Access Key, account AK/SK, or another product's key."
         )
+    elif status == 403 and "resource not granted" in body_text.casefold():
+        details += (
+            ". The API key is valid, but its Doubao Speech application isn't authorized for "
+            "the requested TTS resource. Open https://console.volcengine.com/speech/app, select "
+            "the application that owns this key, and activate/grant Doubao Speech TTS 2.0 "
+            "(`seed-tts-2.0`) or obtain the required resource pack."
+        )
     return f"Doubao WebSocket connection failed: {details}"
 
 
