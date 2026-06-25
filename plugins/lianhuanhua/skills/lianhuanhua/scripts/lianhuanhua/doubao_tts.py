@@ -58,6 +58,34 @@ class DoubaoError(RuntimeError):
     pass
 
 
+def _handshake_error_message(exc: Exception) -> str:
+    response = getattr(exc, "response", None)
+    if response is None:
+        return f"Doubao WebSocket connection failed: {exc}"
+
+    status = getattr(response, "status_code", "unknown")
+    body = getattr(response, "body", None)
+    if isinstance(body, (bytes, bytearray)):
+        body = bytes(body).decode("utf-8", "replace")
+    body_text = str(body or "").strip()
+    log_id = ""
+    headers = getattr(response, "headers", None)
+    if headers is not None:
+        log_id = str(headers.get("X-Tt-Logid", "")).strip()
+
+    details = f"HTTP {status}"
+    if body_text:
+        details += f": {body_text}"
+    if log_id:
+        details += f" (X-Tt-Logid: {log_id})"
+    if status == 401:
+        details += (
+            ". The value must come from Doubao Speech Console > API Key Management; "
+            "do not use an APP ID, Access Key, account AK/SK, or another product's key."
+        )
+    return f"Doubao WebSocket connection failed: {details}"
+
+
 LEGACY_VOICE_PROFILES = {
     "gentle-reflective-female": "温柔白月光 2.0",
     "warm-caring-female": "贴心妹妹 2.0",
@@ -81,21 +109,24 @@ def resolve_speaker(tts: dict[str, Any]) -> tuple[str, str]:
 async def _connect(headers: dict[str, str]):
     # websockets renamed extra_headers to additional_headers in newer versions.
     try:
-        return await websockets.connect(
-            DOUBAO_ENDPOINT,
-            additional_headers=headers,
-            max_size=None,
-            ping_interval=20,
-            ping_timeout=20,
-        )
-    except TypeError:
-        return await websockets.connect(
-            DOUBAO_ENDPOINT,
-            extra_headers=headers,
-            max_size=None,
-            ping_interval=20,
-            ping_timeout=20,
-        )
+        try:
+            return await websockets.connect(
+                DOUBAO_ENDPOINT,
+                additional_headers=headers,
+                max_size=None,
+                ping_interval=20,
+                ping_timeout=20,
+            )
+        except TypeError:
+            return await websockets.connect(
+                DOUBAO_ENDPOINT,
+                extra_headers=headers,
+                max_size=None,
+                ping_interval=20,
+                ping_timeout=20,
+            )
+    except websockets.exceptions.InvalidStatus as exc:
+        raise DoubaoError(_handshake_error_message(exc)) from exc
 
 
 async def _receive_frame(websocket, timeout: float):

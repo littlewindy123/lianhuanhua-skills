@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import json
 import struct
+from types import SimpleNamespace
 
 import pytest
+from websockets.datastructures import Headers
 
 from lianhuanhua.doubao_protocol import (
     MESSAGE_AUDIO_ONLY_RESPONSE,
@@ -12,7 +14,7 @@ from lianhuanhua.doubao_protocol import (
     decode_frame,
     encode_json_event,
 )
-from lianhuanhua.doubao_tts import DoubaoError, resolve_speaker
+from lianhuanhua.doubao_tts import DoubaoError, _handshake_error_message, resolve_speaker
 from lianhuanhua.voice_catalog import load_voice_catalog, search_voices
 
 
@@ -91,3 +93,17 @@ def test_unknown_voice_profile_has_actionable_error(monkeypatch: pytest.MonkeyPa
     monkeypatch.delenv("DOUBAO_SPEAKER", raising=False)
     with pytest.raises(DoubaoError, match="console.volcengine.com/speech/app"):
         resolve_speaker({"voice_preference": "不存在的火星机器人音色"})
+
+
+def test_handshake_401_explains_api_key_source() -> None:
+    response = SimpleNamespace(
+        status_code=401,
+        body=bytearray(b'{"error":"Invalid X-Api-Key"}'),
+        headers=Headers({"X-Tt-Logid": "test-log-id"}),
+    )
+    error = SimpleNamespace(response=response)
+    message = _handshake_error_message(error)
+    assert "Invalid X-Api-Key" in message
+    assert "test-log-id" in message
+    assert "API Key Management" in message
+    assert "APP ID" in message
