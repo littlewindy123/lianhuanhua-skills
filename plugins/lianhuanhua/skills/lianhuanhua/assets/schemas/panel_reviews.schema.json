@@ -1,0 +1,78 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Panel Reviews",
+  "type": "object",
+  "required": [
+    "reviews"
+  ],
+  "properties": {
+    "reviews": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "shot_id",
+          "passed",
+          "scores",
+          "defects",
+          "attempt"
+        ],
+        "properties": {
+          "shot_id": {
+            "type": "string"
+          },
+          "passed": {
+            "type": "boolean"
+          },
+          "attempt": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "scores": {
+            "type": "object",
+            "required": [
+              "identity",
+              "style",
+              "continuity",
+              "story_alignment"
+            ],
+            "properties": {
+              "identity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "style": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "continuity": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "story_alignment": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "defects": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "repair_instruction": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

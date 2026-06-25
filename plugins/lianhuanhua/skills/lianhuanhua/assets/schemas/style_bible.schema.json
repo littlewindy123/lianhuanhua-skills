@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Style Bible",
+  "type": "object",
+  "required": [
+    "visual_style",
+    "line_style",
+    "palette",
+    "shading",
+    "background",
+    "forbidden_styles"
+  ],
+  "properties": {
+    "visual_style": {
+      "type": "string"
+    },
+    "line_style": {
+      "type": "string"
+    },
+    "palette": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "shading": {
+      "type": "string"
+    },
+    "background": {
+      "type": "string"
+    },
+    "lighting": {
+      "type": "string"
+    },
+    "texture": {
+      "type": "string"
+    },
+    "aspect_ratio": {
+      "type": "string"
+    },
+    "forbidden_styles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  },
+  "additionalProperties": false
+}

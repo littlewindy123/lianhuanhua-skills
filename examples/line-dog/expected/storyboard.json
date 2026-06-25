@@ -1,0 +1,107 @@
+{
+  "version": "0.1",
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration": 9.0
+  },
+  "shots": [
+    {
+      "id": "shot_001",
+      "segment_id": "seg_001",
+      "scene_id": "room",
+      "start": 0.0,
+      "end": 1.8,
+      "image": "work/panels/panel_001.png",
+      "is_anchor": true,
+      "visual_action": "The dog sits by a window and looks at distant evening light.",
+      "character_state": "quiet and reflective",
+      "scene_state": "small room at dusk",
+      "composition": "medium-wide shot, dog on lower-left third, empty space above",
+      "previous_panel_summary": "Opening image.",
+      "motion": {
+        "type": "slow_zoom_in",
+        "strength": 0.25,
+        "focus_x": 0.35,
+        "focus_y": 0.55
+      },
+      "transition_out": {
+        "type": "dissolve",
+        "duration": 0.25
+      }
+    },
+    {
+      "id": "shot_002",
+      "segment_id": "seg_002",
+      "scene_id": "memory",
+      "start": 1.8,
+      "end": 3.7,
+      "image": "work/panels/panel_002.png",
+      "is_anchor": true,
+      "visual_action": "The same dog walks beside a distant companion in a warm memory.",
+      "character_state": "briefly hopeful",
+      "scene_state": "quiet road in a warm memory",
+      "composition": "side view, both figures small, road leading forward",
+      "previous_panel_summary": "The dog was alone by a window.",
+      "motion": {
+        "type": "pan_right",
+        "strength": 0.25,
+        "focus_x": 0.5,
+        "focus_y": 0.55
+      },
+      "transition_out": {
+        "type": "dissolve",
+        "duration": 0.25
+      }
+    },
+    {
+      "id": "shot_003",
+      "segment_id": "seg_002",
+      "scene_id": "memory",
+      "start": 3.7,
+      "end": 5.7,
+      "image": "work/panels/panel_003.png",
+      "is_anchor": false,
+      "visual_action": "The companion gradually walks away while the dog stops.",
+      "character_state": "sad but restrained",
+      "scene_state": "same road becoming cooler and emptier",
+      "composition": "wide rear view, growing distance between figures",
+      "previous_panel_summary": "They were walking side by side.",
+      "motion": {
+        "type": "slow_zoom_out",
+        "strength": 0.35,
+        "focus_x": 0.55,
+        "focus_y": 0.55
+      },
+      "transition_out": {
+        "type": "fade",
+        "duration": 0.35
+      }
+    },
+    {
+      "id": "shot_004",
+      "segment_id": "seg_003",
+      "scene_id": "road",
+      "start": 5.7,
+      "end": 9.0,
+      "image": "work/panels/panel_004.png",
+      "is_anchor": true,
+      "visual_action": "The dog turns forward and continues alone along the road.",
+      "character_state": "accepting and calm",
+      "scene_state": "early morning road with soft light",
+      "composition": "rear three-quarter view, dog moving toward open space",
+      "previous_panel_summary": "The companion disappeared into the distance.",
+      "motion": {
+        "type": "slow_zoom_out",
+        "strength": 0.2,
+        "focus_x": 0.5,
+        "focus_y": 0.58
+      },
+      "transition_out": {
+        "type": "fadeblack",
+        "duration": 0.6
+      }
+    }
+  ]
+}

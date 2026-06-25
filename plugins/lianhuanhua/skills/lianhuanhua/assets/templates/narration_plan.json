@@ -1,0 +1,12 @@
+{
+  "mode": "single_session",
+  "global_instruction": "Please narrate slowly and gently, with restrained emotion and clear pauses. Do not sound theatrical.",
+  "chunks": [
+    {
+      "id": "narration_001",
+      "text": "Replace this text with the final narration.",
+      "instruction": "",
+      "pause_after_ms": 0
+    }
+  ]
+}

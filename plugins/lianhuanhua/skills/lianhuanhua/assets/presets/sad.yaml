@@ -1,0 +1,5 @@
+name: sad
+voice_instruction: "Narrate slowly with restrained sadness and natural pauses."
+visual_style: "minimal emotional comic illustration"
+default_motion: slow_zoom_in
+default_transition: dissolve

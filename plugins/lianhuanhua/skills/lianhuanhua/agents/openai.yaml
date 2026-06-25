@@ -1,0 +1,10 @@
+interface:
+  display_name: "连环画 Skills"
+  short_description: "文案或音视频生成角色连续的连环画短视频"
+  default_prompt: "Use $lianhuanhua to create a 9:16 comic-style emotional video from my story and character reference."
+  icon_small: "./assets/icon.svg"
+  icon_large: "./assets/logo.svg"
+  brand_color: "#F2B84B"
+
+policy:
+  allow_implicit_invocation: true

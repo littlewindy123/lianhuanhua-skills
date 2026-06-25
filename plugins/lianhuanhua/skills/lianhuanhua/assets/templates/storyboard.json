@@ -1,0 +1,35 @@
+{
+  "version": "0.1",
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "duration": 5.0
+  },
+  "shots": [
+    {
+      "id": "shot_001",
+      "segment_id": "seg_001",
+      "scene_id": "scene_001",
+      "start": 0.0,
+      "end": 5.0,
+      "image": "work/panels/panel_001.png",
+      "is_anchor": true,
+      "visual_action": "The main character waits quietly.",
+      "character_state": "calm and reflective",
+      "scene_state": "quiet evening interior",
+      "composition": "medium shot, subject in lower center",
+      "previous_panel_summary": "Opening panel.",
+      "motion": {
+        "type": "slow_zoom_in",
+        "strength": 0.25,
+        "focus_x": 0.5,
+        "focus_y": 0.45
+      },
+      "transition_out": {
+        "type": "fadeblack",
+        "duration": 0.5
+      }
+    }
+  ]
+}

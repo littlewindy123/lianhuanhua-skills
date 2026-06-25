@@ -1,0 +1,5 @@
+name: warm
+voice_instruction: "Narrate gently and warmly, as if comforting a close friend."
+visual_style: "soft warm comic illustration"
+default_motion: slow_zoom_in
+default_transition: fade

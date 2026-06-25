@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.venv/
+.env
+.DS_Store
+.pytest_cache/
+*.log
+workspaces/
+output/
+*.mp4
+*.mp3
+*.wav

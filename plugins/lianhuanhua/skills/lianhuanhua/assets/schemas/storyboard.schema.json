@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Storyboard",
+  "type": "object",
+  "required": [
+    "version",
+    "video",
+    "shots"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "video": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "fps",
+        "duration"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "fps": {
+          "type": "integer"
+        },
+        "duration": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "shots": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "segment_id",
+          "start",
+          "end",
+          "image",
+          "visual_action",
+          "composition",
+          "motion",
+          "transition_out"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "segment_id": {
+            "type": "string"
+          },
+          "scene_id": {
+            "type": "string"
+          },
+          "start": {
+            "type": "number",
+            "minimum": 0
+          },
+          "end": {
+            "type": "number",
+            "minimum": 0
+          },
+          "image": {
+            "type": "string"
+          },
+          "is_anchor": {
+            "type": "boolean"
+          },
+          "visual_action": {
+            "type": "string"
+          },
+          "character_state": {
+            "type": "string"
+          },
+          "scene_state": {
+            "type": "string"
+          },
+          "composition": {
+            "type": "string"
+          },
+          "previous_panel_summary": {
+            "type": "string"
+          },
+          "motion": {
+            "type": "object",
+            "required": [
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "hold",
+                  "slow_zoom_in",
+                  "slow_zoom_out",
+                  "pan_left",
+                  "pan_right",
+                  "float_up_down"
+                ]
+              },
+              "strength": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "focus_x": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              },
+              "focus_y": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 1
+              }
+            },
+            "additionalProperties": false
+          },
+          "transition_out": {
+            "type": "object",
+            "required": [
+              "type",
+              "duration"
+            ],
+            "properties": {
+              "type": {
+                "enum": [
+                  "cut",
+                  "fade",
+                  "dissolve",
+                  "fadeblack"
+                ]
+              },
+              "duration": {
+                "type": "number",
+                "minimum": 0,
+                "maximum": 2
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

@@ -1,0 +1,35 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install FFmpeg
+        run: sudo apt-get update && sudo apt-get install -y ffmpeg
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r plugins/lianhuanhua/skills/lianhuanhua/scripts/requirements-dev.txt
+      - name: Compile
+        run: python -m compileall -q plugins/lianhuanhua/skills/lianhuanhua/scripts
+      - name: Test
+        env:
+          PYTHONPATH: plugins/lianhuanhua/skills/lianhuanhua/scripts
+        run: pytest -q plugins/lianhuanhua/skills/lianhuanhua/tests
+      - name: Parse JSON
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('.').rglob('*.json'):
+              json.loads(path.read_text(encoding='utf-8'))
+          print('JSON OK')
+          PY

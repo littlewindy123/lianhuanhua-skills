@@ -1,0 +1,27 @@
+{
+  "character_id": "main_character",
+  "summary": "Describe the character using only visible and approved details.",
+  "reference_images": [
+    "input/character/character.png"
+  ],
+  "immutable_features": {
+    "silhouette": "",
+    "face_or_head_shape": "",
+    "colors": [],
+    "fixed_accessories": [],
+    "line_or_material_style": ""
+  },
+  "mutable_features": [
+    "pose",
+    "expression",
+    "camera angle",
+    "lighting",
+    "background"
+  ],
+  "forbidden_changes": [
+    "Do not redesign the character.",
+    "Do not change fixed colors or accessories."
+  ],
+  "uncertain_features": [],
+  "character_sheet": "work/character_sheet.png"
+}

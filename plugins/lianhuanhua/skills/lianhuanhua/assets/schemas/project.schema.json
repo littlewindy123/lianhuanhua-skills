@@ -1,0 +1,142 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lianhuanhua Project",
+  "type": "object",
+  "required": [
+    "version",
+    "mode",
+    "video",
+    "paths"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "text",
+        "audio",
+        "video"
+      ]
+    },
+    "mood": {
+      "type": "string"
+    },
+    "video": {
+      "type": "object",
+      "required": [
+        "width",
+        "height",
+        "fps"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 320
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 320
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 120
+        },
+        "subtitle_font": {
+          "type": "string"
+        },
+        "burn_subtitles": {
+          "type": "boolean"
+        }
+      },
+      "additionalProperties": false
+    },
+    "paths": {
+      "type": "object",
+      "required": [
+        "story",
+        "character_images",
+        "media"
+      ],
+      "properties": {
+        "story": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "character_images": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 1
+        },
+        "media": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "background_music": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "tts": {
+      "type": "object",
+      "properties": {
+        "speaker": {
+          "type": "string"
+        },
+        "model": {
+          "enum": [
+            "seed-tts-2.0-standard",
+            "seed-tts-2.0-expressive"
+          ]
+        },
+        "format": {
+          "enum": [
+            "mp3",
+            "ogg_opus",
+            "pcm"
+          ]
+        },
+        "sample_rate": {
+          "type": "integer"
+        },
+        "bit_rate": {
+          "type": "integer"
+        },
+        "speech_rate": {
+          "type": "number",
+          "minimum": -50,
+          "maximum": 100
+        },
+        "loudness_rate": {
+          "type": "number",
+          "minimum": -50,
+          "maximum": 100
+        },
+        "emotion": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "emotion_scale": {
+          "type": "number",
+          "minimum": 1,
+          "maximum": 5
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

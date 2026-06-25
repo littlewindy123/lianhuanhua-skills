@@ -1,0 +1,32 @@
+{
+  "character_id": "line_dog",
+  "summary": "A small white line-art dog with one drooping ear, one upright ear, dot eyes, and a yellow scarf.",
+  "reference_images": [
+    "input/character.png"
+  ],
+  "immutable_features": {
+    "species": "small cartoon dog",
+    "body_color": "white",
+    "outline": "thin black hand-drawn line",
+    "left_ear": "drooping",
+    "right_ear": "upright",
+    "eyes": "small black dots",
+    "scarf": "yellow",
+    "body_shape": "small and round"
+  },
+  "mutable_features": [
+    "pose",
+    "expression",
+    "camera angle",
+    "background",
+    "lighting"
+  ],
+  "forbidden_changes": [
+    "Do not change ear orientation.",
+    "Do not change the scarf color.",
+    "Do not add clothes.",
+    "Do not make the dog photorealistic."
+  ],
+  "uncertain_features": [],
+  "character_sheet": "work/character_sheet.png"
+}

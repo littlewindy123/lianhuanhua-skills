@@ -1,0 +1,32 @@
+{
+  "version": "0.1",
+  "source": "example",
+  "audio_file": "work/audio/narration.mp3",
+  "duration": 9.0,
+  "segments": [
+    {
+      "id": "seg_001",
+      "text": "后来我才明白。",
+      "start": 0.0,
+      "end": 1.8,
+      "emotion": "reflective",
+      "words": []
+    },
+    {
+      "id": "seg_002",
+      "text": "有些人来到你的生命里，不是为了陪你走到最后。",
+      "start": 1.8,
+      "end": 5.7,
+      "emotion": "sad",
+      "words": []
+    },
+    {
+      "id": "seg_003",
+      "text": "他只是陪你走了一段路。",
+      "start": 5.7,
+      "end": 9.0,
+      "emotion": "acceptance",
+      "words": []
+    }
+  ]
+}

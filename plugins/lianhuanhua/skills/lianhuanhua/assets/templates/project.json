@@ -1,0 +1,31 @@
+{
+  "version": "0.1",
+  "mode": "text",
+  "mood": "restrained sadness",
+  "video": {
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "subtitle_font": "Noto Sans CJK SC",
+    "burn_subtitles": true
+  },
+  "paths": {
+    "story": "input/story.txt",
+    "character_images": [
+      "input/character/character.png"
+    ],
+    "media": null,
+    "background_music": null
+  },
+  "tts": {
+    "speaker": "",
+    "model": "seed-tts-2.0-expressive",
+    "format": "mp3",
+    "sample_rate": 24000,
+    "bit_rate": 128000,
+    "speech_rate": -8,
+    "loudness_rate": 0,
+    "emotion": null,
+    "emotion_scale": 4
+  }
+}

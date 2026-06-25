@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Continuity Ledger",
+  "type": "object",
+  "required": [
+    "shots"
+  ],
+  "properties": {
+    "shots": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "shot_id",
+          "scene_id",
+          "state"
+        ],
+        "properties": {
+          "shot_id": {
+            "type": "string"
+          },
+          "scene_id": {
+            "type": "string"
+          },
+          "previous_shot_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "state": {
+            "type": "object",
+            "properties": {
+              "location": {
+                "type": "string"
+              },
+              "time_of_day": {
+                "type": "string"
+              },
+              "weather": {
+                "type": "string"
+              },
+              "character_position": {
+                "type": "string"
+              },
+              "facing_direction": {
+                "type": "string"
+              },
+              "pose": {
+                "type": "string"
+              },
+              "expression": {
+                "type": "string"
+              },
+              "clothing_and_accessories": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "props": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "emotion": {
+                "type": "string"
+              },
+              "notes": {
+                "type": "string"
+              }
+            },
+            "additionalProperties": false
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

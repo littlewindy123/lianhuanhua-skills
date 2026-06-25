@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 200">
+  <rect width="720" height="200" rx="28" fill="#FFF7E8"/>
+  <g transform="translate(34 30)">
+    <rect x="0" y="6" width="106" height="126" rx="14" fill="#F2B84B" stroke="#202020" stroke-width="8"/>
+    <rect x="62" y="18" width="106" height="126" rx="14" fill="#FFFFFF" stroke="#202020" stroke-width="8"/>
+    <circle cx="100" cy="72" r="16" fill="#202020"/>
+    <path d="M61 108c23-25 54-25 78 0" fill="none" stroke="#202020" stroke-width="8" stroke-linecap="round"/>
+  </g>
+  <text x="240" y="95" font-size="58" font-family="sans-serif" font-weight="700" fill="#202020">连环画 Skills</text>
+  <text x="243" y="140" font-size="24" font-family="sans-serif" fill="#555555">Story to consistent comic video</text>
+</svg>

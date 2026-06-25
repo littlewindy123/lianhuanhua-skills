@@ -1,0 +1,20 @@
+{
+  "visual_style": "minimal emotional comic illustration",
+  "line_style": "clean consistent line work",
+  "palette": [
+    "#F5F0E8",
+    "#222222",
+    "#E8B84A"
+  ],
+  "shading": "flat restrained shading",
+  "background": "simple readable environments",
+  "lighting": "soft diffused light",
+  "texture": "subtle paper texture",
+  "aspect_ratio": "9:16",
+  "forbidden_styles": [
+    "photorealistic",
+    "3D render",
+    "highly saturated colors",
+    "unrelated typography"
+  ]
+}

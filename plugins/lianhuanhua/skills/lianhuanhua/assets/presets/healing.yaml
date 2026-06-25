@@ -1,0 +1,5 @@
+name: healing
+voice_instruction: "Narrate calmly and softly, leaving comfortable pauses between ideas."
+visual_style: "clean healing comic illustration with soft light"
+default_motion: slow_zoom_out
+default_transition: dissolve

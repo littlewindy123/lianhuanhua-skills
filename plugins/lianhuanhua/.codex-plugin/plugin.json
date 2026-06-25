@@ -1,0 +1,37 @@
+{
+  "name": "lianhuanhua",
+  "version": "0.1.0",
+  "description": "Turn a character image and a story, audio, or video into a consistent narrated comic-style vertical video.",
+  "author": {
+    "name": "喧嚣小风AI实验室"
+  },
+  "license": "MIT",
+  "keywords": [
+    "codex",
+    "skill",
+    "comic",
+    "storyboard",
+    "doubao-tts",
+    "ffmpeg",
+    "short-video"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "连环画 Skills",
+    "shortDescription": "一张角色图和一段故事，生成连环画短视频",
+    "longDescription": "使用豆包语音合成 2.0、Codex 内置 imagegen 和 FFmpeg，把文案、音频或视频制作成角色连续、画风统一的竖屏连环画短视频。",
+    "developerName": "喧嚣小风AI实验室",
+    "category": "Productivity",
+    "capabilities": [
+      "Read",
+      "Write"
+    ],
+    "defaultPrompt": [
+      "Use $lianhuanhua to turn my character image and story into a vertical comic video.",
+      "使用 $lianhuanhua，把我上传的角色图和文案制作成连环画短视频。"
+    ],
+    "brandColor": "#F2B84B",
+    "composerIcon": "./assets/icon.svg",
+    "logo": "./assets/logo.svg"
+  }
+}

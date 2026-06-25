@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Character Bible",
+  "type": "object",
+  "required": [
+    "character_id",
+    "summary",
+    "immutable_features",
+    "mutable_features",
+    "forbidden_changes"
+  ],
+  "properties": {
+    "character_id": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "reference_images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "immutable_features": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {
+        "type": [
+          "string",
+          "number",
+          "boolean",
+          "array"
+        ]
+      }
+    },
+    "mutable_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "forbidden_changes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "uncertain_features": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "character_sheet": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "additionalProperties": false
+}
