@@ -11,23 +11,24 @@
 
 ## Voice selection
 
-Do not require an ordinary user to know a speaker ID. Select a natural-language voice profile from the content first.
+Do not require an ordinary user to know a speaker ID. Select a natural-language voice preference from the content first.
 
-Built-in profiles:
+The bundled `assets/voice-catalog.json` contains 442 official TTS 2.0 voices captured from the official list on 2026-06-25. It includes scene, display name, voice ID, language/dialect, supported capabilities, and special tags.
 
-| Profile | Official voice | Speaker ID | Use |
-|---|---|---|---|
-| `gentle-reflective-female` | 温柔白月光 2.0 | `ICL_uranus_zh_female_wenroubaiyueguang_tob` | Reflective, intimate, restrained emotional narration |
-| `warm-caring-female` | 贴心妹妹 2.0 | `ICL_uranus_zh_female_tiexinmeimei_tob` | Warm, comforting, friendly narration |
+Search it with:
+
+```bash
+python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" voices --query "温柔 成熟 克制 女声"
+```
 
 Resolution priority:
 
 1. `project.tts.speaker`
 2. `DOUBAO_SPEAKER`
-3. `project.tts.voice_profile`
-4. built-in default `warm-caring-female`
+3. `project.tts.voice_preference`
+4. bundled default `温柔淑女 2.0`
 
-The user only needs `DOUBAO_API_KEY` when a built-in profile is used.
+The user only needs `DOUBAO_API_KEY` when a bundled catalog voice is used.
 
 Where users can get a different voice:
 

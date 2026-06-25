@@ -15,6 +15,7 @@ from .subtitles import parse_srt
 from .timeline import normalize_timeline, write_timeline_files
 from .utils import media_duration, read_json, write_json
 from .validation import doctor_ok, doctor_report, validate_output, validate_workspace
+from .voice_catalog import load_voice_catalog, search_voices
 from .workspace import initialize_workspace
 
 
@@ -166,6 +167,23 @@ def cmd_export(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_voices(args: argparse.Namespace) -> int:
+    catalog = load_voice_catalog()
+    matches = search_voices(args.query or "", limit=args.limit)
+    print(
+        json.dumps(
+            {
+                "catalog_count": catalog["count"],
+                "source": catalog["source"],
+                "matches": matches,
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="lianhuanhua",
@@ -227,6 +245,11 @@ def build_parser() -> argparse.ArgumentParser:
     export = sub.add_parser("export", help="Copy reproducibility artifacts into output/")
     export.add_argument("--workspace", required=True)
     export.set_defaults(func=cmd_export)
+
+    voices = sub.add_parser("voices", help="Search the bundled Doubao TTS 2.0 voice catalog")
+    voices.add_argument("--query", default="")
+    voices.add_argument("--limit", type=int, default=10)
+    voices.set_defaults(func=cmd_voices)
 
     return parser
 

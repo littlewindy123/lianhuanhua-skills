@@ -69,10 +69,13 @@ pip install -r plugins\lianhuanhua\skills\lianhuanhua\scripts\requirements.txt
 
 ### 2. 配置豆包语音
 
-普通用户不需要先寻找音色 ID。Skill 会根据文案自动选择内置音色：
+普通用户不需要先寻找音色 ID。Skill 内置了截至 2026-06-25 官方列表中的 442 个豆包 TTS 2.0 音色，会根据文案、情绪、受众、语种和用户偏好自动选择。
 
-- 情感内省、克制叙事：温柔白月光 2.0
-- 温暖安慰、亲切叙事：贴心妹妹 2.0
+也可以搜索目录：
+
+```bash
+python plugins/lianhuanhua/skills/lianhuanhua/scripts/lianhuanhua_cli.py voices --query "温柔 成熟 克制 女声"
+```
 
 只需配置 API Key：
 
@@ -97,7 +100,7 @@ $env:DOUBAO_API_KEY="your-api-key"
 $env:DOUBAO_SPEAKER="your-speaker-id"
 ```
 
-`DOUBAO_SPEAKER` 是高级覆盖项，不是普通用户的必填配置。
+`DOUBAO_SPEAKER` 是高级覆盖项，不是普通用户的必填配置。官方列表更新后，应重新同步 `assets/voice-catalog.json`。
 
 ### 3. 在 Codex 中调用
 

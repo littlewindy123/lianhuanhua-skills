@@ -13,6 +13,7 @@ from lianhuanhua.doubao_protocol import (
     encode_json_event,
 )
 from lianhuanhua.doubao_tts import DoubaoError, resolve_speaker
+from lianhuanhua.voice_catalog import load_voice_catalog, search_voices
 
 
 def test_encode_start_connection() -> None:
@@ -60,16 +61,28 @@ def test_decode_subtitle_like_json_response() -> None:
     assert frame.json_payload["text"] == "你好"
 
 
-def test_resolve_speaker_from_builtin_profile(monkeypatch: pytest.MonkeyPatch) -> None:
+def test_voice_catalog_contains_all_official_tts_2_voices() -> None:
+    catalog = load_voice_catalog()
+    assert catalog["count"] == 442
+    assert len(catalog["voices"]) == 442
+    assert len({voice["id"] for voice in catalog["voices"]}) == 442
+
+
+def test_search_voice_catalog_by_natural_language() -> None:
+    matches = search_voices("温柔淑女 2.0", limit=3)
+    assert matches[0]["id"] == "zh_female_wenroushunv_uranus_bigtts"
+
+
+def test_resolve_speaker_from_catalog_preference(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("DOUBAO_SPEAKER", raising=False)
-    speaker, source = resolve_speaker({"voice_profile": "gentle-reflective-female"})
-    assert speaker == "ICL_uranus_zh_female_wenroubaiyueguang_tob"
-    assert source == "gentle-reflective-female"
+    speaker, source = resolve_speaker({"voice_preference": "温柔淑女 2.0"})
+    assert speaker == "zh_female_wenroushunv_uranus_bigtts"
+    assert source == "温柔淑女 2.0"
 
 
 def test_explicit_speaker_overrides_profile(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.setenv("DOUBAO_SPEAKER", "S_custom_voice")
-    speaker, source = resolve_speaker({"voice_profile": "gentle-reflective-female"})
+    speaker, source = resolve_speaker({"voice_preference": "温柔淑女 2.0"})
     assert speaker == "S_custom_voice"
     assert source == "explicit"
 
@@ -77,4 +90,4 @@ def test_explicit_speaker_overrides_profile(monkeypatch: pytest.MonkeyPatch) -> 
 def test_unknown_voice_profile_has_actionable_error(monkeypatch: pytest.MonkeyPatch) -> None:
     monkeypatch.delenv("DOUBAO_SPEAKER", raising=False)
     with pytest.raises(DoubaoError, match="console.volcengine.com/speech/app"):
-        resolve_speaker({"voice_profile": "unknown"})
+        resolve_speaker({"voice_preference": "不存在的火星机器人音色"})

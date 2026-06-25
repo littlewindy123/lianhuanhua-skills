@@ -94,11 +94,11 @@
         "speaker": {
           "type": "string"
         },
+        "voice_preference": {
+          "type": "string"
+        },
         "voice_profile": {
-          "enum": [
-            "gentle-reflective-female",
-            "warm-caring-female"
-          ]
+          "type": "string"
         },
         "model": {
           "enum": [

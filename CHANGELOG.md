@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.1.2
+
+- Bundle all 442 official Doubao Speech TTS 2.0 voices captured on 2026-06-25.
+- Add natural-language catalog search through the `voices` CLI command.
+- Resolve voice names and preferences to speaker IDs without exposing IDs to ordinary users.
+- Keep explicit project or environment speaker IDs as advanced overrides.
+
 ## 0.1.1
 
 - Let Codex automatically select a natural-language voice profile from the story.

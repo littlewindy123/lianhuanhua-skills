@@ -1,0 +1,3544 @@
+{
+  "source": "https://www.volcengine.com/docs/6561/1257544",
+  "retrieved_at": "2026-06-25",
+  "model": "Doubao Speech TTS 2.0",
+  "count": 442,
+  "voices": [
+    {
+      "scene": "通用场景",
+      "name": "Vivi 2.0",
+      "id": "zh_female_vv_uranus_bigtts",
+      "language": "语种：中文、日文、印尼、墨西哥西班牙语\n方言：四川、陕西、东北",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "小何 2.0",
+      "id": "zh_female_xiaohe_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "云舟 2.0",
+      "id": "zh_male_m191_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "小天 2.0",
+      "id": "zh_male_taocheng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "刘飞 2.0",
+      "id": "zh_male_liufei_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "魅力苏菲 2.0",
+      "id": "zh_female_sophie_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "清新女声 2.0",
+      "id": "zh_female_qingxinnvsheng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "知性灿灿 2.0",
+      "id": "zh_female_cancan_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "撒娇学妹 2.0",
+      "id": "zh_female_sajiaoxuemei_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "甜美小源 2.0",
+      "id": "zh_female_tianmeixiaoyuan_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "甜美桃子 2.0",
+      "id": "zh_female_tianmeitaozi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "爽快思思 2.0",
+      "id": "zh_female_shuangkuaisisi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "佩奇猪 2.0",
+      "id": "zh_female_peiqi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "邻家女孩 2.0",
+      "id": "zh_female_linjianvhai_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "少年梓辛/Brayan 2.0",
+      "id": "zh_male_shaonianzixin_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "猴哥 2.0",
+      "id": "zh_male_sunwukong_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教育场景",
+      "name": "Tina老师 2.0",
+      "id": "zh_female_yingyujiaoxue_uranus_bigtts",
+      "language": "中文、英式英语",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "暖阳女声 2.0",
+      "id": "zh_female_kefunvsheng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读",
+      "name": "儿童绘本 2.0",
+      "id": "zh_female_xiaoxue_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "大壹 2.0",
+      "id": "zh_male_dayi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "黑猫侦探社咪仔 2.0",
+      "id": "zh_female_mizai_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "鸡汤女 2.0",
+      "id": "zh_female_jitangnv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "魅力女友 2.0",
+      "id": "zh_female_meilinvyou_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "流畅女声 2.0",
+      "id": "zh_female_liuchangnv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "儒雅逸辰 2.0",
+      "id": "zh_male_ruyayichen_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Tim",
+      "id": "en_male_tim_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Dacey",
+      "id": "en_female_dacey_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Stokie",
+      "id": "en_female_stokie_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔妈妈 2.0",
+      "id": "zh_female_wenroumama_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "解说小明 2.0",
+      "id": "zh_male_jieshuoxiaoming_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "TVB女声 2.0",
+      "id": "zh_female_tvbnv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "译制片男 2.0",
+      "id": "zh_male_yizhipiannan_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "俏皮女声 2.0",
+      "id": "zh_female_qiaopinv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "直率英子 2.0",
+      "id": "zh_female_zhishuaiyingzi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "邻家男孩 2.0",
+      "id": "zh_male_linjiananhai_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "四郎 2.0",
+      "id": "zh_male_silang_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "儒雅青年 2.0",
+      "id": "zh_male_ruyaqingnian_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "番茄小说同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "擎苍 2.0",
+      "id": "zh_male_qingcang_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "番茄小说同款,豆包同款,抖音同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "熊二 2.0",
+      "id": "zh_male_xionger_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "樱桃丸子 2.0",
+      "id": "zh_female_yingtaowanzi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "温暖阿虎/Alvin 2.0",
+      "id": "zh_male_wennuanahu_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "奶气萌娃 2.0",
+      "id": "zh_male_naiqimengwa_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "剪映同款,豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "婆婆 2.0",
+      "id": "zh_female_popo_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "高冷御姐 2.0",
+      "id": "zh_female_gaolengyujie_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "傲娇霸总 2.0",
+      "id": "zh_male_aojiaobazong_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "懒音绵宝 2.0",
+      "id": "zh_male_lanyinmianbao_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "反卷青年 2.0",
+      "id": "zh_male_fanjuanqingnian_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔淑女 2.0",
+      "id": "zh_female_wenroushunv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "番茄小说同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "古风少御 2.0",
+      "id": "zh_female_gufengshaoyu_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "活力小哥 2.0",
+      "id": "zh_male_huolixiaoge_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读",
+      "name": "霸气青叔 2.0",
+      "id": "zh_male_baqiqingshu_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "番茄小说同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "有声阅读",
+      "name": "悬疑解说 2.0",
+      "id": "zh_male_xuanyijieshuo_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "萌丫头/Cutey 2.0",
+      "id": "zh_female_mengyatou_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "贴心女声/Candy 2.0",
+      "id": "zh_female_tiexinnvsheng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "鸡汤妹妹/Hope 2.0",
+      "id": "zh_female_jitangmei_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "磁性解说男声/Morgan 2.0",
+      "id": "zh_male_cixingjieshuonan_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "亮嗓萌仔 2.0",
+      "id": "zh_male_liangsangmengzai_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "开朗姐姐 2.0",
+      "id": "zh_female_kailangjiejie_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "高冷沉稳 2.0",
+      "id": "zh_male_gaolengchenwen_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "深夜播客 2.0",
+      "id": "zh_male_shenyeboke_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "鲁班七号 2.0",
+      "id": "zh_male_lubanqihao_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "娇喘女声 2.0",
+      "id": "zh_female_jiaochuannv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "林潇 2.0",
+      "id": "zh_female_linxiao_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "玲玲姐姐 2.0",
+      "id": "zh_female_lingling_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "春日部姐姐 2.0",
+      "id": "zh_female_chunribu_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "唐僧 2.0",
+      "id": "zh_male_tangseng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "庄周 2.0",
+      "id": "zh_male_zhuangzhou_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "开朗弟弟 2.0",
+      "id": "zh_male_kailangdidi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "猪八戒 2.0",
+      "id": "zh_male_zhubajie_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "感冒电音姐姐 2.0",
+      "id": "zh_female_ganmaodianyin_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "谄媚女声 2.0",
+      "id": "zh_female_chanmeinv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "女雷神 2.0",
+      "id": "zh_female_nvleishen_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "剪映同款,豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "亲切女声 2.0",
+      "id": "zh_female_qinqienv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "快乐小东 2.0",
+      "id": "zh_male_kuailexiaodong_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "开朗学长 2.0",
+      "id": "zh_male_kailangxuezhang_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "悠悠君子 2.0",
+      "id": "zh_male_youyoujunzi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "文静毛毛 2.0",
+      "id": "zh_female_wenjingmaomao_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "知性女声 2.0",
+      "id": "zh_female_zhixingnv_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "清爽男大 2.0",
+      "id": "zh_male_qingshuangnanda_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "渊博小叔 2.0",
+      "id": "zh_male_yuanboxiaoshu_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "阳光青年 2.0",
+      "id": "zh_male_yangguangqingnian_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "清澈梓梓 2.0",
+      "id": "zh_female_qingchezizi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "甜美悦悦 2.0",
+      "id": "zh_female_tianmeiyueyue_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "心灵鸡汤 2.0",
+      "id": "zh_female_xinlingjitang_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔小哥 2.0",
+      "id": "zh_male_wenrouxiaoge_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "柔美女友 2.0",
+      "id": "zh_female_roumeinvyou_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "东方浩然 2.0",
+      "id": "zh_male_dongfanghaoran_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔小雅 2.0",
+      "id": "zh_female_wenrouxiaoya_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "天才童声 2.0",
+      "id": "zh_male_tiancaitongsheng_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "武则天 2.0",
+      "id": "zh_female_wuzetian_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "剪映同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "顾姐 2.0",
+      "id": "zh_female_gujie_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "抖音同款,剪映同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "广告解说 2.0",
+      "id": "zh_male_guanggaojieshuo_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": "剪映同款"
+    },
+    {
+      "scene": "有声阅读",
+      "name": "少儿故事 2.0",
+      "id": "zh_female_shaoergushi_uranus_bigtts",
+      "language": "中文",
+      "capabilities": "指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Charlie 2.0",
+      "id": "ICL_uranus_en_female_charlie_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Ethan 2.0",
+      "id": "ICL_uranus_en_male_ethan_tob",
+      "language": "澳洲英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Alastor 2.0",
+      "id": "ICL_uranus_en_male_alastor_tob",
+      "language": "英式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Chucky 2.0",
+      "id": "ICL_uranus_en_male_chucky_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Noah 2.0",
+      "id": "ICL_uranus_en_male_noah_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Jigsaw 2.0",
+      "id": "ICL_uranus_en_male_jigsaw_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Clown Man 2.0",
+      "id": "ICL_uranus_en_male_clown_man_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Cartoon Chef 2.0",
+      "id": "ICL_uranus_en_male_cartoon_chef_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Frosty Man 2.0",
+      "id": "ICL_uranus_en_male_frosty_man_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "多语种",
+      "name": "The Grinch 2.0",
+      "id": "ICL_uranus_en_male_the_grinch_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "多语种",
+      "name": "Kevin McCallister 2.0",
+      "id": "ICL_uranus_en_male_kevin_mccallister_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "多语种",
+      "name": "Michael 2.0",
+      "id": "ICL_uranus_en_male_michael_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "多语种",
+      "name": "Big Boogie 2.0",
+      "id": "ICL_uranus_en_male_big_boogie_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "多语种",
+      "name": "Xavier 2.0",
+      "id": "ICL_uranus_en_male_xavier_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "多语种",
+      "name": "Zayne 2.0",
+      "id": "ICL_uranus_en_male_zayne_tob",
+      "language": "美式英语",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "傲娇女友 2.0",
+      "id": "ICL_uranus_zh_female_aojiaonvyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "傲慢娇声 2.0",
+      "id": "ICL_uranus_zh_female_aomanjiaosheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "邪魅女王 2.0",
+      "id": "ICL_uranus_zh_female_xiemeinvwang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "病娇姐姐 2.0",
+      "id": "ICL_uranus_zh_female_bingjiaojiejie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病娇萌妹 2.0",
+      "id": "ICL_uranus_zh_female_bingjiaomengmei_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病弱少女 2.0",
+      "id": "ICL_uranus_zh_female_bingruoshaonv_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "成熟温柔 2.0",
+      "id": "ICL_uranus_zh_female_chengshuwenrou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "成熟姐姐 2.0",
+      "id": "ICL_uranus_zh_female_chengshujiejie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "纯真少女 2.0",
+      "id": "ICL_uranus_zh_female_chunzhenshaonv_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "纯澈女生 2.0",
+      "id": "ICL_uranus_zh_female_chunchenvsheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "妩媚可人 2.0",
+      "id": "ICL_uranus_zh_female_wumeikeren_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "乖巧可儿 2.0",
+      "id": "ICL_uranus_zh_female_guaiqiaokeer_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "和蔼奶奶 2.0",
+      "id": "ICL_uranus_zh_female_heainainai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "活泼刁蛮 2.0",
+      "id": "ICL_uranus_zh_female_huopodiaoman_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "活泼女孩 2.0",
+      "id": "ICL_uranus_zh_female_huoponvhai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "娇憨女王 2.0",
+      "id": "ICL_uranus_zh_female_jiaohannvwang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "娇弱萝莉 2.0",
+      "id": "ICL_uranus_zh_female_jiaoruoluoli_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "假小子 2.0",
+      "id": "ICL_uranus_zh_female_jiaxiaozi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "精灵向导 2.0",
+      "id": "ICL_uranus_zh_female_jinglingxiangdao_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "开朗婷婷 2.0",
+      "id": "ICL_uranus_zh_female_kailangtingting_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "开心小鸿 2.0",
+      "id": "ICL_uranus_zh_female_kaixinxiaohong_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "可爱女生 2.0",
+      "id": "ICL_uranus_zh_female_keainvsheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "灵动欣欣 2.0",
+      "id": "ICL_uranus_zh_female_lingdongxinxin_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "邻居阿姨 2.0",
+      "id": "ICL_uranus_zh_female_linjuayi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "甜美娇俏 2.0",
+      "id": "ICL_uranus_zh_female_tianmeijiaoqiao_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "清冷高雅 2.0",
+      "id": "ICL_uranus_zh_female_qinglenggaoya_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "理性圆子 2.0",
+      "id": "ICL_uranus_zh_female_lixingyuanzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "性感魅惑 2.0",
+      "id": "ICL_uranus_zh_female_xingganmeihuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "暖心茜茜 2.0",
+      "id": "ICL_uranus_zh_female_nuanxinqianqian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "暖心学姐 2.0",
+      "id": "ICL_uranus_zh_female_nuanxinxuejie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "清甜莓莓 2.0",
+      "id": "ICL_uranus_zh_female_qingtianmeimei_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "清甜桃桃 2.0",
+      "id": "ICL_uranus_zh_female_qingtiantaotao_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "清晰小雪 2.0",
+      "id": "ICL_uranus_zh_female_qingxixiaoxue_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "倾心少女 2.0",
+      "id": "ICL_uranus_zh_female_qingxinshaonv_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "柔骨魂师 2.0",
+      "id": "ICL_uranus_zh_female_rouguhunshi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "软萌糖糖 2.0",
+      "id": "ICL_uranus_zh_female_ruanmengtangtang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "软萌团子 2.0",
+      "id": "ICL_uranus_zh_female_ruanmengtuanzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "甜美活泼 2.0",
+      "id": "ICL_uranus_zh_female_tianmeihuopo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "甜美小橘 2.0",
+      "id": "ICL_uranus_zh_female_tianmeixiaoju_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "甜美小雨 2.0",
+      "id": "ICL_uranus_zh_female_tianmeixiaoyu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "调皮公主 2.0",
+      "id": "ICL_uranus_zh_female_tiaopigongzhu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "贴心女友 2.0",
+      "id": "ICL_uranus_zh_female_tiexinnvyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔女神 2.0",
+      "id": "ICL_uranus_zh_female_wenrounvshen_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景,S2S-SC",
+      "name": "温柔文雅 2.0",
+      "id": "ICL_uranus_zh_female_wenrouwenya_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "知心姐姐 2.0",
+      "id": "ICL_uranus_zh_female_zhixinjiejie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "妩媚御姐 2.0",
+      "id": "ICL_uranus_zh_female_wumeiyujie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "元气甜妹 2.0",
+      "id": "ICL_uranus_zh_female_yuanqitianmei_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "邪魅御姐 2.0",
+      "id": "ICL_uranus_zh_female_xiemeiyujie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "性感御姐 2.0",
+      "id": "ICL_uranus_zh_female_xingganyujie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "秀丽倩倩 2.0",
+      "id": "ICL_uranus_zh_female_xiuliqianqian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "贴心闺蜜 2.0",
+      "id": "ICL_uranus_zh_female_tiexinguimi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "贴心妹妹 2.0",
+      "id": "ICL_uranus_zh_female_tiexinmeimei_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "温柔白月光 2.0",
+      "id": "ICL_uranus_zh_female_wenroubaiyueguang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "初恋女友 2.0",
+      "id": "ICL_uranus_zh_female_chuliannvyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "知性温婉 2.0",
+      "id": "ICL_uranus_zh_female_zhixingwenwan_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "傲气凌人 2.0",
+      "id": "ICL_uranus_zh_male_aoqilingren_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "黯刃秦主 2.0",
+      "id": "ICL_uranus_zh_male_anrenqinzhu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "傲娇公子 2.0",
+      "id": "ICL_uranus_zh_male_aojiaogongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "傲娇精英 2.0",
+      "id": "ICL_uranus_zh_male_aojiaojingying_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "傲慢青年 2.0",
+      "id": "ICL_uranus_zh_male_aomanqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "傲慢少爷 2.0",
+      "id": "ICL_uranus_zh_male_aomanshaoye_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "枕边低语 2.0",
+      "id": "ICL_uranus_zh_male_zhenbiandiyu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "抖音同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "霸道少爷 2.0",
+      "id": "ICL_uranus_zh_male_badaoshaoye_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "霸道总裁 2.0",
+      "id": "ICL_uranus_zh_male_badaozongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "病娇白莲 2.0",
+      "id": "ICL_uranus_zh_male_bingjiaobailian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "病娇弟弟 2.0",
+      "id": "ICL_uranus_zh_male_bingjiaodidi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病娇哥哥 2.0",
+      "id": "ICL_uranus_zh_male_bingjiaogege_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病娇男友 2.0",
+      "id": "ICL_uranus_zh_male_bingjiaonanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病娇少年 2.0",
+      "id": "ICL_uranus_zh_male_bingjiaoshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病弱公子 2.0",
+      "id": "ICL_uranus_zh_male_bingruogongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "病弱少年 2.0",
+      "id": "ICL_uranus_zh_male_bingruoshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "不羁青年 2.0",
+      "id": "ICL_uranus_zh_male_bujiqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "醇厚低音 2.0",
+      "id": "ICL_uranus_zh_male_chunhoudiyin_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音",
+      "name": "咆哮小哥 2.0",
+      "id": "ICL_uranus_zh_male_paoxiaoxiaoge_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "炀炀 2.0",
+      "id": "ICL_uranus_zh_male_yangyang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "孱弱少爷 2.0",
+      "id": "ICL_uranus_zh_male_chanruoshaoye_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "成熟总裁 2.0",
+      "id": "ICL_uranus_zh_male_chengshuzongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "沉稳明仔 2.0",
+      "id": "ICL_uranus_zh_male_chenwenmingzai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "清逸苏感 2.0",
+      "id": "ICL_uranus_zh_male_qingyisugan_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "纯真学弟 2.0",
+      "id": "ICL_uranus_zh_male_chunzhenxuedi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "磁性男嗓 2.0",
+      "id": "ICL_uranus_zh_male_cixingnansang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "醋精男生 2.0",
+      "id": "ICL_uranus_zh_male_cujingnansheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "醋精男友 2.0",
+      "id": "ICL_uranus_zh_male_cujingnanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "低音沉郁 2.0",
+      "id": "ICL_uranus_zh_male_diyinchenyu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "风发少年 2.0",
+      "id": "ICL_uranus_zh_male_fengfashaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读",
+      "name": "儒雅公子 2.0",
+      "id": "ICL_uranus_zh_male_ruyagongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,S2S-SC",
+      "name": "腹黑公子 2.0",
+      "id": "ICL_uranus_zh_male_fuheigongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "干净少年 2.0",
+      "id": "ICL_uranus_zh_male_ganjingshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "高冷总裁 2.0",
+      "id": "ICL_uranus_zh_male_gaolengzongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "孤傲公子 2.0",
+      "id": "ICL_uranus_zh_male_guaogongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "孤高公子 2.0",
+      "id": "ICL_uranus_zh_male_gugaogongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "诡异神秘 2.0",
+      "id": "ICL_uranus_zh_male_guiyishenmi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "固执病娇 2.0",
+      "id": "ICL_uranus_zh_male_guzhibingjiao_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "憨厚敦实 2.0",
+      "id": "ICL_uranus_zh_male_hanhoudunshi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "活力青年 2.0",
+      "id": "ICL_uranus_zh_male_huoliqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "活泼男友 2.0",
+      "id": "ICL_uranus_zh_male_huoponanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "活泼爽朗 2.0",
+      "id": "ICL_uranus_zh_male_huoposhuanglang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "胡子叔叔 2.0",
+      "id": "ICL_uranus_zh_male_huzishushu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "机甲智能 2.0",
+      "id": "ICL_uranus_zh_male_jijiazhineng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "精英青年 2.0",
+      "id": "ICL_uranus_zh_male_jingyingqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "俊逸公子 2.0",
+      "id": "ICL_uranus_zh_male_junyigongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "开朗轻快 2.0",
+      "id": "ICL_uranus_zh_male_kailangqingkuai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "开朗青年 2.0",
+      "id": "ICL_uranus_zh_male_kailangqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "蓝银草魂师 2.0",
+      "id": "ICL_uranus_zh_male_lanyincaohunshi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷傲总裁 2.0",
+      "id": "ICL_uranus_zh_male_lengaozongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷淡疏离 2.0",
+      "id": "ICL_uranus_zh_male_lengdanshuli_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷峻高智 2.0",
+      "id": "ICL_uranus_zh_male_lengjungaozhi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷峻上司 2.0",
+      "id": "ICL_uranus_zh_male_lengjunshangsi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "冷酷哥哥 2.0",
+      "id": "ICL_uranus_zh_male_lengkugege_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷脸兄长 2.0",
+      "id": "ICL_uranus_zh_male_lenglianxiongzhang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷脸学霸 2.0",
+      "id": "ICL_uranus_zh_male_lenglianxueba_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷漠男友 2.0",
+      "id": "ICL_uranus_zh_male_lengmonanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "冷漠兄长 2.0",
+      "id": "ICL_uranus_zh_male_lengmoxiongzhang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "凌云青年 2.0",
+      "id": "ICL_uranus_zh_male_lingyunqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "清冷矜贵 2.0",
+      "id": "ICL_uranus_zh_male_qinglengjingui_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "绿茶小哥 2.0",
+      "id": "ICL_uranus_zh_male_lvchaxiaoge_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "懵懂青年 2.0",
+      "id": "ICL_uranus_zh_male_mengdongqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "闷油瓶小哥 2.0",
+      "id": "ICL_uranus_zh_male_menyoupingxiaoge_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "嚣张小哥 2.0",
+      "id": "ICL_uranus_zh_male_xiaozhangxiaoge_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "粘人男友 2.0",
+      "id": "ICL_uranus_zh_male_nianrennanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读",
+      "name": "内敛才俊 2.0",
+      "id": "ICL_uranus_zh_male_neiliancaijun_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "暖心体贴 2.0",
+      "id": "ICL_uranus_zh_male_nuanxintitie_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "翩翩公子 2.0",
+      "id": "ICL_uranus_zh_male_pianpiangongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "沉稳优雅 2.0",
+      "id": "ICL_uranus_zh_male_chenwenyouya_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "青涩小生 2.0",
+      "id": "ICL_uranus_zh_male_qingsexiaosheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "青涩青年 2.0",
+      "id": "ICL_uranus_zh_male_qingseqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "清爽少年 2.0",
+      "id": "ICL_uranus_zh_male_qingshuangshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "清新波波 2.0",
+      "id": "ICL_uranus_zh_male_qingxinbobo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "亲切青年 2.0",
+      "id": "ICL_uranus_zh_male_qinqieqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "亲切小卓 2.0",
+      "id": "ICL_uranus_zh_male_qinqiexiaozhuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "清朗温润 2.0",
+      "id": "ICL_uranus_zh_male_qinglangwenrun_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "热血少年 2.0",
+      "id": "ICL_uranus_zh_male_rexueshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "儒雅才俊 2.0",
+      "id": "ICL_uranus_zh_male_ruyacaijun_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "儒雅君子 2.0",
+      "id": "ICL_uranus_zh_male_ruyajunzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "儒雅总裁 2.0",
+      "id": "ICL_uranus_zh_male_ruyazongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "撒娇男生 2.0",
+      "id": "ICL_uranus_zh_male_sajiaonansheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "撒娇男友 2.0",
+      "id": "ICL_uranus_zh_male_sajiaonanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "撒娇粘人 2.0",
+      "id": "ICL_uranus_zh_male_sajiaonianren_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "洒脱青年 2.0",
+      "id": "ICL_uranus_zh_male_satuoqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "少年将军 2.0",
+      "id": "ICL_uranus_zh_male_shaonianjiangjun_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "深沉总裁 2.0",
+      "id": "ICL_uranus_zh_male_shenchenzongcai_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景",
+      "name": "机灵小伙 2.0",
+      "id": "ICL_uranus_zh_male_jilingxiaohuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "神秘法师 2.0",
+      "id": "ICL_uranus_zh_male_shenmifashi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "通用场景",
+      "name": "率真小伙 2.0",
+      "id": "ICL_uranus_zh_male_shuaizhenxiaohuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "客服场景",
+      "name": "爽朗小阳 2.0",
+      "id": "ICL_uranus_zh_male_shuanglangxiaoyang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "低沉缱绻 2.0",
+      "id": "ICL_uranus_zh_male_dichenqianquan_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "斯文青年 2.0",
+      "id": "ICL_uranus_zh_male_siwenqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "甜系男友 2.0",
+      "id": "ICL_uranus_zh_male_tianxinanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "贴心男友 2.0",
+      "id": "ICL_uranus_zh_male_tiexinnanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温柔男同桌 2.0",
+      "id": "ICL_uranus_zh_male_wenrounantongzhuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温柔男友 2.0",
+      "id": "ICL_uranus_zh_male_wenrounanyou_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温柔学长 2.0",
+      "id": "ICL_uranus_zh_male_wenrouxuezhang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温润学者 2.0",
+      "id": "ICL_uranus_zh_male_wenrunxuezhe_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温顺少年 2.0",
+      "id": "ICL_uranus_zh_male_wenshunshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "寡言小哥 2.0",
+      "id": "ICL_uranus_zh_male_guayanxiaoge_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "小侯爷 2.0",
+      "id": "ICL_uranus_zh_male_xiaohouye_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "奶气小生 2.0",
+      "id": "ICL_uranus_zh_male_naiqixiaosheng_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "潇洒随性 2.0",
+      "id": "ICL_uranus_zh_male_xiaosasuixing_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "温柔内敛 2.0",
+      "id": "ICL_uranus_zh_male_wenrouneilian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "学霸男同桌 2.0",
+      "id": "ICL_uranus_zh_male_xuebanantongzhuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "学霸同桌 2.0",
+      "id": "ICL_uranus_zh_male_xuebatongzhuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "阳光洋洋 2.0",
+      "id": "ICL_uranus_zh_male_yangguangyangyang_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读",
+      "name": "温暖少年 2.0",
+      "id": "ICL_uranus_zh_male_wennuanshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "意气少年 2.0",
+      "id": "ICL_uranus_zh_male_yiqishaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "油腻大叔 2.0",
+      "id": "ICL_uranus_zh_male_younidashu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "幽默大爷 2.0",
+      "id": "ICL_uranus_zh_male_youmodaye_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "幽默叔叔 2.0",
+      "id": "ICL_uranus_zh_male_youmoshushu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "优柔帮主 2.0",
+      "id": "ICL_uranus_zh_male_youroubangzhu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "优柔公子 2.0",
+      "id": "ICL_uranus_zh_male_yourougongzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "豆包同款,猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "元气少年 2.0",
+      "id": "ICL_uranus_zh_male_yuanqishaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "仗剑君子 2.0",
+      "id": "ICL_uranus_zh_male_zhangjianjunzi_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "仗剑侠客 2.0",
+      "id": "ICL_uranus_zh_male_zhangjianxiake_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "正直青年 2.0",
+      "id": "ICL_uranus_zh_male_zhengzhiqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": "猫箱同款"
+    },
+    {
+      "scene": "角色扮演",
+      "name": "直率青年 2.0",
+      "id": "ICL_uranus_zh_male_zhishuaiqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "中二青年 2.0",
+      "id": "ICL_uranus_zh_male_zhongerqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "自负青年 2.0",
+      "id": "ICL_uranus_zh_male_zifuqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "自信青年 2.0",
+      "id": "ICL_uranus_zh_male_zixinqingnian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "天才同桌 2.0",
+      "id": "ICL_uranus_zh_male_tiancaitongzhuo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "清新沐沐 2.0",
+      "id": "ICL_uranus_zh_male_qingxinmumu_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "温婉珊珊 2.0",
+      "id": "ICL_uranus_zh_female_wenwanshanshan_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "热情艾娜 2.0",
+      "id": "ICL_uranus_zh_female_reqingaina_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演",
+      "name": "爽朗少年 2.0",
+      "id": "ICL_uranus_zh_male_shuanglangshaonian_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景",
+      "name": "轻盈朵朵 2.0",
+      "id": "ICL_uranus_zh_female_qingyingduoduo_tob",
+      "language": "中文",
+      "capabilities": "",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,阿拉伯语",
+      "name": "Dina",
+      "id": "ar_female_dina_uranus_bigtts",
+      "language": "阿拉伯语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,多语种,阿拉伯语",
+      "name": "Fatma",
+      "id": "ar_female_fatma_uranus_bigtts",
+      "language": "阿拉伯语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读,多语种,阿拉伯语",
+      "name": "Youssef",
+      "id": "ar_male_youssef_uranus_bigtts",
+      "language": "阿拉伯语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 客服场景,多语种,德语",
+      "name": "Stella",
+      "id": "de_female_bv081_uranus_bigtts",
+      "language": "德语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,德语",
+      "name": "Sven",
+      "id": "de_male_sven_uranus_bigtts",
+      "language": "德语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景,有声阅读,美式英语,多语种",
+      "name": "Rowan",
+      "id": "en_male_adam-imitation_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Alberto",
+      "id": "en_male_alberto_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Alex",
+      "id": "en_male_alex_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,美式英语,多语种",
+      "name": "Allison",
+      "id": "en_female_allison_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,美式英语,多语种",
+      "name": "Charlotte",
+      "id": "en_female_authoritative-british_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读,美式英语,多语种",
+      "name": "Margaret",
+      "id": "en_female_authoritative-informative_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,美式英语,多语种",
+      "name": "Jones",
+      "id": "en_male_bill-jones_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Bill",
+      "id": "en_male_bill_jones_corey_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Brad_Pitt",
+      "id": "en_male_brad_pitt_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Brittney",
+      "id": "en_female_brittney_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 客服场景,美式英语,多语种",
+      "name": "Zoe",
+      "id": "en_female_brittney_pimintel_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Adrian",
+      "id": "en_male_bruce_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,美式英语,多语种",
+      "name": "Leo",
+      "id": "en_male_chandler_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Bob",
+      "id": "en_male_cowboy-bob_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,美式英语,多语种",
+      "name": "John",
+      "id": "en_male_cowboy_john_b_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景,有声阅读,美式英语,多语种",
+      "name": "David",
+      "id": "en_male_david_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,美式英语,多语种",
+      "name": "Orion",
+      "id": "en_male_deep-voice_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,美式英语,多语种",
+      "name": "Julian",
+      "id": "en_male_diyuwenrounan_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,美式英语,多语种",
+      "name": "Harrison",
+      "id": "en_male_evil-guy-oxley_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,美式英语,多语种",
+      "name": "Jasper",
+      "id": "en_male_excited-male-voice_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读, 视频配音,美式英语,多语种",
+      "name": "Alfred",
+      "id": "en_male_father-christmas_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,美式英语,多语种",
+      "name": "Holly",
+      "id": "en_female_female_tutor_ms-jenny_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Felix",
+      "id": "en_male_fernando-martinez_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 角色扮演,美式英语,多语种",
+      "name": "Godfather",
+      "id": "en_male_godfather_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,美式英语,多语种",
+      "name": "Gollum",
+      "id": "en_male_gollum_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Beau",
+      "id": "en_male_hades_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,美式英语,多语种",
+      "name": "Hayley",
+      "id": "en_female_hayley_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景, 视频配音,美式英语,多语种",
+      "name": "Jamie",
+      "id": "en_male_jamie_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,美式英语,多语种",
+      "name": "Jane",
+      "id": "en_female_jane_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,美式英语,多语种",
+      "name": "Jenny",
+      "id": "en_female_jenny_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,美式英语,多语种",
+      "name": "Blaze",
+      "id": "en_male_jidongchuanjiaoshi_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Jimmy",
+      "id": "en_male_jimmy_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读, 视频配音,美式英语,多语种",
+      "name": "Joanne",
+      "id": "en_female_joanne_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 视频配音,美式英语,多语种",
+      "name": "Joker",
+      "id": "en_male_joker_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,美式英语,多语种",
+      "name": "Josh",
+      "id": "en_male_josh_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,美式英语,多语种",
+      "name": "Josiah",
+      "id": "en_male_josh_coery_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "教学场景, 视频配音,美式英语,多语种",
+      "name": "Kevin",
+      "id": "en_male_kevin_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,美式英语,多语种",
+      "name": "Knightley",
+      "id": "en_male_knightley_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,美式英语,多语种",
+      "name": "Lynn",
+      "id": "en_female_lana_del_rey_kelley_d_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景,美式英语,多语种",
+      "name": "Ivy",
+      "id": "en_female_lana_del_rey_parky_s_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读,美式英语,多语种",
+      "name": "Marcus",
+      "id": "en_male_marcus_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 客服场景,美式英语,多语种",
+      "name": "Mel",
+      "id": "en_female_mel_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Hank",
+      "id": "en_male_michael_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,美式英语,多语种",
+      "name": "Chip",
+      "id": "en_male_michael-mouse_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Michael_Kevin",
+      "id": "en_male_michael_kevin_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "趣味口音, 视频配音,美式英语,多语种",
+      "name": "Rory",
+      "id": "en_male_motivational-coach_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景,美式英语,多语种",
+      "name": "Myra",
+      "id": "en_female_myra_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 客服场景,美式英语,多语种",
+      "name": "Sunny",
+      "id": "en_female_myra_cmb_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Blair",
+      "id": "en_female_nadia_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Natasha",
+      "id": "en_female_natasha_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "有声阅读,视频配音,美式英语,多语种",
+      "name": "Elaine",
+      "id": "en_female_pleasant-female_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,美式英语,多语种",
+      "name": "Rachel",
+      "id": "en_female_rachel_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,美式英语,多语种",
+      "name": "Ronald",
+      "id": "en_male_ronald_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,美式英语,多语种",
+      "name": "Russell",
+      "id": "en_male_russell_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "客服场景,美式英语,多语种",
+      "name": "Scarlet",
+      "id": "en_female_scarlet_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,美式英语,多语种",
+      "name": "Sharron",
+      "id": "en_female_sharron_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Simba",
+      "id": "en_male_simba_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,美式英语,多语种",
+      "name": "Skye",
+      "id": "en_female_skye_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读,美式英语,多语种",
+      "name": "Tom",
+      "id": "en_male_tom_hiddleston_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Valentino",
+      "id": "en_male_valentino_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,美式英语,多语种",
+      "name": "Clark",
+      "id": "en_male_valentino_corey_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "客服场景,美式英语,多语种",
+      "name": "Megan",
+      "id": "en_female_wenrouzhishijieshuonv_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "角色扮演,美式英语,多语种",
+      "name": "Kayla",
+      "id": "en_female_xinwenjieshuonv_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,美式英语,多语种",
+      "name": "Dylan",
+      "id": "en_male_yangguangjieshuonan_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 客服场景,美式英语,多语种",
+      "name": "Zendaya",
+      "id": "en_female_zendaya_p1_uranus_bigtts",
+      "language": "美式英语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,西班牙语",
+      "name": "Gracie",
+      "id": "es_female_bv084_uranus_bigtts",
+      "language": "西班牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,西班牙语",
+      "name": "Dani",
+      "id": "es_male_dani_uranus_bigtts",
+      "language": "西班牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,多语种,西班牙语",
+      "name": "Guillem",
+      "id": "es_male_guillem_uranus_bigtts",
+      "language": "西班牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,西班牙语",
+      "name": "Marisol",
+      "id": "es_female_ht_mx_f6_uranus_bigtts",
+      "language": "西班牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,法语",
+      "name": "Simone",
+      "id": "fr_female_fr_bv078_uranus_bigtts",
+      "language": "法语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 客服场景,多语种,法语",
+      "name": "Camille",
+      "id": "fr_female_fr_f47_uranus_bigtts",
+      "language": "法语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,法语",
+      "name": "Maurice",
+      "id": "fr_male_fr_m29_uranus_bigtts",
+      "language": "法语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,法语",
+      "name": "Usseau",
+      "id": "fr_male_usseau_uranus_bigtts",
+      "language": "法语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Rocco",
+      "id": "id_male_bv160_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Jude",
+      "id": "id_male_bv160dialogue_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,印尼语",
+      "name": "Hugo",
+      "id": "id_male_bv160narration_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Clara",
+      "id": "id_female_bv161_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Sylvia",
+      "id": "id_female_bv161dialogue_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Celeste",
+      "id": "id_female_bv161narration_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Crew",
+      "id": "id_female_bv164_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,多语种,印尼语",
+      "name": "Elian",
+      "id": "id_male_bv164dialogue_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,印尼语",
+      "name": "Ronan",
+      "id": "id_male_bv164narration_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,多语种,印尼语",
+      "name": "Chloe",
+      "id": "id_female_f20_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,多语种,印尼语",
+      "name": "Han",
+      "id": "id_male_han_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,印尼语",
+      "name": "Kyle",
+      "id": "id_male_m08_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,印尼语",
+      "name": "Phulia",
+      "id": "id_female_phulia_uranus_bigtts",
+      "language": "印尼语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,日语",
+      "name": "Bonnie",
+      "id": "ja_female_bv024_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 角色扮演,多语种,日语",
+      "name": "Poppy",
+      "id": "ja_female_bv520_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,多语种,日语",
+      "name": "Aoi",
+      "id": "ja_female_bv521_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景, 客服场景,多语种,日语",
+      "name": "Hana",
+      "id": "ja_female_bv522_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音, 角色扮演,多语种,日语",
+      "name": "Lily",
+      "id": "ja_female_bv523_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,日语",
+      "name": "Ken",
+      "id": "ja_male_bv524_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,日语",
+      "name": "Minimi",
+      "id": "ja_female_minimi_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "视频配音, 角色扮演,多语种,日语",
+      "name": "Shirou",
+      "id": "ja_female_shirou_uranus_bigtts",
+      "language": "日语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,韩语",
+      "name": "Jay",
+      "id": "ko_male_bv545_uranus_bigtts",
+      "language": "韩语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 角色扮演,多语种,韩语",
+      "name": "Momo",
+      "id": "ko_female_bv546_uranus_bigtts",
+      "language": "韩语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,韩语",
+      "name": "Minho",
+      "id": "ko_male_m03_uranus_bigtts",
+      "language": "韩语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 教学场景, 视频配音,多语种,韩语",
+      "name": "Shane",
+      "id": "ko_male_shane_uranus_bigtts",
+      "language": "韩语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,马来语",
+      "name": "Ham",
+      "id": "ms_male_ham_uranus_bigtts",
+      "language": "马来语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,马来语",
+      "name": "Naim",
+      "id": "ms_male_naim_uranus_bigtts",
+      "language": "马来语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,墨西哥西语",
+      "name": "Irene",
+      "id": "mx_female_bv065_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,墨西哥西语",
+      "name": "Diego",
+      "id": "mx_male_bv165dialogue_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,墨西哥西语",
+      "name": "Marcos",
+      "id": "mx_male_bv165narrator_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,墨西哥西语",
+      "name": "Lucy",
+      "id": "mx_female_bv166dialogue_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,墨西哥西语",
+      "name": "Rosa",
+      "id": "mx_female_bv166emotion_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 视频配音, 客服场景,多语种,墨西哥西语",
+      "name": "Freya",
+      "id": "mx_female_bv166narrator_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读,多语种,墨西哥西语",
+      "name": "Felipe",
+      "id": "mx_male_felipe_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,墨西哥西语",
+      "name": "Derek",
+      "id": "mx_male_ht_mx_m012_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,墨西哥西语",
+      "name": "Leslie",
+      "id": "mx_female_leslie_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,墨西哥西语",
+      "name": "Marcelo",
+      "id": "mx_male_marcelo_uranus_bigtts",
+      "language": "墨西哥西语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,巴西葡萄牙语",
+      "name": "Sam",
+      "id": "pt_male_bv172_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,多语种,巴西葡萄牙语",
+      "name": "Walter",
+      "id": "pt_male_bv172dialogue_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,巴西葡萄牙语",
+      "name": "Vincent",
+      "id": "pt_male_bv172emotion_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 角色扮演,多语种,巴西葡萄牙语",
+      "name": "Miles",
+      "id": "pt_male_bv172narrator_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,巴西葡萄牙语",
+      "name": "Diana",
+      "id": "pt_female_bv173_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 客服场景,多语种,巴西葡萄牙语",
+      "name": "Elena",
+      "id": "pt_female_bv173dialogue_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,巴西葡萄牙语",
+      "name": "Lola",
+      "id": "pt_female_bv173emotion_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 客服场景,多语种,巴西葡萄牙语",
+      "name": "Emma",
+      "id": "pt_female_bv173narrator_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,巴西葡萄牙语",
+      "name": "Sofia",
+      "id": "pt_female_bv530_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,巴西葡萄牙语",
+      "name": "Arthur",
+      "id": "pt_male_bv531_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,巴西葡萄牙语",
+      "name": "Mari",
+      "id": "pt_female_mari_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,巴西葡萄牙语",
+      "name": "Toby",
+      "id": "pt_male_martins_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,巴西葡萄牙语",
+      "name": "Rael",
+      "id": "pt_male_rael_uranus_bigtts",
+      "language": "巴西葡萄牙语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,俄语",
+      "name": "Amelia",
+      "id": "ru_female_af07_uranus_bigtts",
+      "language": "俄语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,俄语",
+      "name": "Irinae",
+      "id": "ru_female_irinae_uranus_bigtts",
+      "language": "俄语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,俄语",
+      "name": "Pavel",
+      "id": "ru_male_pavel_uranus_bigtts",
+      "language": "俄语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,多语种,俄语",
+      "name": "Ksenia",
+      "id": "ru_female_sophie_uranus_bigtts",
+      "language": "俄语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "趣味口音,多语种,俄语",
+      "name": "Silas",
+      "id": "ru_male_vlad_uranus_bigtts",
+      "language": "俄语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "教学场景, 视频配音,多语种,泰语",
+      "name": "Valeria",
+      "id": "th_female_bv568_angry_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,泰语",
+      "name": "Iris",
+      "id": "th_female_bv568_fear_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,泰语",
+      "name": "Zara",
+      "id": "th_female_bv568_happy_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,泰语",
+      "name": "Valentina",
+      "id": "th_female_bv568_hate_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,泰语",
+      "name": "Mildred",
+      "id": "th_female_bv568_neutral_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 客服场景,多语种,泰语",
+      "name": "Lydia",
+      "id": "th_female_bv568_sad_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读,视频配音,多语种,泰语",
+      "name": "Phoebe",
+      "id": "th_female_bv568_suprise_uranus_bigtts",
+      "language": "泰语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,菲律宾语",
+      "name": "Annika",
+      "id": "tl_female_annika_uranus_bigtts",
+      "language": "菲律宾语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,菲律宾语",
+      "name": "Ed",
+      "id": "tl_male_ed_uranus_bigtts",
+      "language": "菲律宾语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "有声阅读, 视频配音, 客服场景,多语种,菲律宾语",
+      "name": "Hervie",
+      "id": "tl_female_hervie_uranus_bigtts",
+      "language": "菲律宾语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,越南语",
+      "name": "Hong",
+      "id": "vi_female_hong_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,越南语",
+      "name": "Ling",
+      "id": "vi_female_ling_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音,多语种,越南语",
+      "name": "Linh",
+      "id": "vi_female_linh_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "视频配音, 客服场景,多语种,越南语",
+      "name": "Partner",
+      "id": "vi_female_partner_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景,有声阅读, 角色扮演,多语种,越南语",
+      "name": "Ruan",
+      "id": "vi_female_ruan_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 视频配音,多语种,越南语",
+      "name": "Wu",
+      "id": "vi_female_wu_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 客服场景,多语种,越南语",
+      "name": "Wumg",
+      "id": "vi_male_wumg_uranus_bigtts",
+      "language": "越南语",
+      "capabilities": "情感变化、指令遵循",
+      "tags": ""
+    },
+    {
+      "scene": "通用场景, 教学场景,多语种,意大利语",
+      "name": "Enzo",
+      "id": "it_male_enzo_uranus_bigtts",
+      "language": "意大利语",
+      "capabilities": "情感变化、上下文遵循",
+      "tags": "仅限单向流使用，不支持双向流，双向流调用会直接报错；"
+    }
+  ]
+}

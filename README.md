@@ -50,7 +50,7 @@ source .venv/bin/activate
 pip install -r plugins/lianhuanhua/skills/lianhuanhua/scripts/requirements.txt
 ```
 
-For built-in voices, configure only `DOUBAO_API_KEY`. The skill automatically selects a voice profile from the content. `DOUBAO_SPEAKER` is an optional advanced override.
+For bundled voices, configure only `DOUBAO_API_KEY`. The skill includes all 442 official TTS 2.0 voices captured on June 25, 2026 and selects one from the content and natural-language preference. `DOUBAO_SPEAKER` is an optional advanced override.
 
 - [Official Doubao voice list](https://www.volcengine.com/docs/6561/1257544)
 - [Doubao Speech console](https://console.volcengine.com/speech/app) for auditioning preset voices or creating an authorized replicated voice

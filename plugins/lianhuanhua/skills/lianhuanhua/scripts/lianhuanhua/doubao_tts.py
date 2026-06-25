@@ -35,6 +35,7 @@ from .doubao_protocol import (
 from .subtitles import write_srt
 from .timeline import normalize_doubao_subtitles, normalize_timeline
 from .utils import append_jsonl, ensure_dir, media_duration, run_command, write_json
+from .voice_catalog import resolve_catalog_voice
 
 
 @dataclass
@@ -57,17 +58,10 @@ class DoubaoError(RuntimeError):
     pass
 
 
-BUILTIN_VOICE_PROFILES = {
-    "gentle-reflective-female": {
-        "speaker": "ICL_uranus_zh_female_wenroubaiyueguang_tob",
-        "display_name": "温柔白月光 2.0",
-    },
-    "warm-caring-female": {
-        "speaker": "ICL_uranus_zh_female_tiexinmeimei_tob",
-        "display_name": "贴心妹妹 2.0",
-    },
+LEGACY_VOICE_PROFILES = {
+    "gentle-reflective-female": "温柔白月光 2.0",
+    "warm-caring-female": "贴心妹妹 2.0",
 }
-DEFAULT_VOICE_PROFILE = "warm-caring-female"
 
 
 def resolve_speaker(tts: dict[str, Any]) -> tuple[str, str]:
@@ -75,16 +69,13 @@ def resolve_speaker(tts: dict[str, Any]) -> tuple[str, str]:
     if explicit:
         return explicit, "explicit"
 
-    profile = str(tts.get("voice_profile") or DEFAULT_VOICE_PROFILE).strip()
-    resolved = BUILTIN_VOICE_PROFILES.get(profile)
-    if resolved is None:
-        available = ", ".join(sorted(BUILTIN_VOICE_PROFILES))
-        raise DoubaoError(
-            f"Unknown voice profile {profile!r}. Available built-in profiles: {available}. "
-            "Alternatively set project.tts.speaker or DOUBAO_SPEAKER to an ID copied from "
-            "https://console.volcengine.com/speech/app"
-        )
-    return str(resolved["speaker"]), profile
+    query = str(tts.get("voice_preference") or tts.get("voice_profile") or "").strip()
+    query = LEGACY_VOICE_PROFILES.get(query, query)
+    try:
+        resolved = resolve_catalog_voice(query)
+    except ValueError as exc:
+        raise DoubaoError(str(exc)) from exc
+    return str(resolved["id"]), str(resolved["name"])
 
 
 async def _connect(headers: dict[str, str]):
