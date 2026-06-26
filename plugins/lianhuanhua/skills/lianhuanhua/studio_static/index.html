@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lianhuanhua Studio V0.2</title>
+<style>
+:root{
+  --bg:#fffaf7;
+  --panel:#ffffff;
+  --text:#2f2926;
+  --muted:#81736e;
+  --line:#eaded8;
+  --coral:#e86f66;
+  --coral-soft:#fff0ed;
+  --mint:#218f72;
+  --mint-soft:#eaf8f2;
+  --violet:#6f63c7;
+  --violet-soft:#f2efff;
+  --shadow:0 10px 30px rgba(70,45,34,.08);
+}
+*{box-sizing:border-box}
+body{margin:0;background:linear-gradient(180deg,var(--bg),#fff 50%,#faf9ff);color:var(--text);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+.app{max-width:1280px;margin:auto;padding:20px}
+.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}
+.brand{display:flex;align-items:center;gap:12px}
+.mark{width:42px;height:42px;border-radius:8px;background:var(--coral-soft);display:grid;place-items:center;color:var(--coral);font-weight:900;border:1px solid #ffd6cf}
+h1{font-size:20px;margin:0}
+.sub{color:var(--muted);font-size:13px;margin:3px 0 0}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.step{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;color:var(--muted);text-align:left}
+.step.active{background:var(--coral-soft);border-color:#f2b0aa;color:#9a463f;font-weight:800}
+.surface{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:20px;min-height:680px}
+.stage{display:none}
+.stage.active{display:block}
+.head{display:flex;justify-content:space-between;gap:12px;margin-bottom:18px}
+.head h2{margin:0 0 4px;font-size:24px}
+.badge{background:var(--violet-soft);color:var(--violet);border-radius:8px;padding:7px 9px;font-size:12px;height:max-content}
+.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
+.box{border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff}
+.field{margin-bottom:13px}
+.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
+.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;outline:none}
+.field textarea{min-height:150px;resize:vertical}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:#eda59e;box-shadow:0 0 0 3px var(--coral-soft)}
+.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:14px}
+.primary,.secondary{border-radius:8px;padding:10px 13px;font-weight:800}
+.primary{border:1px solid var(--coral);background:var(--coral);color:#fff}
+.secondary{border:1px solid var(--line);background:#fff;color:var(--text)}
+.purple{background:var(--violet);border-color:var(--violet);color:#fff}
+.green{background:var(--mint);border-color:var(--mint);color:#fff}
+.status{border:1px solid var(--line);background:#fffdfb;border-radius:8px;padding:12px;color:var(--muted);font-size:13px;white-space:pre-wrap;line-height:1.55}
+.timeline{display:grid;gap:8px;max-height:430px;overflow:auto}
+.seg,.story{display:grid;grid-template-columns:86px 1fr;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
+.seg time,.story strong{color:var(--violet);font-weight:900}
+.providers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
+.provider{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
+.provider.active{background:var(--mint-soft);border-color:#91d6bf}
+.provider h3{margin:0 0 5px;font-size:16px}
+.provider p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
+.manual{border:1px dashed #d8bdb4;background:#fffaf7;border-radius:8px;padding:13px;margin-top:12px}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}
+.shot{border:2px solid transparent;border-radius:8px;padding:7px;background:#fff;min-width:0}
+.shot.active{border-color:var(--coral);background:var(--coral-soft)}
+.thumb{aspect-ratio:9/16;border-radius:6px;background:linear-gradient(150deg,#f4ddd1,#ded9ff);display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:12px;text-align:center}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.shot small{display:block;margin-top:6px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.image-layout{display:grid;grid-template-columns:1fr 370px;gap:16px}
+.current{display:inline-block;background:var(--mint-soft);color:var(--mint);border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;margin-bottom:8px}
+.phone{max-width:360px;margin:auto;background:#2a2624;border-radius:8px;padding:10px}
+.screen{aspect-ratio:9/16;background:linear-gradient(160deg,#efd1c5,#cfc9ee);border-radius:6px;position:relative;overflow:hidden;display:grid;place-items:center;color:#6f5f57}
+.screen img{width:100%;height:100%;object-fit:cover}
+.subtitle{position:absolute;left:14px;right:14px;bottom:26px;color:#fff;text-align:center;text-shadow:0 1px 8px #000;background:rgba(0,0,0,.22);border-radius:6px;padding:8px;font-size:14px}
+.motions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.motion{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:left}
+.motion.active{background:var(--violet-soft);border-color:#b9b0f1;color:var(--violet);font-weight:900}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#2f2926;color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:10;max-width:min(680px,calc(100vw - 28px))}
+a.primary{display:inline-block;text-decoration:none}
+@media(max-width:960px){.grid2,.image-layout{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,minmax(120px,1fr))}.top,.head{align-items:flex-start}.row{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="brand">
+      <div class="mark">LH</div>
+      <div>
+        <h1>Lianhuanhua Studio</h1>
+        <p class="sub">文案、语音、分镜、图片和导出都落在当前本地工作区。</p>
+      </div>
+    </div>
+    <button class="secondary" id="refreshBtn">刷新</button>
+  </header>
+
+  <nav class="steps">
+    <button class="step active" data-step="0">1. 文案与语音</button>
+    <button class="step" data-step="1">2. 分镜与生图方式</button>
+    <button class="step" data-step="2">3. 图片预览与单图修改</button>
+    <button class="step" data-step="3">4. 视频预览与导出</button>
+  </nav>
+
+  <main class="surface">
+    <section class="stage active" data-stage="0">
+      <div class="head"><div><h2>先确认文案和声音</h2><p class="sub">语音确认后，再交给 Codex 做分镜和提示词。</p></div><span class="badge">voice</span></div>
+      <div class="grid2">
+        <div class="box">
+          <div class="field"><label>文案</label><textarea id="story"></textarea></div>
+          <div class="field"><label>豆包 API Key</label><input id="apiKey" type="password" placeholder="留空则继续使用已保存 Key 或环境变量"></div>
+          <div class="row">
+            <div class="field"><label>音色偏好</label><input id="voicePreference" placeholder="温柔女声、沉稳男声等"></div>
+            <div class="field"><label>语速</label><input id="speechRate" type="number" min="-50" max="100" step="1"></div>
+          </div>
+          <div class="row">
+            <div class="field"><label>视频比例</label><select id="ratio"><option>9:16</option><option>16:9</option><option>1:1</option><option>4:5</option></select></div>
+            <div class="field"><label>角色参考图</label><input id="characterFiles" type="file" accept="image/*" multiple></div>
+          </div>
+          <div class="actions">
+            <button class="secondary" id="saveProjectBtn">保存设置</button>
+            <button class="primary" id="generateVoiceBtn">生成 / 重新生成语音</button>
+          </div>
+        </div>
+        <div class="box">
+          <h3>语音与时间轴</h3>
+          <p class="sub" id="voiceMeta">尚未生成。</p>
+          <div class="timeline" id="segments"></div>
+          <div class="actions"><button class="primary next" data-next="1">语音没问题，进入图片阶段</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="1">
+      <div class="head"><div><h2>分镜和生图方式</h2><p class="sub">Codex 负责理解和生成；页面只写入明确动作。</p></div><span class="badge">images</span></div>
+      <div class="grid2">
+        <div class="box">
+          <h3>分镜计划</h3>
+          <div class="timeline" id="storyboard"></div>
+          <div class="actions"><button class="primary" id="storyboardActionBtn">写入：生成分镜和提示词</button></div>
+        </div>
+        <div class="box">
+          <h3>选择生图方式</h3>
+          <div class="providers">
+            <button class="provider active" data-provider="codex"><h3>Codex 自动生图</h3><p>生成全部图片；后面只重做指定的一张。</p></button>
+            <button class="provider" data-provider="external"><h3>手动生图</h3><p>下载提示词包，在外部平台生图后批量回传。</p></button>
+          </div>
+          <div class="manual">
+            <div class="actions" style="justify-content:flex-start">
+              <a class="primary" id="downloadPack" href="/api/download/prompts-package.zip">下载提示词包 ZIP</a>
+              <button class="secondary" id="copyAllPrompts">复制当前提示词</button>
+            </div>
+            <div class="field" style="margin-top:12px"><label>批量回传 panel_001.png...</label><input id="panelFiles" type="file" accept="image/png" multiple></div>
+            <button class="secondary" id="uploadPanelsBtn">上传并检查</button>
+          </div>
+          <div class="actions">
+            <button class="primary" id="generateAllBtn">写入：生成全部图片</button>
+            <button class="primary next" data-next="2">进入图片预览</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage" data-stage="2">
+      <div class="head"><div><h2>只处理当前图片</h2><p class="sub">反馈、重写提示词和重新生成都只绑定当前 panel。</p></div><span class="badge">panel</span></div>
+      <div class="image-layout">
+        <div class="gallery" id="gallery"></div>
+        <aside class="box">
+          <span class="current" id="currentPanel">panel_001</span>
+          <p class="sub" id="currentNarration"></p>
+          <div class="field"><label>当前提示词</label><textarea id="currentPrompt"></textarea></div>
+          <div class="field"><label>哪里不满意</label><textarea id="feedback" style="min-height:90px"></textarea></div>
+          <div class="field"><label>上传图片替换当前 panel</label><input id="replaceFile" type="file" accept="image/png"></div>
+          <div class="actions">
+            <button class="secondary purple" id="rewriteBtn">写入整理提示词任务</button>
+            <button class="secondary" id="replaceBtn">上传替换</button>
+            <button class="primary" id="regenBtn">重新生成这一张</button>
+          </div>
+        </aside>
+      </div>
+      <div class="actions"><button class="primary next" data-next="3">图片都没问题，进入视频阶段</button></div>
+    </section>
+
+    <section class="stage" data-stage="3">
+      <div class="head"><div><h2>预览和导出</h2><p class="sub">基础运镜由现有 FFmpeg 渲染管线执行。</p></div><span class="badge">video</span></div>
+      <div class="grid2">
+        <div class="phone"><div class="screen" id="previewScreen"><span>选择一张图片</span><div class="subtitle" id="previewSubtitle"></div></div></div>
+        <div class="box">
+          <h3>当前图片运镜</h3>
+          <div class="motions" id="motions">
+            <button class="motion active" data-motion="hold">静止</button>
+            <button class="motion" data-motion="slow_zoom_in">缓慢推近</button>
+            <button class="motion" data-motion="slow_zoom_out">缓慢拉远</button>
+            <button class="motion" data-motion="pan_left">向左移动</button>
+            <button class="motion" data-motion="pan_right">向右移动</button>
+            <button class="motion" data-motion="float_up_down">轻微漂浮</button>
+            <button class="motion" disabled>景深微动（实验）</button>
+          </div>
+          <div class="actions">
+            <button class="secondary" id="renderActionBtn">写入：最终渲染</button>
+            <button class="primary" id="renderBtn">调用 FFmpeg 导出</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+  <pre class="status" id="status">准备就绪。</pre>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const state = {data:null, step:0, provider:"codex", panel:null};
+const $ = (id) => document.getElementById(id);
+function toast(msg){const el=$("toast");el.textContent=msg;el.style.display="block";setTimeout(()=>el.style.display="none",2600)}
+function status(msg){$("status").textContent=msg}
+async function api(path, body){
+  const res = await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body||{})});
+  const data = await res.json();
+  if(!data.ok) throw new Error(data.error||"请求失败");
+  return data.data;
+}
+async function filePayload(file){
+  const dataUrl = await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)});
+  return {name:file.name, content_base64:String(dataUrl)};
+}
+function setStep(n){
+  state.step=n;
+  document.querySelectorAll(".step").forEach((el,i)=>el.classList.toggle("active",i===n));
+  document.querySelectorAll(".stage").forEach((el,i)=>el.classList.toggle("active",i===n));
+}
+function projectPayload(){
+  const payload = {
+    story:$("story").value,
+    voice_preference:$("voicePreference").value,
+    speech_rate:Number($("speechRate").value||0),
+    ratio:$("ratio").value,
+    image_provider:state.provider
+  };
+  if($("apiKey").value.trim()) payload.api_key=$("apiKey").value.trim();
+  return payload;
+}
+async function projectPayloadWithCharacters(){
+  const payload = projectPayload();
+  const files = Array.from($("characterFiles").files||[]);
+  if(files.length) payload.character_images = await Promise.all(files.map(filePayload));
+  return payload;
+}
+async function load(){
+  const res = await fetch("/api/project");
+  const json = await res.json();
+  if(!json.ok) throw new Error(json.error||"读取项目失败");
+  state.data=json.data;
+  render();
+}
+function render(){
+  const data=state.data;
+  $("story").value=data.story||"";
+  $("voicePreference").value=data.project.tts?.voice_preference||"";
+  $("speechRate").value=data.project.tts?.speech_rate??0;
+  const w=data.project.video?.width, h=data.project.video?.height;
+  $("ratio").value=(w===1920&&h===1080)?"16:9":(w===1080&&h===1080)?"1:1":(w===1080&&h===1350)?"4:5":"9:16";
+  $("voiceMeta").textContent=data.timeline?`总时长 ${Number(data.timeline.duration||0).toFixed(2)} 秒，${data.timeline.segments.length} 段字幕。`:`Key 状态：${data.has_doubao_key?"已保存或来自环境变量":"未设置"}`;
+  $("segments").innerHTML=(data.timeline?.segments||[]).map(s=>`<div class="seg"><time>${Number(s.start).toFixed(2)}-${Number(s.end).toFixed(2)}</time><div>${escapeHtml(s.text||"")}</div></div>`).join("")||"<p class='sub'>暂无时间轴。</p>";
+  $("storyboard").innerHTML=(data.storyboard?.shots||[]).map((s,i)=>`<div class="story"><strong>panel_${String(i+1).padStart(3,"0")}</strong><div><b>${escapeHtml(s.visual_action||"")}</b><p class="sub">${Number(s.start).toFixed(2)} - ${Number(s.end).toFixed(2)}</p></div></div>`).join("")||"<p class='sub'>暂无分镜。点击右侧按钮后，在 Codex 里说“继续”。</p>";
+  renderGallery(data.panels||[]);
+  const pack=data.prompt_package?.exists;
+  $("downloadPack").style.pointerEvents=pack?"auto":"none";
+  $("downloadPack").style.opacity=pack?"1":".45";
+}
+function renderGallery(panels){
+  if(!state.panel && panels.length) state.panel=panels[0].panel_id;
+  $("gallery").innerHTML=panels.map(p=>`<button class="shot ${p.panel_id===state.panel?"active":""}" data-panel="${p.panel_id}"><div class="thumb">${p.exists?`<img src="${p.url}?t=${Date.now()}" alt="${p.panel_id}">`:"未上传"}</div><small>${p.panel_id}</small></button>`).join("")||"<p class='sub'>暂无图片。</p>";
+  document.querySelectorAll(".shot").forEach(btn=>btn.onclick=()=>{state.panel=btn.dataset.panel; render()});
+  const current=panels.find(p=>p.panel_id===state.panel)||panels[0];
+  if(current){
+    $("currentPanel").textContent=current.panel_id;
+    $("currentNarration").textContent=current.narration||"";
+    $("currentPrompt").value=current.prompt||"";
+    $("previewSubtitle").textContent=current.narration||"";
+    $("previewScreen").innerHTML=current.exists?`<img src="${current.url}?t=${Date.now()}" alt="${current.panel_id}"><div class="subtitle">${escapeHtml(current.narration||"")}</div>`:`<span>${current.panel_id}</span><div class="subtitle">${escapeHtml(current.narration||"")}</div>`;
+  }
+}
+function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+document.querySelectorAll(".step").forEach((el,i)=>el.onclick=()=>setStep(i));
+document.querySelectorAll(".next").forEach(el=>el.onclick=()=>setStep(Number(el.dataset.next)));
+document.querySelectorAll(".provider").forEach(el=>el.onclick=()=>{state.provider=el.dataset.provider;document.querySelectorAll(".provider").forEach(x=>x.classList.toggle("active",x===el))});
+$("refreshBtn").onclick=()=>load().then(()=>toast("已刷新")).catch(e=>status(e.message));
+$("saveProjectBtn").onclick=async()=>{try{status("保存设置中...");await api("/api/project",await projectPayloadWithCharacters());await load();toast("已保存")}catch(e){status(e.message)}};
+$("generateVoiceBtn").onclick=async()=>{try{status("生成语音中...");await api("/api/generate-voice",await projectPayloadWithCharacters());await load();toast("语音已生成")}catch(e){status(e.message)}};
+$("storyboardActionBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"images",action:"generate_storyboard_and_prompts"});await load();toast("已写入动作：生成分镜和提示词")}catch(e){status(e.message)}};
+$("generateAllBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"images",action:"generate_all_panels",image_provider:state.provider});await api("/api/project",projectPayload());await load();toast("已写入动作：生成全部图片")}catch(e){status(e.message)}};
+$("uploadPanelsBtn").onclick=async()=>{try{status("上传图片中...");const files=await Promise.all(Array.from($("panelFiles").files||[]).map(filePayload));const data=await api("/api/upload-panels",{files});await load();status(JSON.stringify(data,null,2));toast(data.ok?"图片检查通过":"图片检查有问题")}catch(e){status(e.message)}};
+$("rewriteBtn").onclick=async()=>{try{const panel=state.panel;const prompt=$("currentPrompt").value.trim()+`\n\n用户反馈：${$("feedback").value.trim()}`;await api("/api/write-action",{stage:"images",action:"regenerate_panel",panel_id:panel,feedback:$("feedback").value,prompt});toast("已写入当前 panel 的提示词整理任务")}catch(e){status(e.message)}};
+$("regenBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"images",action:"regenerate_panel",panel_id:state.panel,feedback:$("feedback").value,prompt:$("currentPrompt").value});toast("已写入当前 panel 的重生成任务")}catch(e){status(e.message)}};
+$("replaceBtn").onclick=async()=>{try{const file=$("replaceFile").files?.[0];if(!file) throw new Error("请选择 PNG 图片");const payload=await filePayload(file);payload.panel_id=state.panel;const data=await api("/api/replace-panel",payload);await load();status(JSON.stringify(data,null,2));toast("已替换当前图片")}catch(e){status(e.message)}};
+$("renderActionBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"video",action:"render_video"});toast("已写入最终渲染动作")}catch(e){status(e.message)}};
+$("renderBtn").onclick=async()=>{try{status("FFmpeg 渲染中...");const data=await api("/api/render-video",{});await load();status(JSON.stringify(data,null,2));toast("视频已导出")}catch(e){status(e.message)}};
+$("copyAllPrompts").onclick=async()=>{try{const text=(state.data.panels||[]).map(p=>`# ${p.panel_id}\n${p.prompt||""}`).join("\n\n");await navigator.clipboard.writeText(text);toast("已复制")}catch(e){status(e.message)}};
+document.querySelectorAll(".motion").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".motion").forEach(x=>x.classList.remove("active"));btn.classList.add("active");toast("预览选择已更新，实际保存可在 storyboard.json 中调整")});
+load().catch(e=>status(e.message));
+</script>
+</body>
+</html>

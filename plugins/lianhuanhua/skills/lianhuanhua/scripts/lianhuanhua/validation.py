@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import importlib.util
 import os
+import re
 import sys
 from pathlib import Path
 from typing import Any
@@ -77,6 +78,83 @@ def _validate_panel_image(path: Path, *, expected_ratio: float | None) -> list[s
     return errors
 
 
+def expected_panel_filenames(workspace: Path) -> list[str]:
+    storyboard_path = workspace / "work" / "storyboard.json"
+    if not storyboard_path.exists():
+        return []
+    storyboard = read_json(storyboard_path)
+    names: list[str] = []
+    for index, shot in enumerate(storyboard.get("shots", []), start=1):
+        image = Path(str(shot.get("image") or ""))
+        names.append(image.name or f"panel_{index:03d}.png")
+    return names
+
+
+def validate_manual_panels(
+    workspace: Path,
+    *,
+    filenames: list[str] | None = None,
+) -> dict[str, Any]:
+    expected = expected_panel_filenames(workspace)
+    if not expected:
+        expected = sorted(path.name for path in (workspace / "work" / "panels").glob("panel_*.png"))
+
+    provided = filenames if filenames is not None else [
+        path.name for path in (workspace / "work" / "panels").glob("panel_*.png")
+    ]
+    seen: set[str] = set()
+    duplicates: list[str] = []
+    invalid_names: list[str] = []
+    for name in provided:
+        if name in seen and name not in duplicates:
+            duplicates.append(name)
+        seen.add(name)
+        if not re.match(r"^panel_[0-9]{3}\.png$", name):
+            invalid_names.append(name)
+
+    missing = [name for name in expected if name not in seen]
+    unexpected = [name for name in provided if name not in expected]
+
+    errors: list[str] = []
+    for name in invalid_names:
+        errors.append(f"Invalid panel filename: {name}")
+    for name in duplicates:
+        errors.append(f"Duplicate panel filename: {name}")
+    for name in missing:
+        errors.append(f"Missing panel image: {name}")
+    for name in unexpected:
+        errors.append(f"Unexpected panel image: {name}")
+
+    expected_ratio: float | None = None
+    storyboard_path = workspace / "work" / "storyboard.json"
+    if storyboard_path.exists():
+        video = read_json(storyboard_path).get("video", {})
+        width = float(video.get("width", 0) or 0)
+        height = float(video.get("height", 0) or 0)
+        if width > 0 and height > 0:
+            expected_ratio = width / height
+
+    for name in sorted(seen):
+        path = workspace / "work" / "panels" / name
+        if name in invalid_names:
+            continue
+        if not path.exists() or path.stat().st_size == 0:
+            errors.append(f"Panel image is missing or empty: {name}")
+            continue
+        errors.extend(_validate_panel_image(path, expected_ratio=expected_ratio))
+
+    return {
+        "expected": expected,
+        "provided": provided,
+        "missing": missing,
+        "duplicates": duplicates,
+        "invalid_names": invalid_names,
+        "unexpected": unexpected,
+        "ok": not errors,
+        "errors": errors,
+    }
+
+
 def validate_workspace(workspace: Path, *, require_images: bool = False) -> list[str]:
     errors: list[str] = []
     candidates = [
@@ -91,6 +169,9 @@ def validate_workspace(workspace: Path, *, require_images: bool = False) -> list
     panel_reviews_path = workspace / "work" / "panel_reviews.json"
     if panel_reviews_path.exists():
         candidates.append(panel_reviews_path)
+    studio_state_path = workspace / "work" / "studio_state.json"
+    if studio_state_path.exists():
+        candidates.append(studio_state_path)
 
     project: dict[str, Any] | None = None
     for path in candidates:

@@ -18,6 +18,8 @@ SCHEMA_BY_FILE = {
     "continuity_ledger.json": "continuity_ledger.schema.json",
     "storyboard.json": "storyboard.schema.json",
     "panel_reviews.json": "panel_reviews.schema.json",
+    "studio_state.json": "studio_state.schema.json",
+    "prompts.json": "prompts.schema.json",
 }
 
 

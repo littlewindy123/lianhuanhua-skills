@@ -9,7 +9,7 @@ Create a complete, reproducible comic-video project. Codex directs the story and
 
 ## Non-negotiable constraints
 
-- Support Codex only in version 0.1.
+- Support Codex CLI workflow and local Studio V0.2.
 - Use Doubao Speech 2.0 as the only hosted TTS provider.
 - Use `X-Api-Resource-Id: seed-tts-2.0`.
 - For TTS 2.0 timing, request `audio_params.enable_subtitle=true`; do not rely on the TTS 1.0-only `enable_timestamp` behavior.
@@ -31,6 +31,14 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py"
 ```
 
 Use an absolute path when the shell or operating system makes relative paths ambiguous.
+
+Run the local Studio V0.2 web UI with:
+
+```bash
+python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" studio --workspace <workspace>
+```
+
+Studio is a local-only HTML/CSS/JavaScript interface backed by Python's standard library HTTP server. It is for local project work, not production hosting.
 
 ## Inputs
 
@@ -70,6 +78,11 @@ Always preserve and return:
 8. `logs/`
 
 Also preserve the character/style/continuity JSON files and panel prompts in `work/`.
+Studio also preserves:
+
+1. `work/studio_state.json`
+2. `output/prompts-package.zip`
+3. `output/prompts.json`
 
 ## Read references progressively
 
@@ -104,6 +117,30 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" init --workspace <workspace>
 
 6. Copy inputs into the initialized `input/` directories without overwriting originals.
 7. Do not continue when FFmpeg or ffprobe is missing.
+
+## Studio V0.2 handoff protocol
+
+When the user says "继续" in Codex while working from Studio:
+
+1. Find the current project workspace.
+2. Read `work/studio_state.json`.
+3. Execute only the task named by `action`.
+4. If `panel_id` exists, process only that one panel.
+5. Stop after completing that action and let the user return to Studio.
+6. Do not automatically advance phases, score all images, repair all images, or retry unrelated panels.
+
+Allowed stages are `voice`, `images`, and `video`.
+
+Allowed actions are:
+
+- `generate_voice`
+- `generate_storyboard_and_prompts`
+- `generate_all_panels`
+- `regenerate_panel`
+- `validate_manual_panels`
+- `render_video`
+
+Do not write Doubao API keys to `project.json`, `studio_state.json`, `prompts.json`, or exported packages. Studio may store the key only in `work/.secrets.json`, which is excluded by `.gitignore`.
 
 ## Phase 1A: Text narration mode
 
@@ -212,6 +249,8 @@ This writes both `work/prompts/*.md` and:
 
 - `output/image_prompt_pack.md`
 - `output/image_prompt_pack.json`
+- `output/prompts-package.zip`
+- `output/prompts.json`
 
 5. For `external` mode:
    - Do not call `$imagegen`.
@@ -235,6 +274,20 @@ This writes both `work/prompts/*.md` and:
 11. Do not write `work/panel_reviews.json` by default. If `project.image_workflow.review` is `manual`, list generated image paths for the user to inspect. If it is `strict`, visually inspect panels and write/update `work/panel_reviews.json`.
 12. If a file is missing or unreadable, report the exact path. Do not auto-generate or auto-repair unless `project.image_workflow.repair` is `codex` or the user explicitly asks.
 13. If the user says a panel is wrong, either export a targeted repair prompt (`prompt-only`) or use `$imagegen` to repair only that panel when the user chooses Codex repair.
+
+## Studio Phase 4A: Manual image package
+
+For manual image generation, provide `output/prompts-package.zip`.
+
+The ZIP must contain:
+
+- `README.md`
+- `prompts.md`
+- `prompts.csv`
+- `prompts.json`
+- `panels/panel_001.txt`, `panels/panel_002.txt`, and so on.
+
+When manual images are returned, perform deterministic checks only: filenames, duplicates, missing panels, file size, readability, target aspect ratio, schema checks, and later ffprobe. Do not judge image quality or style drift unless explicitly asked.
 
 ## Phase 5: Render
 

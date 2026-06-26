@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lianhuanhua Prompt Package",
+  "type": "object",
+  "required": [
+    "version",
+    "project",
+    "panels"
+  ],
+  "properties": {
+    "version": {
+      "type": "string"
+    },
+    "project": {
+      "type": "object"
+    },
+    "panels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "panel_id",
+          "narration",
+          "prompt_cn",
+          "filename"
+        ],
+        "properties": {
+          "panel_id": {
+            "type": "string"
+          },
+          "start": {
+            "type": "number"
+          },
+          "end": {
+            "type": "number"
+          },
+          "narration": {
+            "type": "string"
+          },
+          "image_description": {
+            "type": "string"
+          },
+          "prompt_cn": {
+            "type": "string"
+          },
+          "prompt_en": {
+            "type": "string"
+          },
+          "size": {
+            "type": "string"
+          },
+          "filename": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

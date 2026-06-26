@@ -11,6 +11,7 @@ from .exporter import export_project
 from .media import extract_audio, save_transcription, transcribe_faster_whisper
 from .prompts import build_panel_prompts
 from .renderer import mux_final_video, render_silent_video
+from .studio import run_studio_server
 from .subtitles import parse_srt
 from .timeline import normalize_timeline, write_timeline_files
 from .utils import media_duration, read_json, write_json
@@ -136,6 +137,7 @@ def cmd_build_prompts(args: argparse.Namespace) -> int:
     print(f"Created {len(manifest['panels'])} panel prompts")
     print(f"Prompt pack markdown: {workspace / 'output' / 'image_prompt_pack.md'}")
     print(f"Prompt pack json: {workspace / 'output' / 'image_prompt_pack.json'}")
+    print(f"Manual prompt package: {workspace / 'output' / 'prompts-package.zip'}")
     return 0
 
 
@@ -185,6 +187,15 @@ def cmd_voices(args: argparse.Namespace) -> int:
         )
     )
     return 0
+
+
+def cmd_studio(args: argparse.Namespace) -> int:
+    return run_studio_server(
+        _workspace(args.workspace),
+        host=args.host,
+        port=args.port,
+        open_browser=args.open_browser,
+    )
 
 
 def build_parser() -> argparse.ArgumentParser:
@@ -253,6 +264,13 @@ def build_parser() -> argparse.ArgumentParser:
     voices.add_argument("--query", default="")
     voices.add_argument("--limit", type=int, default=10)
     voices.set_defaults(func=cmd_voices)
+
+    studio = sub.add_parser("studio", help="Run the local Lianhuanhua Studio V0.2 web UI")
+    studio.add_argument("--workspace", required=True)
+    studio.add_argument("--host", default="127.0.0.1")
+    studio.add_argument("--port", type=int, default=8765)
+    studio.add_argument("--open-browser", action="store_true")
+    studio.set_defaults(func=cmd_studio)
 
     return parser
 

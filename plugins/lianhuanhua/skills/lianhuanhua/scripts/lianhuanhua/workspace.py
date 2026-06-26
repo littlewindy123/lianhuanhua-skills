@@ -51,6 +51,10 @@ class Workspace:
     def prompts_dir(self) -> Path:
         return self.work / "prompts"
 
+    @property
+    def studio_state(self) -> Path:
+        return self.work / "studio_state.json"
+
 
 def skill_root() -> Path:
     return Path(__file__).resolve().parents[2]
@@ -89,6 +93,7 @@ def initialize_workspace(root: Path, force: bool = False) -> Workspace:
         "continuity_ledger.json": ws.work / "continuity_ledger.json",
         "storyboard.json": ws.work / "storyboard.json",
         "panel_reviews.json": ws.work / "panel_reviews.json",
+        "studio_state.json": ws.studio_state,
     }
     for source_name, target in mapping.items():
         source = template_dir() / source_name

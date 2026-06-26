@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Lianhuanhua Studio State",
+  "type": "object",
+  "required": [
+    "stage",
+    "action"
+  ],
+  "properties": {
+    "stage": {
+      "enum": [
+        "voice",
+        "images",
+        "video"
+      ]
+    },
+    "action": {
+      "enum": [
+        "generate_voice",
+        "generate_storyboard_and_prompts",
+        "generate_all_panels",
+        "regenerate_panel",
+        "validate_manual_panels",
+        "render_video"
+      ]
+    },
+    "panel_id": {
+      "type": "string",
+      "pattern": "^panel_[0-9]{3}$"
+    },
+    "feedback": {
+      "type": "string"
+    },
+    "prompt": {
+      "type": "string"
+    },
+    "image_provider": {
+      "enum": [
+        "codex",
+        "external"
+      ]
+    }
+  },
+  "additionalProperties": true
+}

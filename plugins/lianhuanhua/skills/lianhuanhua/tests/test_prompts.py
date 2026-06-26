@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import json
+import zipfile
 
 from PIL import Image
 
@@ -19,12 +20,18 @@ def test_build_prompts_writes_external_prompt_pack(tmp_path) -> None:
     pack_json = ws.output / "image_prompt_pack.json"
     assert pack_md.exists()
     assert pack_json.exists()
+    assert (ws.output / "prompts-package.zip").exists()
+    assert (ws.output / "prompts.json").exists()
 
     data = json.loads(pack_json.read_text(encoding="utf-8"))
     assert data["image_workflow"] == {"mode": "ask", "review": "none", "repair": "ask"}
     assert data["panels"][0]["shot_id"] == "shot_001"
     assert "Output path" in data["panels"][0]["prompt"]
     assert "Copy this whole file into GPT" in pack_md.read_text(encoding="utf-8")
+
+    with zipfile.ZipFile(ws.output / "prompts-package.zip") as archive:
+        names = set(archive.namelist())
+    assert {"README.md", "prompts.md", "prompts.csv", "prompts.json", "panels/panel_001.txt"} <= names
 
 
 def test_require_images_does_not_require_visual_reviews_by_default(tmp_path) -> None:

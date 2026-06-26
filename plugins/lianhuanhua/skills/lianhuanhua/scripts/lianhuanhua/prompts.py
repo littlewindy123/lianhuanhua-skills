@@ -1,5 +1,9 @@
 from __future__ import annotations
 
+import csv
+import io
+import json
+import zipfile
 from pathlib import Path
 from typing import Any
 
@@ -31,6 +35,7 @@ def _write_prompt_pack(
     *,
     project: dict[str, Any],
     manifest: dict[str, Any],
+    storyboard: dict[str, Any],
 ) -> None:
     output_dir = ensure_dir(workspace / "output")
     prompt_pack_json = output_dir / "image_prompt_pack.json"
@@ -100,6 +105,158 @@ def _write_prompt_pack(
             ]
         )
     prompt_pack_md.write_text("\n".join(lines), encoding="utf-8")
+    _write_manual_prompt_package(
+        workspace,
+        project=project,
+        manifest=manifest,
+        storyboard=storyboard,
+        panel_prompts=panels,
+    )
+
+
+def _timeline_segments(workspace: Path) -> dict[str, dict[str, Any]]:
+    timeline_path = workspace / "work" / "timeline.json"
+    if not timeline_path.exists():
+        return {}
+    timeline = read_json(timeline_path)
+    return {str(segment.get("id")): segment for segment in timeline.get("segments", [])}
+
+
+def _panel_id(index: int, shot: dict[str, Any]) -> str:
+    image_name = Path(str(shot.get("image", ""))).stem
+    if image_name.startswith("panel_"):
+        return image_name
+    return f"panel_{index:03d}"
+
+
+def _manual_prompt_rows(
+    workspace: Path,
+    *,
+    project: dict[str, Any],
+    storyboard: dict[str, Any],
+    panel_prompts: list[dict[str, Any]],
+) -> list[dict[str, Any]]:
+    segments = _timeline_segments(workspace)
+    prompts_by_shot = {item["shot_id"]: item["prompt"] for item in panel_prompts}
+    video = storyboard.get("video", {}) or project.get("video", {})
+    size = f"{int(video.get('width', 1080))}x{int(video.get('height', 1920))}"
+    rows: list[dict[str, Any]] = []
+    for index, shot in enumerate(storyboard.get("shots", []), start=1):
+        segment = segments.get(str(shot.get("segment_id")), {})
+        panel_id = _panel_id(index, shot)
+        prompt = prompts_by_shot.get(shot["id"], "")
+        rows.append(
+            {
+                "panel_id": panel_id,
+                "start": float(shot.get("start", 0)),
+                "end": float(shot.get("end", 0)),
+                "narration": str(segment.get("text", "")),
+                "image_description": str(shot.get("visual_action", "")),
+                "prompt_cn": prompt,
+                "prompt_en": prompt,
+                "size": size,
+                "filename": f"{panel_id}.png",
+            }
+        )
+    return rows
+
+
+def _write_manual_prompt_package(
+    workspace: Path,
+    *,
+    project: dict[str, Any],
+    manifest: dict[str, Any],
+    storyboard: dict[str, Any],
+    panel_prompts: list[dict[str, Any]],
+) -> None:
+    del manifest
+    output_dir = ensure_dir(workspace / "output")
+    rows = _manual_prompt_rows(
+        workspace,
+        project=project,
+        storyboard=storyboard,
+        panel_prompts=panel_prompts,
+    )
+    video = storyboard.get("video", {}) or project.get("video", {})
+    width = int(video.get("width", 1080))
+    height = int(video.get("height", 1920))
+    ratio = f"{width}:{height}"
+    if width == 1080 and height == 1920:
+        ratio = "9:16"
+
+    prompts_json = {
+        "version": "1.0",
+        "project": {
+            "ratio": ratio,
+            "size": f"{width}x{height}",
+            "style": project.get("mood", ""),
+        },
+        "panels": rows,
+    }
+    write_json(output_dir / "prompts.json", prompts_json)
+
+    readme = "\n".join(
+        [
+            "# Lianhuanhua 手动生图提示词包",
+            "",
+            f"- 总图片数量: {len(rows)}",
+            f"- 视频比例: {ratio}",
+            f"- 推荐尺寸: {width}x{height}",
+            "- 角色一致性: 保持主角外观、比例、服饰、颜色和画风一致。",
+            "- 禁止事项: 不要在图片中生成字幕、水印、Logo 或多余文字。",
+            "- 回传文件名: 使用 panel_001.png、panel_002.png 这样的三位编号。",
+            "",
+        ]
+    )
+    prompts_md_lines = ["# Prompts", ""]
+    for row in rows:
+        prompts_md_lines.extend(
+            [
+                f"## {row['panel_id']}",
+                "",
+                f"- 旁白: {row['narration']}",
+                f"- 时间: {row['start']:.3f} - {row['end']:.3f}",
+                f"- 画面描述: {row['image_description']}",
+                f"- 推荐尺寸: {row['size']}",
+                f"- 回传文件名: {row['filename']}",
+                "",
+                "### 中文提示词",
+                "",
+                str(row["prompt_cn"]).rstrip(),
+                "",
+                "### English Prompt",
+                "",
+                str(row["prompt_en"]).rstrip(),
+                "",
+            ]
+        )
+
+    csv_buffer = io.StringIO()
+    writer = csv.DictWriter(
+        csv_buffer,
+        fieldnames=[
+            "panel_id",
+            "narration",
+            "start",
+            "end",
+            "image_description",
+            "prompt_cn",
+            "prompt_en",
+            "size",
+            "filename",
+        ],
+    )
+    writer.writeheader()
+    writer.writerows(rows)
+
+    zip_path = output_dir / "prompts-package.zip"
+    with zipfile.ZipFile(zip_path, "w", compression=zipfile.ZIP_DEFLATED) as archive:
+        archive.writestr("README.md", readme)
+        archive.writestr("prompts.md", "\n".join(prompts_md_lines))
+        archive.writestr("prompts.csv", csv_buffer.getvalue())
+        archive.writestr("prompts.json", json.dumps(prompts_json, ensure_ascii=False, indent=2) + "\n")
+        for row in rows:
+            archive.writestr(f"panels/{row['panel_id']}.txt", str(row["prompt_cn"]).rstrip() + "\n")
 
 
 def build_panel_prompts(workspace: Path) -> dict[str, Any]:
@@ -204,5 +361,5 @@ Character summary: {character.get('summary', '')}
         previous_image = shot["image"]
 
     write_json(prompt_dir / "manifest.json", manifest)
-    _write_prompt_pack(workspace, project=project, manifest=manifest)
+    _write_prompt_pack(workspace, project=project, manifest=manifest, storyboard=storyboard)
     return manifest
