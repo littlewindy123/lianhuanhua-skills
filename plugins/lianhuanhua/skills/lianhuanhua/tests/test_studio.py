@@ -5,7 +5,7 @@ import json
 from PIL import Image
 
 from lianhuanhua.schema_validation import validate_file
-from lianhuanhua.studio import write_studio_action
+from lianhuanhua.studio import studio_snapshot, write_studio_action
 from lianhuanhua.validation import validate_manual_panels
 from lianhuanhua.workspace import initialize_workspace
 
@@ -50,3 +50,15 @@ def test_regenerate_panel_action_preserves_single_panel_scope(tmp_path) -> None:
     assert state["action"] == "regenerate_panel"
     assert state["panel_id"] == "panel_004"
     assert "all_panels" not in state
+
+
+def test_studio_snapshot_exposes_audio_and_character_preview(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "snapshot")
+    Image.new("RGB", (128, 128), (240, 230, 220)).save(ws.input / "character" / "character.png")
+    (ws.audio_dir / "narration.mp3").write_bytes(b"fake-audio")
+
+    snapshot = studio_snapshot(ws.root)
+
+    assert snapshot["audio"]["exists"] is True
+    assert snapshot["audio"]["url"] == "/api/audio/narration.mp3"
+    assert snapshot["character_images"][0]["url"] == "/api/character/character.png"

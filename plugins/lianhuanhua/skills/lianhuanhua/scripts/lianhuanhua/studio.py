@@ -18,6 +18,7 @@ from .renderer import mux_final_video, render_silent_video
 from .schema_validation import validate_data
 from .utils import ensure_dir, read_json, write_json
 from .validation import validate_manual_panels, validate_output, validate_workspace
+from .voice_catalog import load_voice_catalog
 from .workspace import initialize_workspace, skill_root
 
 
@@ -81,6 +82,12 @@ def _safe_name(name: str) -> str:
     return Path(name).name.replace("\\", "")
 
 
+def _workspace_relative_path(workspace: Path, value: str) -> Path:
+    value = value.replace("\\", "/")
+    path = Path(value)
+    return path if path.is_absolute() else workspace / path
+
+
 def _decode_file(payload: dict[str, Any]) -> bytes:
     data = str(payload.get("content_base64") or "")
     if "," in data and data.split(",", 1)[0].startswith("data:"):
@@ -136,6 +143,41 @@ def _panel_records(workspace: Path) -> list[dict[str, Any]]:
 def _read_panel_prompt(workspace: Path, shot_id: str) -> str:
     path = workspace / "work" / "prompts" / f"{shot_id}.md"
     return path.read_text(encoding="utf-8") if path.exists() else ""
+
+
+def _audio_record(workspace: Path) -> dict[str, Any]:
+    candidates = [
+        workspace / "work" / "audio" / "narration.mp3",
+        workspace / "work" / "audio" / "narration.wav",
+        workspace / "work" / "audio" / "extracted.wav",
+    ]
+    audio = next((path for path in candidates if path.exists() and path.stat().st_size > 0), None)
+    if audio is None:
+        return {"exists": False, "url": None, "path": None}
+    return {
+        "exists": True,
+        "url": f"/api/audio/{audio.name}",
+        "path": str(audio),
+        "filename": audio.name,
+    }
+
+
+def _character_records(workspace: Path, project: dict[str, Any]) -> list[dict[str, Any]]:
+    records: list[dict[str, Any]] = []
+    for value in project.get("paths", {}).get("character_images", []):
+        path = _workspace_relative_path(workspace, str(value))
+        if not path.exists():
+            continue
+        name = path.name
+        records.append(
+            {
+                "filename": name,
+                "path": str(path),
+                "url": f"/api/character/{name}",
+                "exists": True,
+            }
+        )
+    return records
 
 
 def save_project_settings(workspace: Path, payload: dict[str, Any]) -> dict[str, Any]:
@@ -205,6 +247,8 @@ def studio_snapshot(workspace: Path) -> dict[str, Any]:
         "timeline": read_json(workspace / "work" / "timeline.json") if (workspace / "work" / "timeline.json").exists() else None,
         "storyboard": read_json(workspace / "work" / "storyboard.json") if (workspace / "work" / "storyboard.json").exists() else None,
         "studio_state": read_json(state_path) if state_path.exists() else None,
+        "audio": _audio_record(workspace),
+        "character_images": _character_records(workspace, project),
         "panels": _panel_records(workspace),
         "prompt_package": {
             "exists": (workspace / "output" / "prompts-package.zip").exists(),
@@ -327,6 +371,24 @@ class StudioHandler(BaseHTTPRequestHandler):
             return
         if path == "/api/project":
             self._json({"ok": True, "data": studio_snapshot(self.workspace)})
+            return
+        if path == "/api/voices":
+            self._json({"ok": True, "data": load_voice_catalog()})
+            return
+        if path.startswith("/api/audio/"):
+            name = _safe_name(path.rsplit("/", 1)[-1])
+            allowed = {"narration.mp3", "narration.wav", "extracted.wav"}
+            if name not in allowed and not re.match(r"^narration_[0-9]{3}\.(mp3|wav)$", name):
+                self._error("Invalid audio name", status=HTTPStatus.BAD_REQUEST)
+                return
+            self._send_file(self.workspace / "work" / "audio" / name)
+            return
+        if path.startswith("/api/character/"):
+            name = _safe_name(path.rsplit("/", 1)[-1])
+            if Path(name).suffix.lower() not in {".png", ".jpg", ".jpeg", ".webp"}:
+                self._error("Invalid character image name", status=HTTPStatus.BAD_REQUEST)
+                return
+            self._send_file(self.workspace / "input" / "character" / name)
             return
         if path == "/api/download/prompts-package.zip":
             self._send_file(self.workspace / "output" / "prompts-package.zip", "application/zip")
