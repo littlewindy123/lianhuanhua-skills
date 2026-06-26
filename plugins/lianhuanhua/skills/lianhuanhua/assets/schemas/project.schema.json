@@ -142,6 +142,37 @@
         }
       },
       "additionalProperties": false
+    },
+    "image_workflow": {
+      "type": "object",
+      "properties": {
+        "mode": {
+          "enum": [
+            "ask",
+            "external",
+            "codex",
+            "hybrid"
+          ],
+          "default": "ask"
+        },
+        "review": {
+          "enum": [
+            "none",
+            "manual",
+            "strict"
+          ],
+          "default": "none"
+        },
+        "repair": {
+          "enum": [
+            "ask",
+            "prompt-only",
+            "codex"
+          ],
+          "default": "ask"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

@@ -17,8 +17,94 @@ def _fmt_mapping(mapping: dict[str, Any]) -> str:
     return "\n".join(lines)
 
 
+def _image_workflow(project: dict[str, Any]) -> dict[str, str]:
+    configured = project.get("image_workflow", {})
+    return {
+        "mode": str(configured.get("mode", "ask")),
+        "review": str(configured.get("review", "none")),
+        "repair": str(configured.get("repair", "ask")),
+    }
+
+
+def _write_prompt_pack(
+    workspace: Path,
+    *,
+    project: dict[str, Any],
+    manifest: dict[str, Any],
+) -> None:
+    output_dir = ensure_dir(workspace / "output")
+    prompt_pack_json = output_dir / "image_prompt_pack.json"
+    prompt_pack_md = output_dir / "image_prompt_pack.md"
+    workflow = _image_workflow(project)
+    video = project.get("video", {})
+
+    panels: list[dict[str, Any]] = []
+    for panel in manifest["panels"]:
+        prompt_path = workspace / panel["prompt_file"]
+        panels.append(
+            {
+                **panel,
+                "prompt": prompt_path.read_text(encoding="utf-8"),
+            }
+        )
+
+    pack = {
+        "version": project.get("version", "0.1"),
+        "image_workflow": workflow,
+        "target": {
+            "width": video.get("width", 1080),
+            "height": video.get("height", 1920),
+            "aspect_ratio": "9:16",
+        },
+        "instructions": [
+            "External mode: copy these prompts into GPT or another image generator, generate all panels, and save them with the exact output filenames.",
+            "Codex should not call image generation or visual review unless the user explicitly chooses it.",
+            "Default validation is low-cost only: file existence, readability, target aspect ratio, schemas, and ffprobe output checks.",
+        ],
+        "panels": panels,
+    }
+    write_json(prompt_pack_json, pack)
+
+    lines = [
+        "# Lianhuanhua image prompt pack",
+        "",
+        "Copy this whole file into GPT or another image generator and ask it to generate every panel.",
+        "Save returned images using the exact `Output path` shown for each panel, then put them back into this workspace.",
+        "",
+        "## Low-token workflow",
+        "",
+        f"- Mode: `{workflow['mode']}`",
+        f"- Review: `{workflow['review']}` (default means no Codex visual review)",
+        f"- Repair: `{workflow['repair']}`",
+        f"- Target size: `{video.get('width', 1080)}x{video.get('height', 1920)}`",
+        "- Codex will only perform low-cost file/schema/FFmpeg checks unless you explicitly ask it to inspect or repair an image.",
+        "",
+        "## Required output files",
+        "",
+    ]
+    for panel in panels:
+        refs = ", ".join(panel.get("references", [])) or "none"
+        lines.extend(
+            [
+                f"### {panel['shot_id']}",
+                "",
+                f"- Output path: `{panel['output_file']}`",
+                f"- Generation mode: `{panel['mode']}`",
+                f"- Anchor: `{bool(panel.get('is_anchor'))}`",
+                f"- References: {refs}",
+                "",
+                "```text",
+                panel["prompt"].rstrip(),
+                "```",
+                "",
+            ]
+        )
+    prompt_pack_md.write_text("\n".join(lines), encoding="utf-8")
+
+
 def build_panel_prompts(workspace: Path) -> dict[str, Any]:
     work = workspace / "work"
+    project = read_json(workspace / "project.json")
     character = read_json(work / "character_bible.json")
     style = read_json(work / "style_bible.json")
     storyboard = read_json(work / "storyboard.json")
@@ -30,7 +116,8 @@ def build_panel_prompts(workspace: Path) -> dict[str, Any]:
     manifest: dict[str, Any] = {"panels": []}
     references = list(character.get("reference_images", []))
     character_sheet = character.get("character_sheet")
-    if character_sheet:
+    character_sheet_path = workspace / character_sheet if character_sheet else None
+    if character_sheet and character_sheet_path and character_sheet_path.exists():
         references.append(character_sheet)
 
     previous_image: str | None = None
@@ -117,4 +204,5 @@ Character summary: {character.get('summary', '')}
         previous_image = shot["image"]
 
     write_json(prompt_dir / "manifest.json", manifest)
+    _write_prompt_pack(workspace, project=project, manifest=manifest)
     return manifest

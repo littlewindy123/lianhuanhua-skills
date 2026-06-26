@@ -42,6 +42,41 @@ def doctor_ok(report: dict[str, Any]) -> bool:
     )
 
 
+def _project_image_review_mode(project: dict[str, Any] | None) -> str:
+    if not project:
+        return "none"
+    workflow = project.get("image_workflow", {})
+    return str(workflow.get("review", "none"))
+
+
+def _validate_panel_image(path: Path, *, expected_ratio: float | None) -> list[str]:
+    errors: list[str] = []
+    try:
+        from PIL import Image
+    except ImportError:
+        return ["Pillow is required to validate panel image files"]
+
+    try:
+        with Image.open(path) as image:
+            image.verify()
+        with Image.open(path) as image:
+            width, height = image.size
+    except Exception as exc:  # noqa: BLE001
+        return [f"Panel image is not readable: {path} ({exc})"]
+
+    if width <= 0 or height <= 0:
+        errors.append(f"Panel image has invalid dimensions: {path}")
+    elif expected_ratio and expected_ratio > 0:
+        actual_ratio = width / height
+        relative_delta = abs(actual_ratio - expected_ratio) / expected_ratio
+        if relative_delta > 0.08:
+            errors.append(
+                f"Panel image aspect ratio differs from target by more than 8%: "
+                f"{path} ({width}x{height})"
+            )
+    return errors
+
+
 def validate_workspace(workspace: Path, *, require_images: bool = False) -> list[str]:
     errors: list[str] = []
     candidates = [
@@ -52,17 +87,25 @@ def validate_workspace(workspace: Path, *, require_images: bool = False) -> list
         workspace / "work" / "style_bible.json",
         workspace / "work" / "continuity_ledger.json",
         workspace / "work" / "storyboard.json",
-        workspace / "work" / "panel_reviews.json",
     ]
+    panel_reviews_path = workspace / "work" / "panel_reviews.json"
+    if panel_reviews_path.exists():
+        candidates.append(panel_reviews_path)
+
+    project: dict[str, Any] | None = None
     for path in candidates:
         if not path.exists():
             if path.name in {"timeline.json"}:
                 continue
             errors.append(f"Missing required file: {path}")
             continue
+        if path.name == "project.json":
+            project = read_json(path)
         schema_name = SCHEMA_BY_FILE.get(path.name)
         if schema_name:
             errors.extend(f"{path.name}: {message}" for message in validate_file(path, schema_name))
+
+    review_mode = _project_image_review_mode(project)
 
     timeline_path = workspace / "work" / "timeline.json"
     if timeline_path.exists():
@@ -80,10 +123,16 @@ def validate_workspace(workspace: Path, *, require_images: bool = False) -> list
 
     storyboard_path = workspace / "work" / "storyboard.json"
     storyboard_shots: list[dict[str, Any]] = []
+    expected_ratio: float | None = None
     if storyboard_path.exists():
         storyboard = read_json(storyboard_path)
         shots = storyboard.get("shots", [])
         storyboard_shots = shots
+        video = storyboard.get("video", {})
+        width = float(video.get("width", 0) or 0)
+        height = float(video.get("height", 0) or 0)
+        if width > 0 and height > 0:
+            expected_ratio = width / height
         previous_start = -1.0
         for shot in shots:
             start, end = float(shot["start"]), float(shot["end"])
@@ -98,8 +147,10 @@ def validate_workspace(workspace: Path, *, require_images: bool = False) -> list
                     image = workspace / image
                 if not image.exists():
                     errors.append(f"Missing panel for {shot['id']}: {image}")
+                else:
+                    errors.extend(_validate_panel_image(image, expected_ratio=expected_ratio))
 
-    if require_images and storyboard_shots:
+    if review_mode == "strict" and storyboard_shots:
         reviews_path = workspace / "work" / "panel_reviews.json"
         reviews = read_json(reviews_path).get("reviews", []) if reviews_path.exists() else []
         latest: dict[str, dict[str, Any]] = {}

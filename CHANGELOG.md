@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+- Add low-token image workflow configuration: `ask`, `external`, `codex`, and `hybrid`.
+- Export `output/image_prompt_pack.md` and `output/image_prompt_pack.json` from `build-prompts`.
+- Make visual panel review optional; default validation checks files, readability, aspect ratio, schemas, and ffprobe only.
+- Make GitHub's default README Chinese-first and move English docs to `README_EN.md`.
+
 ## 0.1.2
 
 - Bundle all 442 official Doubao Speech TTS 2.0 voices captured on 2026-06-25.

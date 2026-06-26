@@ -13,11 +13,12 @@ Create a complete, reproducible comic-video project. Codex directs the story and
 - Use Doubao Speech 2.0 as the only hosted TTS provider.
 - Use `X-Api-Resource-Id: seed-tts-2.0`.
 - For TTS 2.0 timing, request `audio_params.enable_subtitle=true`; do not rely on the TTS 1.0-only `enable_timestamp` behavior.
-- Use Codex's built-in `$imagegen` skill to generate or edit panels.
+- Default to low-token image handling: ask once before image generation, and do not use `$imagegen` or visual inspection unless the user chooses it.
 - Do not call text-to-video or image-to-video models.
 - Never claim success until the final media passes ffprobe validation.
 - Preserve raw service events and generated prompts for debugging and reproducibility.
-- Do not generate all story panels in parallel. Generate anchors first, then panels sequentially.
+- Do not generate all story panels in parallel when using Codex image generation. Generate anchors first, then panels sequentially.
+- Default image workflow is `mode=ask`, `review=none`, `repair=ask`.
 
 ## Resolve paths
 
@@ -46,6 +47,10 @@ Optional:
 - Desired mood and visual style.
 - Desired voice in ordinary language, such as “温柔成熟女声” or “沉稳男声”.
 - Advanced override: a Doubao speaker ID.
+- Image workflow:
+  - `external`: export prompts only; the user generates images elsewhere and returns files.
+  - `codex`: Codex uses `$imagegen`.
+  - `hybrid`: Codex generates key images only; the user generates the rest externally.
 - Existing SRT or timeline JSON.
 - Background music.
 - Output dimensions; default to 1080x1920, 30 fps.
@@ -161,10 +166,9 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" transcribe --workspace <workspac
    - mutable pose/expression traits,
    - forbidden changes.
 5. Write `work/style_bible.json` using the bundled schema.
-6. Use `$imagegen` to create `work/character_sheet.png` from the original reference image.
-7. The sheet should include front, profile, three-quarter, full-body, and key expressions when the source supports them.
-8. Visually compare the sheet with the original. Reject it if defining traits drift.
-9. Do not start story panels until the character sheet passes review.
+6. If the user chose `codex` or `hybrid`, use `$imagegen` to create `work/character_sheet.png` from the original reference image.
+7. If the user chose `external`, do not call `$imagegen`; keep the original reference images as the visual lock and let the exported prompt pack describe the desired panels.
+8. Only visually inspect the character sheet when the user chose `codex`, `hybrid`, or explicitly asked for visual checking.
 
 ## Phase 3: Create the storyboard
 
@@ -193,56 +197,69 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" validate --workspace <workspace>
 ## Phase 4: Generate consistent panels
 
 1. Read `references/image-generation.md`.
-2. Build deterministic prompt files:
+2. If `project.image_workflow.mode` is missing or `ask`, stop once and ask the user to choose:
+   - `external`: cheapest; export prompt pack only, user generates images in GPT or another image tool.
+   - `codex`: most automatic; use `$imagegen` inside Codex.
+   - `hybrid`: Codex generates anchors/key images, user generates ordinary panels externally.
+3. Save the choice to `project.image_workflow.mode`. Default review is `none`; default repair is `ask`.
+4. Build deterministic prompt files and the external prompt pack:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" build-prompts --workspace <workspace>
 ```
 
-3. Generate anchor frames first:
+This writes both `work/prompts/*.md` and:
+
+- `output/image_prompt_pack.md`
+- `output/image_prompt_pack.json`
+
+5. For `external` mode:
+   - Do not call `$imagegen`.
+   - Return `output/image_prompt_pack.md` to the user.
+   - Tell the user they can paste the pack into GPT or another image generator, create all panels in one batch, save files with the exact `Output path`, then return them.
+   - When the user returns images, run low-cost validation only: existence, readability, target aspect ratio, schema checks, and later ffprobe.
+   - Do not inspect visual quality, character drift, or style drift unless the user explicitly asks.
+6. For `codex` mode, generate anchor frames first:
    - opening state,
    - major scene changes,
    - emotional turning point,
    - ending state.
-4. Invoke `$imagegen` explicitly for every generated or edited image.
-5. Attach, in this order when available:
+7. Invoke `$imagegen` explicitly for every generated or edited image only in `codex` or selected `hybrid` steps.
+8. Attach, in this order when available:
    - original character reference,
    - approved character sheet,
    - current scene anchor,
    - previous approved panel.
-6. Prefer editing the previous approved panel for small changes. Generate from references only when the scene changes substantially.
-7. Save output exactly to the path assigned in `storyboard.json`.
-8. After each image, inspect it visually and write/update `work/panel_reviews.json`.
-9. Review:
-   - character identity,
-   - accessories and colors,
-   - body proportions,
-   - drawing style,
-   - scene continuity,
-   - direction of gaze and movement,
-   - extra limbs/features/characters,
-   - narration alignment.
-10. If a panel fails, repair only that panel. Preserve correct parts. Retry at most twice before asking the user or simplifying the shot.
-11. Never use a failed panel in rendering.
+9. Prefer editing the previous approved panel for small changes. Generate from references only when the scene changes substantially.
+10. Save output exactly to the path assigned in `storyboard.json`.
+11. Do not write `work/panel_reviews.json` by default. If `project.image_workflow.review` is `manual`, list generated image paths for the user to inspect. If it is `strict`, visually inspect panels and write/update `work/panel_reviews.json`.
+12. If a file is missing or unreadable, report the exact path. Do not auto-generate or auto-repair unless `project.image_workflow.repair` is `codex` or the user explicitly asks.
+13. If the user says a panel is wrong, either export a targeted repair prompt (`prompt-only`) or use `$imagegen` to repair only that panel when the user chooses Codex repair.
 
 ## Phase 5: Render
 
 1. Read `references/rendering.md`.
 2. Confirm every storyboard image exists.
-3. Render the silent video:
+3. Use low-cost image checks only unless the user requested strict visual review:
+
+```bash
+python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" validate --workspace <workspace> --require-images
+```
+
+4. Render the silent video:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" render --workspace <workspace> --silent-only
 ```
 
-4. Render final video with narration and optional subtitles:
+5. Render final video with narration and optional subtitles:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" render --workspace <workspace> --burn-subtitles
 ```
 
-5. Use subtle motion. Emotional comic videos normally use slow zoom, pan, hold, and restrained crossfades.
-6. Ensure video duration matches narration within 100 ms unless the project explicitly adds a post-roll.
+6. Use subtle motion. Emotional comic videos normally use slow zoom, pan, hold, and restrained crossfades.
+7. Ensure video duration matches narration within 100 ms unless the project explicitly adds a post-roll.
 
 ## Phase 6: Validate and package
 
@@ -262,6 +279,6 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" export --workspace <workspace>
 
 - TTS failure: preserve request metadata without secrets, response logs, and log ID; retry with a new session ID.
 - Missing subtitles: do not invent timings; use the local transcription fallback or ask for an SRT.
-- Image drift: return to the last approved anchor or panel; do not regenerate the entire story.
+- Image drift: in default low-token mode, ask the user which panel to fix and whether to export a repair prompt or use `$imagegen`; do not regenerate the entire story.
 - FFmpeg failure: preserve the full command and stderr; rerender the failing clip only.
 - Schema failure: fix JSON before continuing. Do not let the renderer guess missing creative fields.

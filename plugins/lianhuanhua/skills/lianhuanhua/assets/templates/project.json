@@ -28,5 +28,10 @@
     "loudness_rate": 0,
     "emotion": null,
     "emotion_scale": 4
+  },
+  "image_workflow": {
+    "mode": "ask",
+    "review": "none",
+    "repair": "ask"
   }
 }

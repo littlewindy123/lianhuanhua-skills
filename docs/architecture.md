@@ -8,8 +8,9 @@
 - Normalize narration text.
 - Build character, style, and continuity specifications.
 - Split narration into visual beats.
-- Invoke `$imagegen` and attach the correct reference images.
-- Review each generated panel for identity, style, continuity, and story alignment.
+- Export a complete image prompt pack for low-token external generation by default.
+- Invoke `$imagegen` only when the user chooses Codex or hybrid image generation.
+- Use strict visual review only when requested; default validation is file/schema/aspect/ffprobe based.
 - Decide when to retry or repair a panel.
 
 ### Python
@@ -41,6 +42,6 @@
 - `style_bible.json`: fixed visual direction.
 - `continuity_ledger.json`: state carried between panels.
 - `storyboard.json`: absolute shot timing, prompts, motion, and transitions.
-- `panel_reviews.json`: visual review results and retries.
+- `panel_reviews.json`: optional strict visual review results and retries.
 
 The JSON files are the contract between creative agent work and deterministic scripts.

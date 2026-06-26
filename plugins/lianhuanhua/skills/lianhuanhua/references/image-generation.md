@@ -1,6 +1,14 @@
-# Image generation with Codex
+# Image workflow
 
-Codex includes the `$imagegen` system skill. Invoke it explicitly so image work is visible and intentional.
+Default to low-token operation. Do not call `$imagegen` or inspect images visually unless the user chose a workflow that needs it.
+
+## Modes
+
+- `external`: export prompts only. The user generates all panels in GPT or another image tool and returns files.
+- `codex`: use Codex's `$imagegen` skill for generated or edited images.
+- `hybrid`: use `$imagegen` only for selected anchors/key panels; export the rest.
+
+If `project.image_workflow.mode` is `ask`, ask once before image generation and save the choice.
 
 ## Prompt structure
 
@@ -27,6 +35,8 @@ Attach:
 
 When too many references confuse the result, retain the original, character sheet, and nearest anchor.
 
+Only attach references when using `$imagegen`. In external mode, list the references in the prompt pack instead.
+
 ## Edit vs generate
 
 Use edit when:
@@ -43,6 +53,20 @@ Use a new generation from references when:
 - camera angle changes radically,
 - the previous composition blocks the new action.
 
-## Review record
+## Low-cost checks
 
-For each panel write a review entry with scores from 0 to 1 and concrete defects. `passed` must not be based on an average alone: an immutable character trait failure always fails the panel.
+Default `project.image_workflow.review` is `none`.
+
+Validate only:
+
+- image file exists,
+- image can be opened,
+- aspect ratio is close to the target,
+- project/storyboard/timeline schemas pass,
+- FFmpeg/ffprobe output is valid.
+
+Do not judge character drift, style drift, emotional quality, or composition by default. The user can see externally generated panels directly.
+
+## Optional strict review
+
+Use strict visual review only when `project.image_workflow.review` is `strict` or the user explicitly asks. Then write `work/panel_reviews.json` with scores from 0 to 1 and concrete defects. `passed` must not be based on an average alone: an immutable character trait failure always fails the panel.

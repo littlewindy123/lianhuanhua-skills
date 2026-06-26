@@ -131,8 +131,11 @@ def cmd_validate(args: argparse.Namespace) -> int:
 
 
 def cmd_build_prompts(args: argparse.Namespace) -> int:
-    manifest = build_panel_prompts(_workspace(args.workspace))
+    workspace = _workspace(args.workspace)
+    manifest = build_panel_prompts(workspace)
     print(f"Created {len(manifest['panels'])} panel prompts")
+    print(f"Prompt pack markdown: {workspace / 'output' / 'image_prompt_pack.md'}")
+    print(f"Prompt pack json: {workspace / 'output' / 'image_prompt_pack.json'}")
     return 0
 
 

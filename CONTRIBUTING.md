@@ -21,4 +21,4 @@ pip install -r plugins/lianhuanhua/skills/lianhuanhua/scripts/requirements-dev.t
 pytest plugins/lianhuanhua/skills/lianhuanhua/tests
 ```
 
-Keep deterministic media work in Python/FFmpeg. Keep creative decisions and visual review in the Skill instructions.
+Keep deterministic media work in Python/FFmpeg. Keep creative decisions, image workflow choice, and optional visual review in the Skill instructions.
