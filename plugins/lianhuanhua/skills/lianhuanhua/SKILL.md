@@ -20,6 +20,7 @@ Create a complete, reproducible comic-video project. Codex directs the story and
 - Do not generate all story panels in parallel when using Codex image generation. Generate anchors first, then panels sequentially.
 - Default Studio image workflow is `mode=codex`, `review=none`, `repair=ask`.
 - Before generating any panel from a reference image that looks like a meme, sticker, network character, IP, logo, text-marked character, or viral image, search the web and record the identity. Do not guess the species or identity from first glance.
+- Studio-first startup: when the user says they want to create/start/make a Lianhuanhua video without already providing complete files and settings, launch or reuse the local Studio page first. Do not ask for story text, reference images, voice, ratio, or style in chat before opening Studio.
 
 ## Resolve paths
 
@@ -40,6 +41,18 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" studio --workspace <workspace>
 ```
 
 Studio is a local-only HTML/CSS/JavaScript interface backed by Python's standard library HTTP server. It is for local project work, not production hosting.
+
+## Studio-first startup
+
+For ordinary creation requests such as “我要开始创作了”, “我要做视频”, “连环画 Skills 我要来做视频了”, or similar:
+
+1. Initialize or locate the current Lianhuanhua workspace.
+2. Start or reuse the Studio server before asking for creative inputs.
+3. Open or navigate the browser to the Studio URL.
+4. Let the user enter narration, Doubao key, voice, speech rate, aspect ratio, reference image or style text, and image density in the page.
+5. Use chat follow-ups only for Studio handoff actions such as “继续”, troubleshooting, or explicit user questions.
+
+Only skip Studio-first startup when the user explicitly asks for CLI-only operation, batch automation without UI, or has already supplied complete inputs and asks Codex to proceed without the page.
 
 ## Inputs
 
