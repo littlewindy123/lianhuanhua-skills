@@ -24,6 +24,24 @@ Record mutable traits separately:
 
 Record forbidden changes explicitly.
 
+## 1A. Known IP / meme character identity lock
+
+If a reference image looks like a meme, sticker, network character, IP, logo, text-marked character, or viral image, search the web before image generation. Do not guess the species or identity from first glance.
+
+Record the result in `identity_research`:
+
+- `status`: `pending`, `not_needed`, `searched`, `identified`, or `unidentified`.
+- `is_known_ip`: whether the reference is a known IP, meme, or named network character.
+- `ip_name`: the real name, such as `一猫人`, when identified.
+- `aliases`: alternate names or search terms.
+- `creator_or_owner`: creator, owner, or campaign source when discoverable.
+- `source_urls`: pages used to identify the character.
+- `confidence`: `low`, `medium`, or `high`.
+- `observable_traits`: visible traits from the user's reference image.
+- `prompt_identity`: the exact identity phrase future panel prompts must use.
+
+If search is inconclusive, set `status=unidentified` and describe only observable traits. If there is no reference image, set `status=not_needed`. Do not convert a known IP into a generic animal, person, or mascot label.
+
 ## 2. Character sheet
 
 Generate a neutral sheet before story panels. It should provide enough angles to reuse the design but must not invent hidden details recklessly. If the source only shows a head, do not assert an exact full-body design without labeling it as an approved extension.

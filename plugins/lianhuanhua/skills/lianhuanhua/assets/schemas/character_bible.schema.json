@@ -57,6 +57,69 @@
         "string",
         "null"
       ]
+    },
+    "identity_research": {
+      "type": "object",
+      "required": [
+        "status",
+        "is_known_ip",
+        "ip_name",
+        "aliases",
+        "creator_or_owner",
+        "source_urls",
+        "confidence",
+        "observable_traits",
+        "prompt_identity"
+      ],
+      "properties": {
+        "status": {
+          "enum": [
+            "pending",
+            "not_needed",
+            "searched",
+            "identified",
+            "unidentified"
+          ]
+        },
+        "is_known_ip": {
+          "type": "boolean"
+        },
+        "ip_name": {
+          "type": "string"
+        },
+        "aliases": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "creator_or_owner": {
+          "type": "string"
+        },
+        "source_urls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "confidence": {
+          "enum": [
+            "low",
+            "medium",
+            "high"
+          ]
+        },
+        "observable_traits": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "prompt_identity": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
     }
   },
   "additionalProperties": false

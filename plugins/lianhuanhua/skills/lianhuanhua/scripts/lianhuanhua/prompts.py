@@ -30,6 +30,66 @@ def _image_workflow(project: dict[str, Any]) -> dict[str, str]:
     }
 
 
+READY_IDENTITY_RESEARCH_STATUSES = {"searched", "identified", "unidentified", "not_needed"}
+
+
+def _workspace_reference_exists(workspace: Path, value: str) -> bool:
+    path = Path(value)
+    if not path.is_absolute():
+        path = workspace / path
+    return path.exists()
+
+
+def _identity_research(character: dict[str, Any]) -> dict[str, Any]:
+    research = character.get("identity_research")
+    if isinstance(research, dict):
+        return research
+    has_refs = bool(character.get("reference_images"))
+    return {
+        "status": "pending" if has_refs else "not_needed",
+        "is_known_ip": False,
+        "ip_name": "",
+        "aliases": [],
+        "creator_or_owner": "",
+        "source_urls": [],
+        "confidence": "low",
+        "observable_traits": [],
+        "prompt_identity": "",
+    }
+
+
+def ensure_identity_research_ready(workspace: Path) -> None:
+    character = read_json(workspace / "work" / "character_bible.json")
+    references = [str(value) for value in character.get("reference_images", []) if str(value)]
+    has_existing_reference = any(_workspace_reference_exists(workspace, value) for value in references)
+    research = _identity_research(character)
+    status = str(research.get("status", "pending"))
+    if has_existing_reference and status not in READY_IDENTITY_RESEARCH_STATUSES:
+        raise ValueError(
+            "Reference image identity research is pending. Search the web for suspected IP, meme, logo, "
+            "or known character identity first, then record identity_research in work/character_bible.json."
+        )
+
+
+def _fmt_identity_research(research: dict[str, Any]) -> str:
+    aliases = ", ".join(str(item) for item in research.get("aliases", [])) or "none"
+    sources = ", ".join(str(item) for item in research.get("source_urls", [])) or "none"
+    traits = "; ".join(str(item) for item in research.get("observable_traits", [])) or "none recorded"
+    return "\n".join(
+        [
+            f"- Status: {research.get('status', '')}",
+            f"- Known IP: {bool(research.get('is_known_ip'))}",
+            f"- IP name: {research.get('ip_name', '')}",
+            f"- Aliases: {aliases}",
+            f"- Creator or owner: {research.get('creator_or_owner', '')}",
+            f"- Source URLs: {sources}",
+            f"- Confidence: {research.get('confidence', '')}",
+            f"- Observable traits: {traits}",
+            f"- Prompt identity: {research.get('prompt_identity', '')}",
+        ]
+    )
+
+
 def _write_prompt_pack(
     workspace: Path,
     *,
@@ -278,6 +338,7 @@ def build_panel_prompts(workspace: Path) -> dict[str, Any]:
     character = read_json(work / "character_bible.json")
     style = read_json(work / "style_bible.json")
     storyboard = read_json(work / "storyboard.json")
+    identity_research = _identity_research(character)
     continuity_path = work / "continuity_ledger.json"
     continuity = read_json(continuity_path) if continuity_path.exists() else {"shots": []}
     continuity_by_shot = {item["shot_id"]: item for item in continuity.get("shots", [])}
@@ -330,6 +391,9 @@ def build_panel_prompts(workspace: Path) -> dict[str, Any]:
 {_fmt_mapping(character.get('immutable_features', {}))}
 
 Character summary: {character.get('summary', '')}
+
+## KNOWN CHARACTER / IP IDENTITY
+{_fmt_identity_research(identity_research)}
 
 ## FORBIDDEN CHARACTER CHANGES
 {chr(10).join('- ' + item for item in character.get('forbidden_changes', []))}

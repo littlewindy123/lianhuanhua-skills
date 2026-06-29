@@ -141,11 +141,33 @@ def build_character_bible(workspace: Path, project: dict[str, Any], style_prompt
             "reference_lock": "match the uploaded reference image",
             "style_request": style_prompt or "simple emotional comic character",
         }
+        identity_research = {
+            "status": "pending",
+            "is_known_ip": False,
+            "ip_name": "",
+            "aliases": [],
+            "creator_or_owner": "",
+            "source_urls": [],
+            "confidence": "low",
+            "observable_traits": [],
+            "prompt_identity": "",
+        }
     else:
         summary = f"AI-designed protagonist based on the style prompt: {style_prompt or 'minimal emotional comic mascot'}."
         immutable = {
             "style_prompt": style_prompt or "minimal emotional comic mascot",
             "identity_rule": "keep one consistent protagonist across all panels",
+        }
+        identity_research = {
+            "status": "not_needed",
+            "is_known_ip": False,
+            "ip_name": "",
+            "aliases": [],
+            "creator_or_owner": "",
+            "source_urls": [],
+            "confidence": "low",
+            "observable_traits": [],
+            "prompt_identity": "",
         }
     return {
         "character_id": "main_character",
@@ -160,6 +182,7 @@ def build_character_bible(workspace: Path, project: dict[str, Any], style_prompt
         ],
         "uncertain_features": [],
         "character_sheet": None,
+        "identity_research": identity_research,
     }
 
 

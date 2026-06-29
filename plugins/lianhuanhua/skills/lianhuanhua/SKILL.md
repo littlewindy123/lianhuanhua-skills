@@ -19,6 +19,7 @@ Create a complete, reproducible comic-video project. Codex directs the story and
 - Preserve raw service events and generated prompts for debugging and reproducibility.
 - Do not generate all story panels in parallel when using Codex image generation. Generate anchors first, then panels sequentially.
 - Default Studio image workflow is `mode=codex`, `review=none`, `repair=ask`.
+- Before generating any panel from a reference image that looks like a meme, sticker, network character, IP, logo, text-marked character, or viral image, search the web and record the identity. Do not guess the species or identity from first glance.
 
 ## Resolve paths
 
@@ -103,20 +104,21 @@ Read only the reference needed for the current phase:
 1. Inspect all supplied files.
 2. Determine the source mode: `text`, `audio`, or `video`.
 3. Confirm that reference images are readable and suitable for the requested aspect ratio.
-4. Run:
+4. If any reference image looks like a meme, sticker, known IP, logo, text-marked character, or viral image, search the web before image generation and record the result in `work/character_bible.json` under `identity_research`.
+5. Run:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" doctor
 ```
 
-5. Initialize a workspace:
+6. Initialize a workspace:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" init --workspace <workspace>
 ```
 
-6. Copy inputs into the initialized `input/` directories without overwriting originals.
-7. Do not continue when FFmpeg or ffprobe is missing.
+7. Copy inputs into the initialized `input/` directories without overwriting originals.
+8. Do not continue when FFmpeg or ffprobe is missing.
 
 ## Studio V0.3 handoff protocol
 
@@ -128,6 +130,7 @@ When the user says "继续" in Codex while working from Studio:
 4. If `panel_id` exists, process only that one panel.
 5. Stop at the next confirmation node and let the user return to Studio.
 6. Do not score all images, repair all images, or retry unrelated panels unless the current action explicitly asks for it.
+7. If the action would call `$imagegen` and a real reference image has `identity_research.status=pending`, do not generate images yet. Search suspected IP/meme identity first, update `work/character_bible.json`, then continue.
 
 Studio V0.3 is a single creation cockpit. Users enter narration, Doubao key, voice, speech rate, aspect ratio, reference images or style text, and image density. The main flow is Codex automatic generation, with confirmations at `voice_ready`, `storyboard_ready`, `images_ready`, and `video_ready`.
 
@@ -203,15 +206,18 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" transcribe --workspace <workspac
 
 1. Read `references/character-consistency.md`.
 2. Inspect every reference image carefully.
-3. Write `work/character_bible.json` using the schema in `assets/schemas/character_bible.schema.json`.
-4. Separate:
+3. If a reference image resembles a meme, sticker, network character, IP, logo, text-marked character, or viral image, search the web for the actual identity. Do not label it as a generic animal, mascot, or person unless search confirms that no known identity is available.
+4. Write `work/character_bible.json` using the schema in `assets/schemas/character_bible.schema.json`, including `identity_research`.
+5. If identified, record the real IP/name, aliases, creator or owner when discoverable, source URLs, confidence, observable traits, and the exact `prompt_identity` that future panel prompts must use.
+6. If search is inconclusive, record `status=unidentified` and describe only observable traits. If no reference image exists, record `status=not_needed`.
+7. Separate:
    - immutable identity traits,
    - mutable pose/expression traits,
    - forbidden changes.
-5. Write `work/style_bible.json` using the bundled schema.
-6. If the user chose `codex` or `hybrid`, use `$imagegen` to create `work/character_sheet.png` from the original reference image.
-7. If the user chose `external`, do not call `$imagegen`; keep the original reference images as the visual lock and let the exported prompt pack describe the desired panels.
-8. Only visually inspect the character sheet when the user chose `codex`, `hybrid`, or explicitly asked for visual checking.
+8. Write `work/style_bible.json` using the bundled schema.
+9. If the user chose `codex` or `hybrid`, use `$imagegen` to create `work/character_sheet.png` from the original reference image only after identity research is no longer pending.
+10. If the user chose `external`, do not call `$imagegen`; keep the original reference images as the visual lock and let the exported prompt pack describe the desired panels.
+11. Only visually inspect the character sheet when the user chose `codex`, `hybrid`, or explicitly asked for visual checking.
 
 ## Phase 3: Create the storyboard
 
@@ -270,6 +276,9 @@ This writes both `work/prompts/*.md` and:
    - emotional turning point,
    - ending state.
 7. Invoke `$imagegen` explicitly for every generated or edited image only in `codex` or selected `hybrid` steps.
+   - Before invoking `$imagegen`, check `work/character_bible.json`.
+   - If a real reference image exists and `identity_research.status` is not `searched`, `identified`, `unidentified`, or `not_needed`, stop and complete identity research first.
+   - If `identity_research.is_known_ip=true`, panel prompts must use the real IP/name, aliases, user reference image, and observable traits. Do not replace it with a generic label such as “cat”, “bear”, or “mascot”.
 8. Attach, in this order when available:
    - original character reference,
    - approved character sheet,

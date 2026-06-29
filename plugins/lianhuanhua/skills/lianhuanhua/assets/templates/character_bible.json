@@ -23,5 +23,16 @@
     "Do not change fixed colors or accessories."
   ],
   "uncertain_features": [],
-  "character_sheet": "work/character_sheet.png"
+  "character_sheet": "work/character_sheet.png",
+  "identity_research": {
+    "status": "pending",
+    "is_known_ip": false,
+    "ip_name": "",
+    "aliases": [],
+    "creator_or_owner": "",
+    "source_urls": [],
+    "confidence": "low",
+    "observable_traits": [],
+    "prompt_identity": ""
+  }
 }

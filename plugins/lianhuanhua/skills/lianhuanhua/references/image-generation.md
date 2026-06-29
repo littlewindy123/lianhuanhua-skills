@@ -10,6 +10,21 @@ Default to low-token operation. Do not call `$imagegen` or inspect images visual
 
 If `project.image_workflow.mode` is `ask`, ask once before image generation and save the choice.
 
+## Identity research gate
+
+Before any `$imagegen` call, read `work/character_bible.json`.
+
+If a real reference image exists and `identity_research.status` is not one of `searched`, `identified`, `unidentified`, or `not_needed`, stop image generation and complete identity research first. This applies especially when the reference resembles a meme, sticker, network character, IP, logo, text-marked character, or viral image.
+
+When identity research identifies a known IP, the prompt identity priority is:
+
+1. real IP/name and aliases,
+2. the user's uploaded reference image,
+3. observable traits from that reference,
+4. style, storyboard, motion, and composition requirements.
+
+Do not use an unverified species label or generic mascot label as the primary identity. For example, if the reference is identified as `一猫人`, prompts must say `一猫人` and its recorded visible traits, not “a bear” or “a generic cat mascot”.
+
 ## Prompt structure
 
 Every generated panel prompt is assembled from fixed and changing blocks:
