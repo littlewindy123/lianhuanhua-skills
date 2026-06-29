@@ -3,373 +3,134 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Lianhuanhua Studio V0.2</title>
+<title>Lianhuanhua Studio V0.3</title>
 <style>
-:root{
-  --bg:#fffaf7;
-  --panel:#ffffff;
-  --text:#2f2926;
-  --muted:#81736e;
-  --line:#eaded8;
-  --coral:#e86f66;
-  --coral-soft:#fff0ed;
-  --mint:#218f72;
-  --mint-soft:#eaf8f2;
-  --violet:#6f63c7;
-  --violet-soft:#f2efff;
-  --shadow:0 10px 30px rgba(70,45,34,.08);
-}
-*{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,var(--bg),#fff 50%,#faf9ff);color:var(--text);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}
-button,input,select,textarea{font:inherit}
-button{cursor:pointer}
-button:disabled,.primary.disabled,a.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}
-.app{max-width:1280px;margin:auto;padding:20px}
-.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}
-.brand{display:flex;align-items:center;gap:12px}
-.mark{width:42px;height:42px;border-radius:8px;background:var(--coral-soft);display:grid;place-items:center;color:var(--coral);font-weight:900;border:1px solid #ffd6cf}
-h1{font-size:20px;margin:0}
-.sub{color:var(--muted);font-size:13px;margin:3px 0 0}
-.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
-.step{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;color:var(--muted);text-align:left}
-.step.active{background:var(--coral-soft);border-color:#f2b0aa;color:#9a463f;font-weight:800}
-.surface{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:20px;min-height:680px}
-.stage{display:none}
-.stage.active{display:block}
-.head{display:flex;justify-content:space-between;gap:12px;margin-bottom:18px}
-.head h2{margin:0 0 4px;font-size:24px}
-.badge{background:var(--violet-soft);color:var(--violet);border-radius:8px;padding:7px 9px;font-size:12px;height:max-content}
-.grid2{display:grid;grid-template-columns:1.05fr .95fr;gap:16px}
-.box{border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff}
-.field{margin-bottom:13px}
-.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}
-.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;outline:none}
-.field textarea{min-height:150px;resize:vertical}
-.field input:focus,.field select:focus,.field textarea:focus{border-color:#eda59e;box-shadow:0 0 0 3px var(--coral-soft)}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-.actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:14px}
-.primary,.secondary{border-radius:8px;padding:10px 13px;font-weight:800}
-.primary{border:1px solid var(--coral);background:var(--coral);color:#fff}
-.secondary{border:1px solid var(--line);background:#fff;color:var(--text)}
-.purple{background:var(--violet);border-color:var(--violet);color:#fff}
-.green{background:var(--mint);border-color:var(--mint);color:#fff}
-.status{border:1px solid var(--line);background:#fffdfb;border-radius:8px;padding:12px;color:var(--muted);font-size:13px;white-space:pre-wrap;line-height:1.55}
-.timeline{display:grid;gap:8px;max-height:430px;overflow:auto}
-.seg,.story{display:grid;grid-template-columns:86px 1fr;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}
-.seg time,.story strong{color:var(--violet);font-weight:900}
-.providers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:10px 0}
-.provider{border:1px solid var(--line);border-radius:8px;padding:13px;background:#fff}
-.provider.active{background:var(--mint-soft);border-color:#91d6bf}
-.provider h3{margin:0 0 5px;font-size:16px}
-.provider p{margin:0;color:var(--muted);font-size:13px;line-height:1.5}
-.manual{border:1px dashed #d8bdb4;background:#fffaf7;border-radius:8px;padding:13px;margin-top:12px}
-.character-preview{display:grid;grid-template-columns:repeat(4,minmax(72px,1fr));gap:8px;margin-top:8px}
-.character-preview img{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:8px;object-fit:cover;background:#fff}
-.audio-player{width:100%;margin:10px 0 12px}
-.gallery{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}
-.shot{border:2px solid transparent;border-radius:8px;padding:7px;background:#fff;min-width:0}
-.shot.active{border-color:var(--coral);background:var(--coral-soft)}
-.thumb{aspect-ratio:9/16;border-radius:6px;background:linear-gradient(150deg,#f4ddd1,#ded9ff);display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:12px;text-align:center}
-.thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.shot small{display:block;margin-top:6px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.image-layout{display:grid;grid-template-columns:1fr 370px;gap:16px}
-.current{display:inline-block;background:var(--mint-soft);color:var(--mint);border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;margin-bottom:8px}
-.phone{max-width:360px;margin:auto;background:#2a2624;border-radius:8px;padding:10px}
-.screen{aspect-ratio:9/16;background:linear-gradient(160deg,#efd1c5,#cfc9ee);border-radius:6px;position:relative;overflow:hidden;display:grid;place-items:center;color:#6f5f57}
-.screen img{width:100%;height:100%;object-fit:cover}
-.subtitle{position:absolute;left:14px;right:14px;bottom:26px;color:#fff;text-align:center;text-shadow:0 1px 8px #000;background:rgba(0,0,0,.22);border-radius:6px;padding:8px;font-size:14px}
-.motions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
-.motion{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:left}
-.motion.active{background:var(--violet-soft);border-color:#b9b0f1;color:var(--violet);font-weight:900}
-.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#2f2926;color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:10;max-width:min(680px,calc(100vw - 28px))}
-a.primary{display:inline-block;text-decoration:none}
-@media(max-width:960px){.grid2,.image-layout{grid-template-columns:1fr}.steps{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,minmax(120px,1fr))}.top,.head{align-items:flex-start}.row{grid-template-columns:1fr}}
+:root{--bg:#fffaf7;--panel:#fff;--text:#2f2926;--muted:#81736e;--line:#eaded8;--coral:#e86f66;--coral-soft:#fff0ed;--mint:#218f72;--mint-soft:#eaf8f2;--violet:#6f63c7;--violet-soft:#f2efff;--shadow:0 10px 30px rgba(70,45,34,.08)}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(180deg,var(--bg),#fff 48%,#faf9ff);color:var(--text);font-family:Inter,"PingFang SC","Microsoft YaHei",sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}button:disabled,.disabled{opacity:.45;cursor:not-allowed;pointer-events:none}.app{max-width:1320px;margin:auto;padding:20px}.top{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:14px}.brand{display:flex;align-items:center;gap:12px}.mark{width:42px;height:42px;border-radius:8px;background:var(--coral-soft);display:grid;place-items:center;color:var(--coral);font-weight:900;border:1px solid #ffd6cf}h1{font-size:20px;margin:0}.sub{color:var(--muted);font-size:13px;margin:3px 0 0}.surface{background:var(--panel);border:1px solid var(--line);border-radius:8px;box-shadow:var(--shadow);padding:18px}.grid{display:grid;grid-template-columns:430px 1fr;gap:16px}.box{border:1px solid var(--line);border-radius:8px;padding:16px;background:#fff}.field{margin-bottom:12px}.field label{display:block;font-size:13px;font-weight:800;margin-bottom:6px}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff;outline:none}.field textarea{min-height:116px;resize:vertical}.field input:focus,.field select:focus,.field textarea:focus{border-color:#eda59e;box-shadow:0 0 0 3px var(--coral-soft)}.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.actions{display:flex;flex-wrap:wrap;gap:9px;justify-content:flex-end;margin-top:14px}.primary,.secondary{border-radius:8px;padding:10px 13px;font-weight:800}.primary{border:1px solid var(--coral);background:var(--coral);color:#fff}.secondary{border:1px solid var(--line);background:#fff;color:var(--text)}.green{background:var(--mint);border-color:var(--mint);color:#fff}.purple{background:var(--violet);border-color:var(--violet);color:#fff}.nodes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:12px}.node{border:1px solid var(--line);border-radius:8px;padding:10px;background:#fff}.node b{display:block}.node.ready{background:var(--mint-soft);border-color:#99d8c1}.node.confirmed{background:var(--violet-soft);border-color:#c5bef3}.stage-grid{display:grid;grid-template-columns:1fr 360px;gap:14px}.timeline{display:grid;gap:8px;max-height:340px;overflow:auto}.seg,.story{display:grid;grid-template-columns:86px 1fr;gap:10px;border:1px solid var(--line);border-radius:8px;padding:10px;font-size:13px}.seg time,.story strong{color:var(--violet);font-weight:900}.gallery{display:grid;grid-template-columns:repeat(4,minmax(120px,1fr));gap:10px}.shot{border:2px solid transparent;border-radius:8px;padding:7px;background:#fff;min-width:0}.shot.active{border-color:var(--coral);background:var(--coral-soft)}.thumb{aspect-ratio:16/9;border-radius:6px;background:linear-gradient(150deg,#f4ddd1,#ded9ff);display:grid;place-items:center;overflow:hidden;color:var(--muted);font-size:12px;text-align:center}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.shot small{display:block;margin-top:6px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.character-preview{display:grid;grid-template-columns:repeat(4,minmax(64px,1fr));gap:8px;margin-top:8px}.character-preview img{width:100%;aspect-ratio:1;border:1px solid var(--line);border-radius:8px;object-fit:cover;background:#fff}.audio-player{width:100%;margin:8px 0 12px}.status{border:1px solid var(--line);background:#fffdfb;border-radius:8px;padding:12px;color:var(--muted);font-size:13px;white-space:pre-wrap;line-height:1.55;margin-top:12px}.current{display:inline-block;background:var(--mint-soft);color:var(--mint);border-radius:8px;padding:6px 8px;font-size:12px;font-weight:900;margin-bottom:8px}.motions{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}.motion{border:1px solid var(--line);background:#fff;border-radius:8px;padding:10px;text-align:left}.motion.active{background:var(--violet-soft);border-color:#b9b0f1;color:var(--violet);font-weight:900}.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#2f2926;color:#fff;padding:10px 14px;border-radius:8px;display:none;z-index:10;max-width:min(680px,calc(100vw - 28px))}.section-title{display:flex;justify-content:space-between;align-items:center;margin:2px 0 12px}.section-title h2{font-size:20px;margin:0}.pill{font-size:12px;color:var(--violet);background:var(--violet-soft);border-radius:999px;padding:5px 8px}@media(max-width:980px){.grid,.stage-grid{grid-template-columns:1fr}.nodes{grid-template-columns:repeat(2,1fr)}.gallery{grid-template-columns:repeat(2,minmax(120px,1fr))}.row{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="app">
   <header class="top">
-    <div class="brand">
-      <div class="mark">LH</div>
-      <div>
-        <h1>Lianhuanhua Studio</h1>
-        <p class="sub">文案、语音、分镜、图片和导出都落在当前本地工作区。</p>
-      </div>
-    </div>
+    <div class="brand"><div class="mark">LH</div><div><h1>Lianhuanhua Studio V0.3</h1><p class="sub">一个页面配置，Codex 接管语音、分镜、图片、动效和视频。</p></div></div>
     <button class="secondary" id="refreshBtn">刷新</button>
   </header>
 
-  <nav class="steps">
-    <button class="step active" data-step="0">1. 文案与语音</button>
-    <button class="step" data-step="1">2. 分镜与生图方式</button>
-    <button class="step" data-step="2">3. 图片预览与单图修改</button>
-    <button class="step" data-step="3">4. 视频预览与导出</button>
-  </nav>
-
   <main class="surface">
-    <section class="stage active" data-stage="0">
-      <div class="head"><div><h2>先确认文案和声音</h2><p class="sub">语音确认后，再交给 Codex 做分镜和提示词。</p></div><span class="badge">voice</span></div>
-      <div class="grid2">
-        <div class="box">
-          <div class="field"><label>文案</label><textarea id="story"></textarea></div>
-          <div class="field"><label>豆包 API Key</label><input id="apiKey" type="password" placeholder="留空则继续使用已保存 Key 或环境变量"></div>
-          <div class="row">
-            <div class="field"><label>音色偏好</label><select id="voicePreference"><option>加载音色中...</option></select></div>
-            <div class="field"><label>语速</label><input id="speechRate" type="number" min="-50" max="100" step="1"></div>
-          </div>
-          <div class="row">
-            <div class="field"><label>视频比例</label><select id="ratio"><option>9:16</option><option>16:9</option><option>1:1</option><option>4:5</option></select></div>
-            <div class="field"><label>角色参考图</label><input id="characterFiles" type="file" accept="image/*" multiple><div class="character-preview" id="characterPreview"></div></div>
-          </div>
-          <div class="actions">
-            <button class="secondary" id="saveProjectBtn">保存设置</button>
-            <button class="primary" id="generateVoiceBtn">生成 / 重新生成语音</button>
-          </div>
+    <div class="nodes" id="nodes"></div>
+    <div class="grid">
+      <aside class="box">
+        <div class="section-title"><h2>创作输入</h2><span class="pill">Codex 自动生图</span></div>
+        <div class="field"><label>文案</label><textarea id="story"></textarea></div>
+        <div class="field"><label>豆包 API Key</label><input id="apiKey" type="password" placeholder="留空则继续使用已保存 Key 或环境变量"></div>
+        <div class="row">
+          <div class="field"><label>音色</label><select id="voicePreference"><option>加载中...</option></select></div>
+          <div class="field"><label>语速</label><input id="speechRate" type="number" min="-50" max="100" step="1"></div>
         </div>
-        <div class="box">
-          <h3>语音与时间轴</h3>
-          <p class="sub" id="voiceMeta">尚未生成。</p>
-          <audio class="audio-player" id="voicePlayer" controls></audio>
-          <div class="timeline" id="segments"></div>
-          <div class="actions"><button class="primary next" data-next="1">语音没问题，进入图片阶段</button></div>
+        <div class="row">
+          <div class="field"><label>画幅</label><select id="ratio"><option>9:16</option><option>16:9</option><option>1:1</option><option>4:5</option></select></div>
+          <div class="field"><label>生图密度</label><select id="imageDensity"><option value="smart">智能匹配</option><option value="one_per_sentence">一句一图</option><option value="three_sentences">三句一图</option></select></div>
         </div>
-      </div>
-    </section>
+        <div class="field"><label>角色 / 参考图</label><input id="characterFiles" type="file" accept="image/*" multiple><div class="character-preview" id="characterPreview"></div></div>
+        <div class="field"><label>风格描述</label><textarea id="stylePrompt" placeholder="例如：温暖、轻微伤感、简洁可爱的连环画风格。只写风格也可以开始。"></textarea></div>
+        <div class="actions">
+          <button class="secondary" id="saveProjectBtn">保存配置</button>
+          <button class="primary" id="generateVoiceBtn">生成语音</button>
+        </div>
+      </aside>
 
-    <section class="stage" data-stage="1">
-      <div class="head"><div><h2>分镜和生图方式</h2><p class="sub">Codex 负责理解和生成；页面只写入明确动作。</p></div><span class="badge">images</span></div>
-      <div class="grid2">
-        <div class="box">
-          <h3>分镜计划</h3>
-          <div class="timeline" id="storyboard"></div>
-          <div class="actions"><button class="primary" id="storyboardActionBtn">写入：生成分镜和提示词</button></div>
-        </div>
-        <div class="box">
-          <h3>选择生图方式</h3>
-          <div class="providers">
-            <button class="provider active" data-provider="codex"><h3>Codex 自动生图</h3><p>生成全部图片；后面只重做指定的一张。</p></button>
-            <button class="provider" data-provider="external"><h3>手动生图</h3><p>下载提示词包，在外部平台生图后批量回传。</p></button>
+      <section class="box">
+        <div class="section-title"><h2>关键节点确认</h2><span class="pill">语音 → 分镜 → 图片 → 视频</span></div>
+        <div class="stage-grid">
+          <div>
+            <h3>语音</h3>
+            <p class="sub" id="voiceMeta">尚未生成。</p>
+            <audio class="audio-player" id="voicePlayer" controls></audio>
+            <div class="timeline" id="segments"></div>
+            <div class="actions"><button class="primary" id="generateStoryboardBtn">确认语音，生成分镜</button></div>
           </div>
-          <div class="manual">
-            <div class="actions" style="justify-content:flex-start">
-              <a class="primary" id="downloadPack" href="/api/download/prompts-package.zip">下载提示词包 ZIP</a>
-              <button class="secondary" id="copyAllPrompts">复制当前提示词</button>
-            </div>
-            <div class="field" style="margin-top:12px"><label>批量回传 panel_001.png...</label><input id="panelFiles" type="file" accept="image/png" multiple></div>
-            <button class="secondary" id="uploadPanelsBtn">上传并检查</button>
-          </div>
-          <div class="actions">
-            <button class="primary" id="generateAllBtn">写入：生成全部图片</button>
-            <button class="primary next guarded" id="imagePreviewBtn" data-next="2">进入图片预览</button>
+          <div>
+            <h3>当前操作</h3>
+            <p class="sub">分镜确认后，图片由 Codex 自动生成。提示词包保留为调试导出，不再作为主流程。</p>
+            <button class="secondary" id="debugPromptBtn">下载调试提示词包</button>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <section class="stage" data-stage="2">
-      <div class="head"><div><h2>只处理当前图片</h2><p class="sub">反馈、重写提示词和重新生成都只绑定当前 panel。</p></div><span class="badge">panel</span></div>
-      <div class="image-layout">
+    <div class="stage-grid" style="margin-top:16px">
+      <section class="box">
+        <div class="section-title"><h2>分镜</h2><span class="pill" id="storyboardCount">0 张</span></div>
+        <div class="timeline" id="storyboard"></div>
+        <div class="actions">
+          <button class="primary" id="generateImagesBtn">确认分镜，交给 Codex 生成图片</button>
+        </div>
+      </section>
+      <section class="box">
+        <div class="section-title"><h2>视频动效</h2><span class="pill">FFmpeg</span></div>
+        <div class="motions" id="motions">
+          <button class="motion active" data-motion="hold">静止</button>
+          <button class="motion" data-motion="slow_zoom_in">缓慢推近</button>
+          <button class="motion" data-motion="slow_zoom_out">缓慢拉远</button>
+          <button class="motion" data-motion="pan_left">向左移动</button>
+          <button class="motion" data-motion="pan_right">向右移动</button>
+          <button class="motion" data-motion="float_up_down">轻微漂浮</button>
+        </div>
+        <div class="actions"><button class="primary" id="renderBtn">确认图片，导出视频</button></div>
+      </section>
+    </div>
+
+    <section class="box" style="margin-top:16px">
+      <div class="section-title"><h2>图片预览</h2><span class="pill" id="panelCount">0 / 0</span></div>
+      <div class="stage-grid">
         <div class="gallery" id="gallery"></div>
-        <aside class="box">
-          <span class="current" id="currentPanel">panel_001</span>
+        <aside>
+          <span class="current" id="currentPanel">panel_---</span>
           <p class="sub" id="currentNarration"></p>
           <div class="field"><label>当前提示词</label><textarea id="currentPrompt"></textarea></div>
-          <div class="field"><label>哪里不满意</label><textarea id="feedback" style="min-height:90px"></textarea></div>
-          <div class="field"><label>上传图片替换当前 panel</label><input id="replaceFile" type="file" accept="image/png"></div>
-          <div class="actions">
-            <button class="secondary purple" id="rewriteBtn">写入整理提示词任务</button>
-            <button class="secondary" id="replaceBtn">上传替换</button>
-            <button class="primary" id="regenBtn">重新生成这一张</button>
-          </div>
+          <div class="field"><label>哪里不满意</label><textarea id="feedback" style="min-height:80px"></textarea></div>
+          <div class="actions"><button class="secondary purple" id="regenBtn">只重做这一张</button></div>
         </aside>
       </div>
-      <div class="actions"><button class="primary next" data-next="3">图片都没问题，进入视频阶段</button></div>
     </section>
-
-    <section class="stage" data-stage="3">
-      <div class="head"><div><h2>预览和导出</h2><p class="sub">基础运镜由现有 FFmpeg 渲染管线执行。</p></div><span class="badge">video</span></div>
-      <div class="grid2">
-        <div class="phone"><div class="screen" id="previewScreen"><span>选择一张图片</span><div class="subtitle" id="previewSubtitle"></div></div></div>
-        <div class="box">
-          <h3>当前图片运镜</h3>
-          <div class="motions" id="motions">
-            <button class="motion active" data-motion="hold">静止</button>
-            <button class="motion" data-motion="slow_zoom_in">缓慢推近</button>
-            <button class="motion" data-motion="slow_zoom_out">缓慢拉远</button>
-            <button class="motion" data-motion="pan_left">向左移动</button>
-            <button class="motion" data-motion="pan_right">向右移动</button>
-            <button class="motion" data-motion="float_up_down">轻微漂浮</button>
-            <button class="motion" disabled>景深微动（实验）</button>
-          </div>
-          <div class="actions">
-            <button class="secondary" id="renderActionBtn">写入：最终渲染</button>
-            <button class="primary" id="renderBtn">调用 FFmpeg 导出</button>
-          </div>
-        </div>
-      </div>
-    </section>
+    <pre class="status" id="status">准备就绪。</pre>
   </main>
-  <pre class="status" id="status">准备就绪。</pre>
 </div>
 <div class="toast" id="toast"></div>
 <script>
-const state = {data:null, voices:[], step:0, provider:"codex", panel:null};
-const $ = (id) => document.getElementById(id);
+const state={data:null,voices:[],panel:null};
+const $=id=>document.getElementById(id);
 function toast(msg){const el=$("toast");el.textContent=msg;el.style.display="block";setTimeout(()=>el.style.display="none",2600)}
 function status(msg){$("status").textContent=msg}
-function escapeHtml(value){return String(value).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
-function setDisabled(el, disabled){if(!el)return;el.disabled=!!disabled;el.classList.toggle("disabled",!!disabled)}
-async function api(path, body){
-  const res = await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body||{})});
-  const data = await res.json();
-  if(!data.ok) throw new Error(data.error||"请求失败");
-  return data.data;
-}
-async function filePayload(file){
-  const dataUrl = await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)});
-  return {name:file.name, content_base64:String(dataUrl)};
-}
-function storyboardReady(data=state.data){
-  return Boolean(data?.prompt_package?.exists || (data?.panels||[]).some(p=>p.prompt&&p.prompt.trim()));
-}
-function setStep(n){
-  if(n>=2 && !storyboardReady()){
-    toast("分镜和提示词还没生成。请先写入动作，然后回 Codex 说“继续”。");
-    return;
-  }
-  state.step=n;
-  document.querySelectorAll(".step").forEach((el,i)=>el.classList.toggle("active",i===n));
-  document.querySelectorAll(".stage").forEach((el,i)=>el.classList.toggle("active",i===n));
-}
-async function loadVoices(){
-  const res = await fetch("/api/voices");
-  const json = await res.json();
-  if(!json.ok) throw new Error(json.error||"读取音色失败");
-  state.voices = json.data.voices || [];
-  renderVoiceOptions();
-}
-function renderVoiceOptions(selectedName){
-  const select = $("voicePreference");
-  const current = selectedName || select.value || "温柔淑女 2.0";
-  select.innerHTML = state.voices.map(v=>`<option value="${escapeHtml(v.name)}" data-id="${escapeHtml(v.id)}">${escapeHtml(v.name)} · ${escapeHtml(v.scene||"")}</option>`).join("");
-  if([...select.options].some(o=>o.value===current)) select.value=current;
-}
-function selectedVoice(){
-  const option = $("voicePreference").selectedOptions[0];
-  return {name:$("voicePreference").value, id:option?.dataset?.id||""};
-}
-function projectPayload(){
-  const voice = selectedVoice();
-  const payload = {
-    story:$("story").value,
-    voice_preference:voice.name,
-    speaker:voice.id,
-    speech_rate:Number($("speechRate").value||0),
-    ratio:$("ratio").value,
-    image_provider:state.provider
-  };
-  if($("apiKey").value.trim()) payload.api_key=$("apiKey").value.trim();
-  return payload;
-}
-async function projectPayloadWithCharacters(){
-  const payload = projectPayload();
-  const files = Array.from($("characterFiles").files||[]);
-  if(files.length) payload.character_images = await Promise.all(files.map(filePayload));
-  return payload;
-}
-async function load(){
-  const res = await fetch("/api/project");
-  const json = await res.json();
-  if(!json.ok) throw new Error(json.error||"读取项目失败");
-  state.data=json.data;
-  render();
-}
-function render(){
-  const data=state.data;
-  $("story").value=data.story||"";
-  renderVoiceOptions(data.project.tts?.voice_preference||"温柔淑女 2.0");
-  $("speechRate").value=data.project.tts?.speech_rate??0;
-  const w=data.project.video?.width, h=data.project.video?.height;
-  $("ratio").value=(w===1920&&h===1080)?"16:9":(w===1080&&h===1080)?"1:1":(w===1080&&h===1350)?"4:5":"9:16";
-  renderCharacters(data.character_images||[]);
-  renderAudio(data);
-  $("segments").innerHTML=(data.timeline?.segments||[]).map(s=>`<div class="seg"><time>${Number(s.start).toFixed(2)}-${Number(s.end).toFixed(2)}</time><div>${escapeHtml(s.text||"")}</div></div>`).join("")||"<p class='sub'>暂无时间轴。</p>";
-  renderStoryboard(data);
-  renderGallery(storyboardReady(data)?(data.panels||[]):[]);
-  renderGuards(data);
-}
-function renderAudio(data){
-  const player = $("voicePlayer");
-  if(data.audio?.exists){
-    player.src = `${data.audio.url}?t=${Date.now()}`;
-    player.style.display = "block";
-  }else{
-    player.removeAttribute("src");
-    player.style.display = "none";
-  }
-  $("voiceMeta").textContent=data.timeline?`总时长 ${Number(data.timeline.duration||0).toFixed(2)} 秒，${data.timeline.segments.length} 段字幕。`:`Key 状态：${data.has_doubao_key?"已保存或来自环境变量":"未设置"}`;
-}
-function renderCharacters(images){
-  $("characterPreview").innerHTML = images.length
-    ? images.map(img=>`<img src="${img.url}?t=${Date.now()}" alt="${escapeHtml(img.filename)}" title="${escapeHtml(img.filename)}">`).join("")
-    : "<p class='sub'>上传后会在这里显示参考图。</p>";
-}
-function renderStoryboard(data){
-  if(!storyboardReady(data)){
-    $("storyboard").innerHTML="<p class='sub'>等待 Codex 生成真实分镜和提示词。点击右侧按钮后，回到 Codex 说“继续”。</p>";
-    return;
-  }
-  $("storyboard").innerHTML=(data.storyboard?.shots||[]).map((s,i)=>`<div class="story"><strong>panel_${String(i+1).padStart(3,"0")}</strong><div><b>${escapeHtml(s.visual_action||"")}</b><p class="sub">${Number(s.start).toFixed(2)} - ${Number(s.end).toFixed(2)}</p></div></div>`).join("")||"<p class='sub'>暂无分镜。</p>";
-}
-function renderGuards(data){
-  const ready = storyboardReady(data);
-  const pack = Boolean(data.prompt_package?.exists);
-  $("downloadPack").classList.toggle("disabled",!pack);
-  $("downloadPack").setAttribute("aria-disabled",String(!pack));
-  setDisabled($("generateAllBtn"),!ready);
-  setDisabled($("imagePreviewBtn"),!ready);
-  setDisabled($("copyAllPrompts"),!ready);
-}
-function renderGallery(panels){
-  if(!panels.some(p=>p.panel_id===state.panel)) state.panel=panels[0]?.panel_id||null;
-  $("gallery").innerHTML=panels.map(p=>`<button class="shot ${p.panel_id===state.panel?"active":""}" data-panel="${p.panel_id}"><div class="thumb">${p.exists?`<img src="${p.url}?t=${Date.now()}" alt="${p.panel_id}">`:"未上传"}</div><small>${p.panel_id}</small></button>`).join("")||"<p class='sub'>暂无图片。分镜和提示词生成后再进入这里。</p>";
-  document.querySelectorAll(".shot").forEach(btn=>btn.onclick=()=>{state.panel=btn.dataset.panel; render()});
-  const current=panels.find(p=>p.panel_id===state.panel)||panels[0];
-  if(current){
-    $("currentPanel").textContent=current.panel_id;
-    $("currentNarration").textContent=current.narration||"";
-    $("currentPrompt").value=current.prompt||"";
-    renderPreview(current);
-  }else{
-    $("currentPanel").textContent="panel_---";
-    $("currentNarration").textContent="";
-    $("currentPrompt").value="";
-    $("previewScreen").innerHTML="<span>暂无图片</span><div class='subtitle'></div>";
-  }
-}
-function renderPreview(current){
-  const subtitle = escapeHtml(current.narration||"");
-  $("previewScreen").innerHTML=current.exists
-    ? `<img src="${current.url}?t=${Date.now()}" alt="${current.panel_id}"><div class="subtitle">${subtitle}</div>`
-    : `<span>${current.panel_id}</span><div class="subtitle">${subtitle}</div>`;
-}
-document.querySelectorAll(".step").forEach((el,i)=>el.onclick=()=>setStep(i));
-document.querySelectorAll(".next").forEach(el=>el.onclick=()=>setStep(Number(el.dataset.next)));
-document.querySelectorAll(".provider").forEach(el=>el.onclick=()=>{state.provider=el.dataset.provider;document.querySelectorAll(".provider").forEach(x=>x.classList.toggle("active",x===el))});
-$("characterFiles").onchange=()=>{const files=Array.from($("characterFiles").files||[]);if(!files.length){renderCharacters(state.data?.character_images||[]);return}Promise.all(files.map(file=>new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve({url:r.result,filename:file.name});r.readAsDataURL(file)}))).then(items=>{$("characterPreview").innerHTML=items.map(img=>`<img src="${img.url}" alt="${escapeHtml(img.filename)}" title="${escapeHtml(img.filename)}">`).join("")})};
+function escapeHtml(v){return String(v).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]))}
+function setDisabled(el,disabled){if(!el)return;el.disabled=!!disabled;el.classList.toggle("disabled",!!disabled)}
+async function api(path,body){const res=await fetch(path,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body||{})});const data=await res.json();if(!data.ok)throw new Error(data.error||"请求失败");return data.data}
+async function filePayload(file){const dataUrl=await new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(r.result);r.onerror=reject;r.readAsDataURL(file)});return{name:file.name,content_base64:String(dataUrl)}}
+async function loadVoices(){const res=await fetch("/api/voices");const json=await res.json();if(!json.ok)throw new Error(json.error||"读取音色失败");state.voices=json.data.voices||[];renderVoiceOptions()}
+function renderVoiceOptions(selected){const select=$("voicePreference");const current=selected||select.value||"温柔淑女 2.0";select.innerHTML=state.voices.map(v=>`<option value="${escapeHtml(v.name)}" data-id="${escapeHtml(v.id)}">${escapeHtml(v.name)} · ${escapeHtml(v.scene||"")}</option>`).join("");if([...select.options].some(o=>o.value===current))select.value=current}
+function selectedVoice(){const option=$("voicePreference").selectedOptions[0];return{name:$("voicePreference").value,id:option?.dataset?.id||""}}
+function projectPayload(){const voice=selectedVoice();const payload={story:$("story").value,voice_preference:voice.name,speaker:voice.id,speech_rate:Number($("speechRate").value||0),ratio:$("ratio").value,image_provider:"codex",style_prompt:$("stylePrompt").value,image_density:$("imageDensity").value};if($("apiKey").value.trim())payload.api_key=$("apiKey").value.trim();return payload}
+async function projectPayloadWithCharacters(){const payload=projectPayload();const files=Array.from($("characterFiles").files||[]);if(files.length)payload.character_images=await Promise.all(files.map(filePayload));return payload}
+function hasVisualInput(){return Boolean(($("stylePrompt").value||"").trim() || ($("characterFiles").files||[]).length || (state.data?.character_images||[]).length)}
+async function load(){const res=await fetch("/api/project");const json=await res.json();if(!json.ok)throw new Error(json.error||"读取项目失败");state.data=json.data;render()}
+function render(){const data=state.data;$("story").value=data.story||"";renderVoiceOptions(data.project.tts?.voice_preference||"温柔淑女 2.0");$("speechRate").value=data.project.tts?.speech_rate??0;$("stylePrompt").value=data.project.visual?.style_prompt||"";$("imageDensity").value=data.project.storyboard?.image_density||"smart";const w=data.project.video?.width,h=data.project.video?.height;$("ratio").value=(w===1920&&h===1080)?"16:9":(w===1080&&h===1080)?"1:1":(w===1080&&h===1350)?"4:5":"9:16";renderNodes(data.node_status||{});renderCharacters(data.character_images||[]);renderAudio(data);renderStoryboard(data);renderGallery(data.panels||[]);renderGuards(data)}
+function renderNodes(nodes){const labels={voice:"语音",storyboard:"分镜",images:"图片",video:"视频"};$("nodes").innerHTML=Object.keys(labels).map(k=>`<div class="node ${nodes[k]||"pending"}"><b>${labels[k]}</b><span class="sub">${nodes[k]||"pending"}</span></div>`).join("")}
+function renderAudio(data){const player=$("voicePlayer");if(data.audio?.exists){player.src=`${data.audio.url}?t=${Date.now()}`;player.style.display="block"}else{player.removeAttribute("src");player.style.display="none"}$("voiceMeta").textContent=data.timeline?`总时长 ${Number(data.timeline.duration||0).toFixed(2)} 秒，${data.timeline.segments.length} 段字幕。`:`Key 状态：${data.has_doubao_key?"已保存或来自环境变量":"未设置"}`;$("segments").innerHTML=(data.timeline?.segments||[]).map(s=>`<div class="seg"><time>${Number(s.start).toFixed(2)}-${Number(s.end).toFixed(2)}</time><div>${escapeHtml(s.text||"")}</div></div>`).join("")||"<p class='sub'>生成语音后会显示字幕时间轴。</p>"}
+function renderCharacters(images){$("characterPreview").innerHTML=images.length?images.map(img=>`<img src="${img.url}?t=${Date.now()}" alt="${escapeHtml(img.filename)}" title="${escapeHtml(img.filename)}">`).join(""):"<p class='sub'>上传参考图，或只填写风格描述。</p>"}
+function renderStoryboard(data){const shots=data.storyboard?.shots||[];$("storyboardCount").textContent=`${shots.length} 张`;$("storyboard").innerHTML=shots.length?shots.map((s,i)=>`<div class="story"><strong>panel_${String(i+1).padStart(3,"0")}</strong><div><b>${escapeHtml(s.visual_action||"")}</b><p class="sub">${Number(s.start).toFixed(2)} - ${Number(s.end).toFixed(2)} · ${escapeHtml(s.motion?.type||"hold")}</p></div></div>`).join(""):"<p class='sub'>确认语音后，按所选密度生成分镜。</p>"}
+function renderGallery(panels){if(!panels.some(p=>p.panel_id===state.panel))state.panel=panels[0]?.panel_id||null;const ready=panels.filter(p=>p.exists).length;$("panelCount").textContent=`${ready} / ${panels.length}`;$("gallery").innerHTML=panels.length?panels.map(p=>`<button class="shot ${p.panel_id===state.panel?"active":""}" data-panel="${p.panel_id}"><div class="thumb">${p.exists?`<img src="${p.url}?t=${Date.now()}" alt="${p.panel_id}">`:"等待 Codex 生图"}</div><small>${p.panel_id}</small></button>`).join(""):"<p class='sub'>分镜确认后，Codex 会生成图片。</p>";document.querySelectorAll(".shot").forEach(btn=>btn.onclick=()=>{state.panel=btn.dataset.panel;render()});const current=panels.find(p=>p.panel_id===state.panel)||panels[0];if(current){$("currentPanel").textContent=current.panel_id;$("currentNarration").textContent=current.narration||"";$("currentPrompt").value=current.prompt||""}else{$("currentPanel").textContent="panel_---";$("currentNarration").textContent="";$("currentPrompt").value=""}}
+function renderGuards(data){const hasVoice=Boolean(data.timeline&&data.audio?.exists);const hasStoryboard=Boolean((data.storyboard?.shots||[]).length&&data.prompt_package?.exists);const panels=data.panels||[];const imagesReady=panels.length&&panels.every(p=>p.exists);setDisabled($("generateVoiceBtn"),!hasVisualInput()||!$("story").value.trim());setDisabled($("generateStoryboardBtn"),!hasVoice);setDisabled($("generateImagesBtn"),!hasStoryboard);setDisabled($("renderBtn"),!imagesReady);$("debugPromptBtn").classList.toggle("disabled",!data.prompt_package?.exists)}
+$("characterFiles").onchange=()=>{const files=Array.from($("characterFiles").files||[]);if(!files.length){renderCharacters(state.data?.character_images||[]);return}Promise.all(files.map(file=>new Promise(resolve=>{const r=new FileReader();r.onload=()=>resolve({url:r.result,filename:file.name});r.readAsDataURL(file)}))).then(items=>{$("characterPreview").innerHTML=items.map(img=>`<img src="${img.url}" alt="${escapeHtml(img.filename)}" title="${escapeHtml(img.filename)}">`).join("");renderGuards(state.data||{})})};
+["story","stylePrompt"].forEach(id=>$(id).addEventListener("input",()=>renderGuards(state.data||{})));
 $("refreshBtn").onclick=()=>load().then(()=>toast("已刷新")).catch(e=>status(e.message));
-$("saveProjectBtn").onclick=async()=>{try{status("保存设置中...");await api("/api/project",await projectPayloadWithCharacters());await load();toast("已保存")}catch(e){status(e.message)}};
-$("generateVoiceBtn").onclick=async()=>{try{status("生成语音中...");await api("/api/generate-voice",await projectPayloadWithCharacters());await load();toast("语音已生成，可以直接试听")}catch(e){status(e.message)}};
-$("storyboardActionBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"images",action:"generate_storyboard_and_prompts"});await load();status("已写入动作：generate_storyboard_and_prompts。请回到 Codex 说“继续”。");toast("请回 Codex 说“继续”")}catch(e){status(e.message)}};
-$("generateAllBtn").onclick=async()=>{try{if(!storyboardReady())throw new Error("分镜和提示词还没生成");await api("/api/write-action",{stage:"images",action:"generate_all_panels",image_provider:state.provider});await api("/api/project",projectPayload());await load();toast("已写入动作：生成全部图片")}catch(e){status(e.message)}};
-$("uploadPanelsBtn").onclick=async()=>{try{status("上传图片中...");const files=await Promise.all(Array.from($("panelFiles").files||[]).map(filePayload));const data=await api("/api/upload-panels",{files});await load();status(JSON.stringify(data,null,2));toast(data.ok?"图片检查通过":"图片检查有问题")}catch(e){status(e.message)}};
-$("rewriteBtn").onclick=async()=>{try{if(!state.panel)throw new Error("当前没有可处理的 panel");const prompt=$("currentPrompt").value.trim()+`\n\n用户反馈：${$("feedback").value.trim()}`;await api("/api/write-action",{stage:"images",action:"regenerate_panel",panel_id:state.panel,feedback:$("feedback").value,prompt});toast("已写入当前 panel 的提示词整理任务")}catch(e){status(e.message)}};
-$("regenBtn").onclick=async()=>{try{if(!state.panel)throw new Error("当前没有可处理的 panel");await api("/api/write-action",{stage:"images",action:"regenerate_panel",panel_id:state.panel,feedback:$("feedback").value,prompt:$("currentPrompt").value});toast("已写入当前 panel 的重生成任务")}catch(e){status(e.message)}};
-$("replaceBtn").onclick=async()=>{try{const file=$("replaceFile").files?.[0];if(!file) throw new Error("请选择 PNG 图片");if(!state.panel)throw new Error("当前没有可替换的 panel");const payload=await filePayload(file);payload.panel_id=state.panel;const data=await api("/api/replace-panel",payload);await load();status(JSON.stringify(data,null,2));toast("已替换当前图片")}catch(e){status(e.message)}};
-$("renderActionBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"video",action:"render_video"});toast("已写入最终渲染动作")}catch(e){status(e.message)}};
+$("saveProjectBtn").onclick=async()=>{try{status("保存配置中...");await api("/api/project",await projectPayloadWithCharacters());await load();toast("已保存")}catch(e){status(e.message)}};
+$("generateVoiceBtn").onclick=async()=>{try{if(!hasVisualInput())throw new Error("请上传参考图，或填写风格描述");status("生成语音中...");await api("/api/generate-voice",await projectPayloadWithCharacters());await load();toast("语音已生成，请试听确认")}catch(e){status(e.message)}};
+$("generateStoryboardBtn").onclick=async()=>{try{status("生成分镜和提示词中...");await api("/api/generate-storyboard",await projectPayloadWithCharacters());await load();toast("分镜已生成，请确认")}catch(e){status(e.message)}};
+$("generateImagesBtn").onclick=async()=>{try{await api("/api/write-action",{stage:"images",action:"generate_all_panels",image_provider:"codex",node_status:{voice:"confirmed",storyboard:"confirmed",images:"pending",video:"pending"}});await load();status("已写入动作：generate_all_panels。请回 Codex 说“继续”，Codex 将按分镜自动生图。");toast("请回 Codex 说“继续”")}catch(e){status(e.message)}};
+$("regenBtn").onclick=async()=>{try{if(!state.panel)throw new Error("当前没有可处理的 panel");await api("/api/write-action",{stage:"images",action:"regenerate_panel",panel_id:state.panel,feedback:$("feedback").value,prompt:$("currentPrompt").value});toast("已写入单图重做任务，请回 Codex 说“继续”")}catch(e){status(e.message)}};
 $("renderBtn").onclick=async()=>{try{status("FFmpeg 渲染中...");const data=await api("/api/render-video",{});await load();status(JSON.stringify(data,null,2));toast("视频已导出")}catch(e){status(e.message)}};
-$("copyAllPrompts").onclick=async()=>{try{const text=(state.data.panels||[]).map(p=>`# ${p.panel_id}\n${p.prompt||""}`).join("\n\n");if(!text.trim())throw new Error("当前还没有提示词");await navigator.clipboard.writeText(text);toast("已复制")}catch(e){status(e.message)}};
-document.querySelectorAll(".motion").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".motion").forEach(x=>x.classList.remove("active"));btn.classList.add("active");toast("预览选择已更新，实际保存可在 storyboard.json 中调整")});
+$("debugPromptBtn").onclick=()=>{if(state.data?.prompt_package?.exists)location.href="/api/download/prompts-package.zip";else toast("还没有提示词包")};
+document.querySelectorAll(".motion").forEach(btn=>btn.onclick=()=>{document.querySelectorAll(".motion").forEach(x=>x.classList.remove("active"));btn.classList.add("active");toast("动效预览选择已更新，实际动效来自 storyboard.json")});
 loadVoices().then(load).catch(e=>status(e.message));
 </script>
 </body>

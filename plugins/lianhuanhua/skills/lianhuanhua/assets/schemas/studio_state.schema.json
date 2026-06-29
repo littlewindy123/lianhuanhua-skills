@@ -9,7 +9,9 @@
   "properties": {
     "stage": {
       "enum": [
+        "create",
         "voice",
+        "storyboard",
         "images",
         "video"
       ]
@@ -17,11 +19,15 @@
     "action": {
       "enum": [
         "generate_voice",
+        "generate_full_project",
         "generate_storyboard_and_prompts",
         "generate_all_panels",
         "regenerate_panel",
         "validate_manual_panels",
-        "render_video"
+        "render_video",
+        "confirm_voice",
+        "confirm_storyboard",
+        "confirm_images"
       ]
     },
     "panel_id": {
@@ -39,6 +45,48 @@
         "codex",
         "external"
       ]
+    },
+    "node_status": {
+      "type": "object",
+      "properties": {
+        "voice": {
+          "enum": [
+            "pending",
+            "running",
+            "ready",
+            "confirmed",
+            "failed"
+          ]
+        },
+        "storyboard": {
+          "enum": [
+            "pending",
+            "running",
+            "ready",
+            "confirmed",
+            "failed"
+          ]
+        },
+        "images": {
+          "enum": [
+            "pending",
+            "running",
+            "ready",
+            "confirmed",
+            "failed"
+          ]
+        },
+        "video": {
+          "enum": [
+            "pending",
+            "running",
+            "ready",
+            "confirmed",
+            "failed"
+          ]
+        }
+      },
+      "additionalProperties": true
     }
   },
   "additionalProperties": true

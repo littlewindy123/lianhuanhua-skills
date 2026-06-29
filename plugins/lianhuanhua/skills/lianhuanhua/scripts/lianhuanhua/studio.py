@@ -16,6 +16,7 @@ from .doubao_tts import config_from_project, synthesize_plan
 from .exporter import export_project
 from .renderer import mux_final_video, render_silent_video
 from .schema_validation import validate_data
+from .storyboard import build_storyboard_workspace
 from .utils import ensure_dir, read_json, write_json
 from .validation import validate_manual_panels, validate_output, validate_workspace
 from .voice_catalog import load_voice_catalog
@@ -38,7 +39,19 @@ def ensure_studio_workspace(workspace: Path) -> None:
     ensure_dir(workspace / "input" / "character")
     state = workspace / "work" / "studio_state.json"
     if not state.exists():
-        write_json(state, {"stage": "voice", "action": "generate_voice"})
+        write_json(
+            state,
+            {
+                "stage": "create",
+                "action": "generate_full_project",
+                "node_status": {
+                    "voice": "pending",
+                    "storyboard": "pending",
+                    "images": "pending",
+                    "video": "pending",
+                },
+            },
+        )
 
 
 def _ratio_size(value: str, fallback: tuple[int, int]) -> tuple[int, int]:
@@ -124,7 +137,7 @@ def _panel_records(workspace: Path) -> list[dict[str, Any]]:
                 "shot_id": shot.get("id"),
                 "start": shot.get("start"),
                 "end": shot.get("end"),
-                "narration": "",
+                "narration": _shot_narration(workspace, shot),
                 "image_description": shot.get("visual_action", ""),
                 "prompt": _read_panel_prompt(workspace, str(shot.get("id", ""))),
                 "motion": shot.get("motion", {}),
@@ -132,12 +145,26 @@ def _panel_records(workspace: Path) -> list[dict[str, Any]]:
                 "url": f"/api/panel/{panel_id}.png",
             }
         )
-    timeline_path = workspace / "work" / "timeline.json"
-    if timeline_path.exists():
-        segments = {segment.get("id"): segment for segment in read_json(timeline_path).get("segments", [])}
-        for record, shot in zip(records, storyboard.get("shots", []), strict=False):
-            record["narration"] = str(segments.get(shot.get("segment_id"), {}).get("text", ""))
     return records
+
+
+def _shot_narration(workspace: Path, shot: dict[str, Any]) -> str:
+    timeline_path = workspace / "work" / "timeline.json"
+    if not timeline_path.exists():
+        return ""
+    timeline = read_json(timeline_path)
+    shot_start = float(shot.get("start", 0))
+    shot_end = float(shot.get("end", 0))
+    texts: list[str] = []
+    for segment in timeline.get("segments", []):
+        start = float(segment.get("start", 0))
+        end = float(segment.get("end", 0))
+        if start >= shot_start - 0.05 and end <= shot_end + 0.05:
+            texts.append(str(segment.get("text", "")))
+    if texts:
+        return "".join(texts)
+    segments = {segment.get("id"): segment for segment in timeline.get("segments", [])}
+    return str(segments.get(shot.get("segment_id"), {}).get("text", ""))
 
 
 def _read_panel_prompt(workspace: Path, shot_id: str) -> str:
@@ -180,6 +207,30 @@ def _character_records(workspace: Path, project: dict[str, Any]) -> list[dict[st
     return records
 
 
+def _default_node_status(workspace: Path) -> dict[str, str]:
+    status = {
+        "voice": "pending",
+        "storyboard": "pending",
+        "images": "pending",
+        "video": "pending",
+    }
+    if _audio_record(workspace)["exists"] and (workspace / "work" / "timeline.json").exists():
+        status["voice"] = "ready"
+    if (workspace / "output" / "prompts-package.zip").exists():
+        status["storyboard"] = "ready"
+    panels = _panel_records(workspace)
+    if panels and all(panel.get("exists") for panel in panels):
+        status["images"] = "ready"
+    if (workspace / "output" / "final_video.mp4").exists():
+        status["video"] = "ready"
+    state_path = workspace / "work" / "studio_state.json"
+    if state_path.exists():
+        saved = read_json(state_path).get("node_status", {})
+        if isinstance(saved, dict):
+            status.update({key: str(value) for key, value in saved.items() if key in status})
+    return status
+
+
 def save_project_settings(workspace: Path, payload: dict[str, Any]) -> dict[str, Any]:
     ensure_studio_workspace(workspace)
     project_path = workspace / "project.json"
@@ -207,6 +258,11 @@ def save_project_settings(workspace: Path, payload: dict[str, Any]) -> dict[str,
 
     if isinstance(payload.get("mood"), str):
         project["mood"] = payload["mood"]
+    if isinstance(payload.get("style_prompt"), str):
+        project.setdefault("visual", {})["style_prompt"] = payload["style_prompt"]
+        project.setdefault("visual", {})["reference_mode"] = "image_or_style"
+    if isinstance(payload.get("image_density"), str):
+        project.setdefault("storyboard", {})["image_density"] = payload["image_density"]
     if isinstance(payload.get("voice_preference"), str):
         project.setdefault("tts", {})["voice_preference"] = payload["voice_preference"]
     if isinstance(payload.get("speaker"), str):
@@ -216,6 +272,8 @@ def save_project_settings(workspace: Path, payload: dict[str, Any]) -> dict[str,
     if isinstance(payload.get("image_provider"), str):
         mode = "external" if payload["image_provider"] == "external" else "codex"
         project.setdefault("image_workflow", {})["mode"] = mode
+    else:
+        project.setdefault("image_workflow", {})["mode"] = "codex"
 
     character_uploads = payload.get("character_images")
     if isinstance(character_uploads, list) and character_uploads:
@@ -247,6 +305,7 @@ def studio_snapshot(workspace: Path) -> dict[str, Any]:
         "timeline": read_json(workspace / "work" / "timeline.json") if (workspace / "work" / "timeline.json").exists() else None,
         "storyboard": read_json(workspace / "work" / "storyboard.json") if (workspace / "work" / "storyboard.json").exists() else None,
         "studio_state": read_json(state_path) if state_path.exists() else None,
+        "node_status": _default_node_status(workspace),
         "audio": _audio_record(workspace),
         "character_images": _character_records(workspace, project),
         "panels": _panel_records(workspace),
@@ -280,8 +339,39 @@ def generate_voice(workspace: Path, payload: dict[str, Any]) -> dict[str, Any]:
         config=config_from_project(project),
         log_dir=workspace / "logs",
     )
-    write_studio_action(workspace, {"stage": "images", "action": "generate_storyboard_and_prompts"})
+    write_studio_action(
+        workspace,
+        {
+            "stage": "voice",
+            "action": "confirm_voice",
+            "node_status": {
+                "voice": "ready",
+                "storyboard": "pending",
+                "images": "pending",
+                "video": "pending",
+            },
+        },
+    )
     return {"audio": str(output_audio), "timeline": timeline}
+
+
+def generate_storyboard(workspace: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    save_project_settings(workspace, payload)
+    result = build_storyboard_workspace(workspace)
+    write_studio_action(
+        workspace,
+        {
+            "stage": "storyboard",
+            "action": "confirm_storyboard",
+            "node_status": {
+                "voice": "confirmed",
+                "storyboard": "ready",
+                "images": "pending",
+                "video": "pending",
+            },
+        },
+    )
+    return result
 
 
 def save_uploaded_panels(workspace: Path, files: list[dict[str, Any]]) -> dict[str, Any]:
@@ -320,14 +410,26 @@ def render_video(workspace: Path) -> dict[str, Any]:
     if output_errors:
         raise ValueError("; ".join(output_errors))
     exported = export_project(workspace)
-    write_studio_action(workspace, {"stage": "video", "action": "render_video"})
+    write_studio_action(
+        workspace,
+        {
+            "stage": "video",
+            "action": "render_video",
+            "node_status": {
+                "voice": "confirmed",
+                "storyboard": "confirmed",
+                "images": "confirmed",
+                "video": "ready",
+            },
+        },
+    )
     return {"silent_video": str(silent), "final_video": str(final), "exported": [str(path) for path in exported]}
 
 
 class StudioHandler(BaseHTTPRequestHandler):
     workspace: Path
 
-    server_version = "LianhuanhuaStudio/0.2"
+    server_version = "LianhuanhuaStudio/0.3"
 
     def log_message(self, format: str, *args: Any) -> None:  # noqa: A003
         print(f"[studio] {self.address_string()} - {format % args}")
@@ -411,6 +513,8 @@ class StudioHandler(BaseHTTPRequestHandler):
                 self._json({"ok": True, "data": studio_snapshot(self.workspace)})
             elif parsed.path == "/api/generate-voice":
                 self._json({"ok": True, "data": generate_voice(self.workspace, payload)})
+            elif parsed.path == "/api/generate-storyboard":
+                self._json({"ok": True, "data": generate_storyboard(self.workspace, payload)})
             elif parsed.path == "/api/write-action":
                 self._json({"ok": True, "data": write_studio_action(self.workspace, payload)})
             elif parsed.path == "/api/upload-panels":
@@ -431,7 +535,7 @@ def run_studio_server(workspace: Path, *, host: str = "127.0.0.1", port: int = 8
     handler = type("BoundStudioHandler", (StudioHandler,), {"workspace": workspace})
     httpd = ThreadingHTTPServer((host, port), handler)
     url = f"http://{host}:{httpd.server_address[1]}/"
-    print(f"Lianhuanhua Studio V0.2: {url}")
+    print(f"Lianhuanhua Studio V0.3: {url}")
     print(f"Workspace: {workspace}")
     if open_browser:
         webbrowser.open(url)

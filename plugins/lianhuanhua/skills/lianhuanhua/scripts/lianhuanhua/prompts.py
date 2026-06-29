@@ -129,6 +129,20 @@ def _panel_id(index: int, shot: dict[str, Any]) -> str:
     return f"panel_{index:03d}"
 
 
+def _narration_for_shot(segments: dict[str, dict[str, Any]], shot: dict[str, Any]) -> str:
+    shot_start = float(shot.get("start", 0))
+    shot_end = float(shot.get("end", 0))
+    texts: list[str] = []
+    for segment in segments.values():
+        start = float(segment.get("start", 0))
+        end = float(segment.get("end", 0))
+        if start >= shot_start - 0.05 and end <= shot_end + 0.05:
+            texts.append(str(segment.get("text", "")))
+    if texts:
+        return "".join(texts)
+    return str(segments.get(str(shot.get("segment_id")), {}).get("text", ""))
+
+
 def _manual_prompt_rows(
     workspace: Path,
     *,
@@ -142,7 +156,6 @@ def _manual_prompt_rows(
     size = f"{int(video.get('width', 1080))}x{int(video.get('height', 1920))}"
     rows: list[dict[str, Any]] = []
     for index, shot in enumerate(storyboard.get("shots", []), start=1):
-        segment = segments.get(str(shot.get("segment_id")), {})
         panel_id = _panel_id(index, shot)
         prompt = prompts_by_shot.get(shot["id"], "")
         rows.append(
@@ -150,7 +163,7 @@ def _manual_prompt_rows(
                 "panel_id": panel_id,
                 "start": float(shot.get("start", 0)),
                 "end": float(shot.get("end", 0)),
-                "narration": str(segment.get("text", "")),
+                "narration": _narration_for_shot(segments, shot),
                 "image_description": str(shot.get("visual_action", "")),
                 "prompt_cn": prompt,
                 "prompt_en": prompt,

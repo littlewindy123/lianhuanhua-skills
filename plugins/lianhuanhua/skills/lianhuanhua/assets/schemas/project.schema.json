@@ -70,8 +70,7 @@
           "type": "array",
           "items": {
             "type": "string"
-          },
-          "minItems": 1
+          }
         },
         "media": {
           "type": [
@@ -84,6 +83,36 @@
             "string",
             "null"
           ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "visual": {
+      "type": "object",
+      "properties": {
+        "style_prompt": {
+          "type": "string"
+        },
+        "reference_mode": {
+          "enum": [
+            "image",
+            "style",
+            "image_or_style"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "storyboard": {
+      "type": "object",
+      "properties": {
+        "image_density": {
+          "enum": [
+            "smart",
+            "one_per_sentence",
+            "three_sentences"
+          ],
+          "default": "smart"
         }
       },
       "additionalProperties": false

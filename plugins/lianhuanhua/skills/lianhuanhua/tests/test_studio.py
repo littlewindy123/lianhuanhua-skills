@@ -5,7 +5,8 @@ import json
 from PIL import Image
 
 from lianhuanhua.schema_validation import validate_file
-from lianhuanhua.studio import studio_snapshot, write_studio_action
+from lianhuanhua.studio import generate_storyboard, save_project_settings, studio_snapshot, write_studio_action
+from lianhuanhua.utils import read_json, write_json
 from lianhuanhua.validation import validate_manual_panels
 from lianhuanhua.workspace import initialize_workspace
 
@@ -56,9 +57,62 @@ def test_studio_snapshot_exposes_audio_and_character_preview(tmp_path) -> None:
     ws = initialize_workspace(tmp_path / "snapshot")
     Image.new("RGB", (128, 128), (240, 230, 220)).save(ws.input / "character" / "character.png")
     (ws.audio_dir / "narration.mp3").write_bytes(b"fake-audio")
+    project = read_json(ws.project)
+    project["paths"]["character_images"] = ["input/character/character.png"]
+    write_json(ws.project, project)
 
     snapshot = studio_snapshot(ws.root)
 
     assert snapshot["audio"]["exists"] is True
     assert snapshot["audio"]["url"] == "/api/audio/narration.mp3"
     assert snapshot["character_images"][0]["url"] == "/api/character/character.png"
+
+
+def test_save_project_settings_supports_style_only_codex_flow(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "style-only")
+
+    project = save_project_settings(
+        ws.root,
+        {
+            "story": "只靠风格描述也能开始。",
+            "style_prompt": "黑白铅笔连环画",
+            "image_density": "three_sentences",
+            "image_provider": "codex",
+        },
+    )
+
+    assert project["paths"]["character_images"] == []
+    assert project["visual"]["style_prompt"] == "黑白铅笔连环画"
+    assert project["storyboard"]["image_density"] == "three_sentences"
+    assert project["image_workflow"]["mode"] == "codex"
+
+
+def test_generate_storyboard_marks_confirmation_node_ready(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "storyboard-ready")
+    write_json(
+        ws.timeline,
+        {
+            "duration": 6.0,
+            "segments": [
+                {"id": "seg_001", "start": 0.0, "end": 2.0, "text": "第一句。"},
+                {"id": "seg_002", "start": 2.1, "end": 4.0, "text": "第二句。"},
+                {"id": "seg_003", "start": 4.1, "end": 6.0, "text": "第三句。"},
+            ],
+        },
+    )
+
+    result = generate_storyboard(
+        ws.root,
+        {
+            "style_prompt": "柔和水彩",
+            "image_density": "three_sentences",
+            "image_provider": "codex",
+        },
+    )
+    state = read_json(ws.studio_state)
+
+    assert len(result["storyboard"]["shots"]) == 1
+    assert state["action"] == "confirm_storyboard"
+    assert state["node_status"]["voice"] == "confirmed"
+    assert state["node_status"]["storyboard"] == "ready"
+    assert (ws.output / "prompts-package.zip").exists()

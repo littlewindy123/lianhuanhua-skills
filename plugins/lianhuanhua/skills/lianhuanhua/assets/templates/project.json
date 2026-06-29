@@ -11,11 +11,16 @@
   },
   "paths": {
     "story": "input/story.txt",
-    "character_images": [
-      "input/character/character.png"
-    ],
+    "character_images": [],
     "media": null,
     "background_music": null
+  },
+  "visual": {
+    "style_prompt": "温暖、轻微伤感、简洁可爱的连环画风格",
+    "reference_mode": "image_or_style"
+  },
+  "storyboard": {
+    "image_density": "smart"
   },
   "tts": {
     "speaker": "",
@@ -30,7 +35,7 @@
     "emotion_scale": 4
   },
   "image_workflow": {
-    "mode": "ask",
+    "mode": "codex",
     "review": "none",
     "repair": "ask"
   }

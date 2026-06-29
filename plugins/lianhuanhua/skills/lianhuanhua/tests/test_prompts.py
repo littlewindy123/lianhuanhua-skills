@@ -24,7 +24,7 @@ def test_build_prompts_writes_external_prompt_pack(tmp_path) -> None:
     assert (ws.output / "prompts.json").exists()
 
     data = json.loads(pack_json.read_text(encoding="utf-8"))
-    assert data["image_workflow"] == {"mode": "ask", "review": "none", "repair": "ask"}
+    assert data["image_workflow"] == {"mode": "codex", "review": "none", "repair": "ask"}
     assert data["panels"][0]["shot_id"] == "shot_001"
     assert "Output path" in data["panels"][0]["prompt"]
     assert "Copy this whole file into GPT" in pack_md.read_text(encoding="utf-8")

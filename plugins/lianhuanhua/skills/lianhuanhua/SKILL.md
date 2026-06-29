@@ -9,16 +9,16 @@ Create a complete, reproducible comic-video project. Codex directs the story and
 
 ## Non-negotiable constraints
 
-- Support Codex CLI workflow and local Studio V0.2.
+- Support Codex CLI workflow and local Studio V0.3.
 - Use Doubao Speech 2.0 as the only hosted TTS provider.
 - Use `X-Api-Resource-Id: seed-tts-2.0`.
 - For TTS 2.0 timing, request `audio_params.enable_subtitle=true`; do not rely on the TTS 1.0-only `enable_timestamp` behavior.
-- Default to low-token image handling: ask once before image generation, and do not use `$imagegen` or visual inspection unless the user chooses it.
+- Default Studio image workflow is Codex automatic generation with node confirmations. Do not use visual inspection unless the user chooses strict review.
 - Do not call text-to-video or image-to-video models.
 - Never claim success until the final media passes ffprobe validation.
 - Preserve raw service events and generated prompts for debugging and reproducibility.
 - Do not generate all story panels in parallel when using Codex image generation. Generate anchors first, then panels sequentially.
-- Default image workflow is `mode=ask`, `review=none`, `repair=ask`.
+- Default Studio image workflow is `mode=codex`, `review=none`, `repair=ask`.
 
 ## Resolve paths
 
@@ -32,7 +32,7 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py"
 
 Use an absolute path when the shell or operating system makes relative paths ambiguous.
 
-Run the local Studio V0.2 web UI with:
+Run the local Studio V0.3 web UI with:
 
 ```bash
 python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" studio --workspace <workspace>
@@ -44,7 +44,7 @@ Studio is a local-only HTML/CSS/JavaScript interface backed by Python's standard
 
 Require:
 
-1. At least one character/reference image.
+1. Either at least one character/reference image, or a concrete visual style description.
 2. Exactly one story source:
    - written narration text, or
    - existing audio, or
@@ -118,7 +118,7 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" init --workspace <workspace>
 6. Copy inputs into the initialized `input/` directories without overwriting originals.
 7. Do not continue when FFmpeg or ffprobe is missing.
 
-## Studio V0.2 handoff protocol
+## Studio V0.3 handoff protocol
 
 When the user says "继续" in Codex while working from Studio:
 
@@ -126,19 +126,25 @@ When the user says "继续" in Codex while working from Studio:
 2. Read `work/studio_state.json`.
 3. Execute only the task named by `action`.
 4. If `panel_id` exists, process only that one panel.
-5. Stop after completing that action and let the user return to Studio.
-6. Do not automatically advance phases, score all images, repair all images, or retry unrelated panels.
+5. Stop at the next confirmation node and let the user return to Studio.
+6. Do not score all images, repair all images, or retry unrelated panels unless the current action explicitly asks for it.
 
-Allowed stages are `voice`, `images`, and `video`.
+Studio V0.3 is a single creation cockpit. Users enter narration, Doubao key, voice, speech rate, aspect ratio, reference images or style text, and image density. The main flow is Codex automatic generation, with confirmations at `voice_ready`, `storyboard_ready`, `images_ready`, and `video_ready`.
+
+Allowed stages are `create`, `voice`, `storyboard`, `images`, and `video`.
 
 Allowed actions are:
 
 - `generate_voice`
+- `generate_full_project`
 - `generate_storyboard_and_prompts`
 - `generate_all_panels`
 - `regenerate_panel`
 - `validate_manual_panels`
 - `render_video`
+- `confirm_voice`
+- `confirm_storyboard`
+- `confirm_images`
 
 Do not write Doubao API keys to `project.json`, `studio_state.json`, `prompts.json`, or exported packages. Studio may store the key only in `work/.secrets.json`, which is excluded by `.gitignore`.
 
@@ -234,11 +240,11 @@ python "$SKILL_ROOT/scripts/lianhuanhua_cli.py" validate --workspace <workspace>
 ## Phase 4: Generate consistent panels
 
 1. Read `references/image-generation.md`.
-2. If `project.image_workflow.mode` is missing or `ask`, stop once and ask the user to choose:
+2. If `project.image_workflow.mode` is missing or `ask`, Studio V0.3 should default to `codex`. In CLI-only workflows, stop once and ask the user to choose:
    - `external`: cheapest; export prompt pack only, user generates images in GPT or another image tool.
    - `codex`: most automatic; use `$imagegen` inside Codex.
    - `hybrid`: Codex generates anchors/key images, user generates ordinary panels externally.
-3. Save the choice to `project.image_workflow.mode`. Default review is `none`; default repair is `ask`.
+3. Save the choice to `project.image_workflow.mode`. Studio defaults to `codex`; default review is `none`; default repair is `ask`.
 4. Build deterministic prompt files and the external prompt pack:
 
 ```bash
