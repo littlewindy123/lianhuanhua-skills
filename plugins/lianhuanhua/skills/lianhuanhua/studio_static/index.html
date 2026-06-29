@@ -21,6 +21,7 @@
     <div class="grid">
       <aside class="box">
         <div class="section-title"><h2>创作输入</h2><span class="pill">Codex 自动生图</span></div>
+        <form id="projectForm" onsubmit="return false">
         <div class="field"><label>文案</label><textarea id="story"></textarea></div>
         <div class="field"><label>豆包 API Key</label><input id="apiKey" type="password" placeholder="留空则继续使用已保存 Key 或环境变量"></div>
         <div class="row">
@@ -34,9 +35,10 @@
         <div class="field"><label>角色 / 参考图</label><input id="characterFiles" type="file" accept="image/*" multiple><div class="character-preview" id="characterPreview"></div></div>
         <div class="field"><label>风格描述</label><textarea id="stylePrompt" placeholder="例如：温暖、轻微伤感、简洁可爱的连环画风格。只写风格也可以开始。"></textarea></div>
         <div class="actions">
-          <button class="secondary" id="saveProjectBtn">保存配置</button>
-          <button class="primary" id="generateVoiceBtn">生成语音</button>
+          <button type="button" class="secondary" id="saveProjectBtn">保存配置</button>
+          <button type="button" class="primary" id="generateVoiceBtn">生成语音</button>
         </div>
+        </form>
       </aside>
 
       <section class="box">
