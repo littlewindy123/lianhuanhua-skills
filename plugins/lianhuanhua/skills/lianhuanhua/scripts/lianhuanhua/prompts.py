@@ -90,6 +90,16 @@ def _fmt_identity_research(research: dict[str, Any]) -> str:
     )
 
 
+def _fmt_variation_requirements(shot: dict[str, Any]) -> str:
+    lines = [
+        f"- Camera: {shot.get('camera', '')}",
+        f"- Background change: {shot.get('background_change', '')}",
+        f"- Action change: {shot.get('action_change', '')}",
+        f"- Emotion shift: {shot.get('emotion_shift', '')}",
+    ]
+    return "\n".join(line for line in lines if not line.endswith(": "))
+
+
 def _write_prompt_pack(
     workspace: Path,
     *,
@@ -391,6 +401,7 @@ def build_panel_prompts(workspace: Path) -> dict[str, Any]:
 {_fmt_mapping(character.get('immutable_features', {}))}
 
 Character summary: {character.get('summary', '')}
+User identity hint: {character.get('user_identity_hint', '')}
 
 ## KNOWN CHARACTER / IP IDENTITY
 {_fmt_identity_research(identity_research)}
@@ -406,6 +417,9 @@ Character summary: {character.get('summary', '')}
 
 ## CURRENT VISUAL ACTION
 {shot.get('visual_action', '')}
+
+## PANEL-TO-PANEL VARIATION REQUIREMENTS
+{_fmt_variation_requirements(shot)}
 
 ## CHARACTER STATE
 {shot.get('character_state', '')}

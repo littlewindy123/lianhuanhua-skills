@@ -16,6 +16,9 @@
     "summary": {
       "type": "string"
     },
+    "user_identity_hint": {
+      "type": "string"
+    },
     "reference_images": {
       "type": "array",
       "items": {

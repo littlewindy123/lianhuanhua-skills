@@ -93,6 +93,9 @@
         "style_prompt": {
           "type": "string"
         },
+        "character_identity_hint": {
+          "type": "string"
+        },
         "reference_mode": {
           "enum": [
             "image",
@@ -113,6 +116,15 @@
             "three_sentences"
           ],
           "default": "smart"
+        },
+        "variation_strength": {
+          "enum": [
+            "克制",
+            "标准",
+            "明显",
+            "强烈"
+          ],
+          "default": "明显"
         }
       },
       "additionalProperties": false

@@ -67,3 +67,20 @@ def test_smart_density_generates_valid_storyboard_with_motion() -> None:
     assert storyboard["video"]["duration"] == 12.0
     assert all(shot["image"].endswith(".png") for shot in storyboard["shots"])
     assert all(shot["motion"]["type"] for shot in storyboard["shots"])
+
+
+def test_variation_strength_adds_distinct_visual_changes() -> None:
+    storyboard = build_storyboard_data(
+        timeline=_timeline(),
+        project=_project(),
+        density=DENSITY_ONE_PER_SENTENCE,
+        variation_strength="明显",
+    )
+
+    cameras = {shot["camera"] for shot in storyboard["shots"]}
+    backgrounds = {shot["background_change"] for shot in storyboard["shots"]}
+    actions = {shot["action_change"] for shot in storyboard["shots"]}
+
+    assert len(cameras) > 1
+    assert len(backgrounds) > 1
+    assert len(actions) > 1

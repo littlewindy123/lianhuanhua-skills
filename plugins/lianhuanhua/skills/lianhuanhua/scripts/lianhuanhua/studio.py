@@ -14,9 +14,10 @@ from urllib.parse import unquote, urlparse
 
 from .doubao_tts import config_from_project, synthesize_plan
 from .exporter import export_project
+from .prompts import build_panel_prompts
 from .renderer import mux_final_video, render_silent_video
 from .schema_validation import validate_data
-from .storyboard import build_storyboard_workspace
+from .storyboard import build_storyboard_workspace, normalize_variation_strength
 from .utils import ensure_dir, read_json, write_json
 from .validation import validate_manual_panels, validate_output, validate_workspace
 from .voice_catalog import load_voice_catalog
@@ -25,6 +26,7 @@ from .workspace import initialize_workspace, skill_root
 
 PANEL_RE = re.compile(r"^panel_[0-9]{3}\.png$")
 PANEL_ID_RE = re.compile(r"^panel_[0-9]{3}$")
+MOTION_TYPES = {"hold", "slow_zoom_in", "slow_zoom_out", "pan_left", "pan_right", "float_up_down"}
 
 
 def static_dir() -> Path:
@@ -261,8 +263,14 @@ def save_project_settings(workspace: Path, payload: dict[str, Any]) -> dict[str,
     if isinstance(payload.get("style_prompt"), str):
         project.setdefault("visual", {})["style_prompt"] = payload["style_prompt"]
         project.setdefault("visual", {})["reference_mode"] = "image_or_style"
+    if isinstance(payload.get("character_identity_hint"), str):
+        project.setdefault("visual", {})["character_identity_hint"] = payload["character_identity_hint"].strip()
     if isinstance(payload.get("image_density"), str):
         project.setdefault("storyboard", {})["image_density"] = payload["image_density"]
+    if isinstance(payload.get("variation_strength"), str):
+        project.setdefault("storyboard", {})["variation_strength"] = normalize_variation_strength(
+            payload["variation_strength"]
+        )
     if isinstance(payload.get("voice_preference"), str):
         project.setdefault("tts", {})["voice_preference"] = payload["voice_preference"]
     if isinstance(payload.get("speaker"), str):
@@ -374,6 +382,54 @@ def generate_storyboard(workspace: Path, payload: dict[str, Any]) -> dict[str, A
     return result
 
 
+def timeline_preview(workspace: Path) -> dict[str, Any]:
+    snapshot = studio_snapshot(workspace)
+    return {
+        "audio": snapshot["audio"],
+        "timeline": snapshot["timeline"],
+        "storyboard": snapshot["storyboard"],
+        "panels": snapshot["panels"],
+    }
+
+
+def update_storyboard_timeline(workspace: Path, payload: dict[str, Any]) -> dict[str, Any]:
+    storyboard_path = workspace / "work" / "storyboard.json"
+    if not storyboard_path.exists():
+        raise ValueError("storyboard.json does not exist")
+    storyboard = read_json(storyboard_path)
+    updates = payload.get("shots")
+    if not isinstance(updates, list):
+        raise ValueError("shots must be a list")
+    updates_by_id = {str(item.get("id")): item for item in updates if isinstance(item, dict) and item.get("id")}
+    for shot in storyboard.get("shots", []):
+        update = updates_by_id.get(str(shot.get("id")))
+        if not update:
+            continue
+        if "start" in update:
+            shot["start"] = float(update["start"])
+        if "end" in update:
+            shot["end"] = float(update["end"])
+        if float(shot["end"]) <= float(shot["start"]):
+            raise ValueError(f"Shot {shot.get('id')} has non-positive duration")
+        if isinstance(update.get("motion"), dict):
+            motion = dict(shot.get("motion", {}))
+            motion.update(update["motion"])
+            if motion.get("type") not in MOTION_TYPES:
+                raise ValueError(f"Invalid motion type for {shot.get('id')}: {motion.get('type')}")
+            shot["motion"] = motion
+
+    ordered = sorted(storyboard.get("shots", []), key=lambda item: float(item.get("start", 0)))
+    for previous, current in zip(ordered, ordered[1:], strict=False):
+        if float(current["start"]) < float(previous["end"]) - 0.001:
+            raise ValueError(f"Timeline overlap: {previous.get('id')} and {current.get('id')}")
+    storyboard["shots"] = ordered
+    if ordered:
+        storyboard.setdefault("video", {})["duration"] = max(float(shot["end"]) for shot in ordered)
+    write_json(storyboard_path, storyboard)
+    build_panel_prompts(workspace)
+    return timeline_preview(workspace)
+
+
 def save_uploaded_panels(workspace: Path, files: list[dict[str, Any]]) -> dict[str, Any]:
     names: list[str] = []
     for item in files:
@@ -477,6 +533,9 @@ class StudioHandler(BaseHTTPRequestHandler):
         if path == "/api/voices":
             self._json({"ok": True, "data": load_voice_catalog()})
             return
+        if path == "/api/timeline-preview":
+            self._json({"ok": True, "data": timeline_preview(self.workspace)})
+            return
         if path.startswith("/api/audio/"):
             name = _safe_name(path.rsplit("/", 1)[-1])
             allowed = {"narration.mp3", "narration.wav", "extracted.wav"}
@@ -523,6 +582,8 @@ class StudioHandler(BaseHTTPRequestHandler):
                 self._json({"ok": True, "data": replace_panel(self.workspace, payload)})
             elif parsed.path == "/api/render-video":
                 self._json({"ok": True, "data": render_video(self.workspace)})
+            elif parsed.path == "/api/update-storyboard-timeline":
+                self._json({"ok": True, "data": update_storyboard_timeline(self.workspace, payload)})
             else:
                 self._error("Not found", status=HTTPStatus.NOT_FOUND)
         except Exception as exc:  # noqa: BLE001

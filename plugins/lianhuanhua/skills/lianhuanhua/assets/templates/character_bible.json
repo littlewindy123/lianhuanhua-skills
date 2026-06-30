@@ -1,6 +1,7 @@
 {
   "character_id": "main_character",
   "summary": "Describe the character using only visible and approved details.",
+  "user_identity_hint": "",
   "reference_images": [
     "input/character/character.png"
   ],

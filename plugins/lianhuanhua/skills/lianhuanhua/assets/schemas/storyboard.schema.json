@@ -91,6 +91,18 @@
           "previous_panel_summary": {
             "type": "string"
           },
+          "camera": {
+            "type": "string"
+          },
+          "background_change": {
+            "type": "string"
+          },
+          "action_change": {
+            "type": "string"
+          },
+          "emotion_shift": {
+            "type": "string"
+          },
           "motion": {
             "type": "object",
             "required": [

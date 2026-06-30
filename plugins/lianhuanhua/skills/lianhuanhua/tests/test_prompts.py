@@ -75,6 +75,7 @@ def test_identified_known_ip_identity_research_schema_is_valid() -> None:
 def test_known_ip_identity_is_injected_into_panel_prompt(tmp_path) -> None:
     ws = initialize_workspace(tmp_path / "known-ip-prompt")
     character = read_json(ws.work / "character_bible.json")
+    character["user_identity_hint"] = "一猫人"
     character["identity_research"] = {
         "status": "identified",
         "is_known_ip": True,
@@ -92,8 +93,26 @@ def test_known_ip_identity_is_injected_into_panel_prompt(tmp_path) -> None:
     prompt = (ws.prompts_dir / "shot_001.md").read_text(encoding="utf-8")
 
     assert "## KNOWN CHARACTER / IP IDENTITY" in prompt
+    assert "User identity hint: 一猫人" in prompt
     assert "一猫人" in prompt
     assert "不要改写成普通猫或小熊" in prompt
+
+
+def test_panel_prompt_includes_variation_requirements(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "variation-prompt")
+    storyboard = read_json(ws.work / "storyboard.json")
+    storyboard["shots"][0]["camera"] = "wide shot from a low angle"
+    storyboard["shots"][0]["background_change"] = "move from a blank room into a rainy street"
+    storyboard["shots"][0]["action_change"] = "character reaches toward the phone"
+    storyboard["shots"][0]["emotion_shift"] = "quiet worry becomes visible anxiety"
+    write_json(ws.work / "storyboard.json", storyboard)
+
+    build_panel_prompts(ws.root)
+    prompt = (ws.prompts_dir / "shot_001.md").read_text(encoding="utf-8")
+
+    assert "## PANEL-TO-PANEL VARIATION REQUIREMENTS" in prompt
+    assert "wide shot from a low angle" in prompt
+    assert "rainy street" in prompt
 
 
 def test_pending_identity_research_blocks_codex_image_generation_when_reference_exists(tmp_path) -> None:

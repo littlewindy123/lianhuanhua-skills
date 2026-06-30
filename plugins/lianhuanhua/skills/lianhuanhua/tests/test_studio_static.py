@@ -23,3 +23,12 @@ def test_studio_voice_select_has_project_fallback() -> None:
     assert "function currentProjectVoice()" in html
     assert "当前项目" in html
     assert ".filter(v=>v&&v.name&&v.id)" in html
+
+
+def test_studio_v04_identity_variation_and_timeline_controls_exist() -> None:
+    html = _studio_html()
+
+    assert 'id="characterIdentityHint"' in html
+    assert 'id="variationStrength"' in html
+    assert 'id="clipTimeline"' in html
+    assert "/api/update-storyboard-timeline" in html

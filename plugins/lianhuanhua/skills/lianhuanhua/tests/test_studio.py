@@ -2,10 +2,17 @@ from __future__ import annotations
 
 import json
 
+import pytest
 from PIL import Image
 
 from lianhuanhua.schema_validation import validate_file
-from lianhuanhua.studio import generate_storyboard, save_project_settings, studio_snapshot, write_studio_action
+from lianhuanhua.studio import (
+    generate_storyboard,
+    save_project_settings,
+    studio_snapshot,
+    update_storyboard_timeline,
+    write_studio_action,
+)
 from lianhuanhua.utils import read_json, write_json
 from lianhuanhua.validation import validate_manual_panels
 from lianhuanhua.workspace import initialize_workspace
@@ -76,14 +83,18 @@ def test_save_project_settings_supports_style_only_codex_flow(tmp_path) -> None:
         {
             "story": "只靠风格描述也能开始。",
             "style_prompt": "黑白铅笔连环画",
+            "character_identity_hint": "一猫人",
             "image_density": "three_sentences",
+            "variation_strength": "明显",
             "image_provider": "codex",
         },
     )
 
     assert project["paths"]["character_images"] == []
     assert project["visual"]["style_prompt"] == "黑白铅笔连环画"
+    assert project["visual"]["character_identity_hint"] == "一猫人"
     assert project["storyboard"]["image_density"] == "three_sentences"
+    assert project["storyboard"]["variation_strength"] == "明显"
     assert project["image_workflow"]["mode"] == "codex"
 
 
@@ -116,3 +127,69 @@ def test_generate_storyboard_marks_confirmation_node_ready(tmp_path) -> None:
     assert state["node_status"]["voice"] == "confirmed"
     assert state["node_status"]["storyboard"] == "ready"
     assert (ws.output / "prompts-package.zip").exists()
+
+
+def test_generate_storyboard_uses_user_identity_hint_and_variation(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "identity-variation")
+    write_json(
+        ws.timeline,
+        {
+            "duration": 4.0,
+            "segments": [
+                {"id": "seg_001", "start": 0.0, "end": 2.0, "text": "第一句。"},
+                {"id": "seg_002", "start": 2.0, "end": 4.0, "text": "第二句。"},
+            ],
+        },
+    )
+
+    result = generate_storyboard(
+        ws.root,
+        {
+            "character_identity_hint": "一猫人",
+            "style_prompt": "可爱连环画",
+            "image_density": "one_per_sentence",
+            "variation_strength": "明显",
+            "image_provider": "codex",
+        },
+    )
+    character = read_json(ws.work / "character_bible.json")
+    prompt = (ws.prompts_dir / "shot_001.md").read_text(encoding="utf-8")
+
+    assert character["user_identity_hint"] == "一猫人"
+    assert character["identity_research"]["prompt_identity"] == "一猫人"
+    assert "一猫人" in prompt
+    assert all(shot["camera"] for shot in result["storyboard"]["shots"])
+
+
+def test_update_storyboard_timeline_updates_motion_and_rebuilds_prompts(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "timeline-update")
+
+    result = update_storyboard_timeline(
+        ws.root,
+        {
+            "shots": [
+                {
+                    "id": "shot_001",
+                    "start": 0.25,
+                    "end": 4.5,
+                    "motion": {"type": "slow_zoom_in"},
+                }
+            ]
+        },
+    )
+    storyboard = read_json(ws.work / "storyboard.json")
+
+    assert result["storyboard"]["shots"][0]["start"] == 0.25
+    assert storyboard["shots"][0]["end"] == 4.5
+    assert storyboard["shots"][0]["motion"]["type"] == "slow_zoom_in"
+    assert (ws.output / "prompts-package.zip").exists()
+
+
+def test_update_storyboard_timeline_rejects_negative_duration(tmp_path) -> None:
+    ws = initialize_workspace(tmp_path / "timeline-invalid")
+
+    with pytest.raises(ValueError, match="non-positive duration"):
+        update_storyboard_timeline(
+            ws.root,
+            {"shots": [{"id": "shot_001", "start": 2.0, "end": 1.0, "motion": {"type": "hold"}}]},
+        )

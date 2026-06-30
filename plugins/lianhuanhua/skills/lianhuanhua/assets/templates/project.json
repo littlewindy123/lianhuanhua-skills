@@ -17,10 +17,12 @@
   },
   "visual": {
     "style_prompt": "温暖、轻微伤感、简洁可爱的连环画风格",
+    "character_identity_hint": "",
     "reference_mode": "image_or_style"
   },
   "storyboard": {
-    "image_density": "smart"
+    "image_density": "smart",
+    "variation_strength": "明显"
   },
   "tts": {
     "speaker": "",
